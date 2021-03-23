@@ -8,33 +8,10 @@
     <title>
         {{ env('APP_NAME') }}
         @hasSection ('ex-title')
+        
             - @yield('ex-title')
         @endif
     </title>
-    <style>
-        kholase {
-            white-space: pre-wrap;
-        }
-
-        #markdown {
-            direction: rtl;
-            text-align: right;
-        }
-
-        .CodeMirror {
-            padding-right: 1rem !important;
-        }
-
-        .rtl{
-            text-align: right;
-            direction: rtl !important;
-        }
-
-        .ltr{
-            text-align: left;
-            direction: ltr !important;
-        }
-    </style>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 

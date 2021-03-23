@@ -26,4 +26,6 @@
     font-weight: 700;
 }
 
-@import "prettifier.css"
+@import "prettifier.css";
+
+@import "custom.css";

@@ -145,6 +145,28 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {}
     }
 }
 
+kholase {
+    white-space: pre-wrap;
+}
+
+#markdown {
+    direction: rtl;
+    text-align: right;
+}
+
+.CodeMirror {
+    padding-right: 1rem !important;
+}
+
+.rtl{
+    text-align: right;
+    direction: rtl !important;
+}
+
+.ltr{
+    text-align: left;
+    direction: ltr !important;
+}
 @font-face {
     font-family: "primary-font";
     src: url("/../fonts/shabnam-300.eot");
@@ -172,7 +194,6 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {}
     src: url("/../fonts/shabnam-700.eot?#iefix") format("embedded-opentype"), url("/../fonts/shabnam-700.woff2") format("woff2"), url("/../fonts/shabnam-700.woff") format("woff"), url("/../fonts/shabnam-700.ttf") format("truetype");
     font-weight: 700;
 }
-
 @charset "UTF-8";
 
 :root {
