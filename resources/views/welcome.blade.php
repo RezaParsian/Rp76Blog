@@ -44,11 +44,7 @@
                 <a href="#" class="read-more">Read More <img src="img/icons/double-arrow.png" alt="#" /></a>
             </div>
         </div>
-        <div class="site-pagination">
-            <a href="#" class="active">01.</a>
-            <a href="#">02.</a>
-            <a href="#">03.</a>
-        </div>
+        <paginate total="15" current="{{Request()->page}}"></paginate>
     </div>
 
 @endsection
