@@ -6,7 +6,12 @@
 
 require('./bootstrap');
 require('./custom');
+require('./owl.carousel.min');
+require('./jquery.magnific-popup.min');
+require('./jquery.sticky-sidebar.min');
+require('./jquery.slicknav.min');
 require('./run_prettify');
+require('./main');
 window.Vue = require('vue').default;
 /**
  * The following block of code may be used to automatically register your
