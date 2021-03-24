@@ -26,6 +26,7 @@ window.Vue = require('vue').default;
 
 Vue.component('markdown', require('./components/MarkDownEditor.vue').default);
 Vue.component('paginate', require('./components/Paginate.vue').default);
+Vue.component('post', require('./components/Posts.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

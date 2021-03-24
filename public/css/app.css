@@ -713,6 +713,15 @@ ul, ol {
 	margin-left: 13px;
 }
 
+.read-more::after {
+	content: "";
+	background: url(/img/icons/double-arrow.png);
+	width: 14px;
+	display: inline-block;
+	height: 0.8111111111rem;
+	background-repeat: no-repeat;
+}
+
 /* ----------------
  Blog Section
 ---------------------*/

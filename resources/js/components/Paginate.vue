@@ -1,7 +1,5 @@
 <template>
-    <div class="site-pagination" v-html="MakePaginate()">
-
-    </div>
+    <div class="site-pagination" v-html="MakePaginate()"></div>
 </template>
 
 <script>
