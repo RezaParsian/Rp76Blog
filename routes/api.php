@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/post",function(){
-    return User::orderby("id","desc")->paginate(1);
+Route::get("/post",function(Request $request){
+    return User::where("name","like", "%{$request->q}%")->orderby("id","desc")->paginate(1);
 });

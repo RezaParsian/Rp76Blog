@@ -2092,7 +2092,7 @@ __webpack_require__.r(__webpack_exports__);
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       var vm = this;
       vm.loading = true;
-      $.get("/api/post?page=" + page, function (data, status) {
+      $.get('/api/post?q=' + this.$root.searchquery + '&page=' + page, function (data, status) {
         if (status === "success") {
           vm.posts = data["data"];
           vm.current = data["current_page"];
@@ -2128,7 +2128,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.GetPosts();
+    var url = new URL(document.URL);
+    var pageID = url.searchParams.get("page");
+    this.GetPosts(pageID);
   }
 });
 
@@ -2145,6 +2147,9 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
+    method = _require.method;
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./custom */ "./resources/js/custom.js");
@@ -2184,7 +2189,13 @@ Vue.component('post', __webpack_require__(/*! ./components/Posts.vue */ "./resou
 var app = new Vue({
   el: '#app',
   data: {
-    lorm: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد."
+    lorm: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
+    searchquery: ""
+  },
+  methods: {
+    Search: function Search() {
+      this.$children[0].GetPosts();
+    }
   }
 });
 
@@ -41538,7 +41549,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("a", { staticClass: "read-more", attrs: { href: "#" } }, [
-              _vm._v("\n                Read More\n            ")
+              _vm._v("\n                بیشتر\n            ")
             ])
           ])
         ])

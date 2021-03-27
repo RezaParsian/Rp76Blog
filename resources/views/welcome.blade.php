@@ -8,7 +8,7 @@
             <li><a href="#">Strategy</a></li>
             <li><a href="#">Online</a></li>
         </ul>
-        <post paginate="false"></post>
+        <post></post>
     </div>
 
 @endsection

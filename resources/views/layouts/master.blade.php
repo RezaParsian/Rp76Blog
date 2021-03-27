@@ -84,8 +84,8 @@
                         <div id="stickySidebar">
                             <div class="widget-item">
                                 <form class="search-widget">
-                                    <input type="text">
-                                    <button>search</button>
+                                    <input v-model="searchquery" type="text">
+                                    <button @click="Search" type="button">search</button>
                                 </form>
                             </div>
                             <div class="widget-item">
