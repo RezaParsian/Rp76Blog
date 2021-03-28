@@ -41616,7 +41616,8 @@ var render = function() {
     "section",
     {
       staticClass: "position-relative",
-      attrs: { hover: _vm.HoverToolTip, id: "post_section" }
+      attrs: { id: "post_section" },
+      on: { mouseover: _vm.HoverToolTip }
     },
     [
       _vm.loading
