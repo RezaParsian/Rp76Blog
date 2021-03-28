@@ -27,12 +27,12 @@
         <header class="header-section">
             <div class="header-warp">
                 <div class="header-social d-flex justify-content-end">
-                    <p>Follow us:</p>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                    <a href="#"><i class="fa fa-behance"></i></a>
+                    <p>Follow me:</p>
+                    <a href="#" title="Telegram" data-toggle="tooltip"><i class="fa fa-telegram fa-2x"></i></a>
+                    <a href="#" title="Twitter" data-toggle="tooltip"><i class="fa fa-twitter fa-2x"></i></a>
+                    <a href="#" title="Github" data-toggle="tooltip"><i class="fa fa-github fa-2x"></i></a>
+                    <a href="#" title="Gitlab" data-toggle="tooltip"><i class="fa fa-gitlab fa-2x"></i></a>
+                    <a href="#" title="Instagram" data-toggle="tooltip"><i class="fa fa-instagram fa-2x"></i></a>
                 </div>
                 <div class="header-bar-warp d-flex">
                     <!-- site logo -->

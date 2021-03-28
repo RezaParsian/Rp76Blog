@@ -15,13 +15,15 @@ use Symfony\Component\HttpFoundation\Request;
 |
 */
 
-Route::get('/', function () {
-    $a=new Parsedown();
-    $a->setSafeMode(true);
-    $a->setMarkupEscaped(true);
-    $b=$a->text(Request()->markdowneditor);
-    return view('welcome',compact("b"));
-});
+// Route::get('/', function () {
+//     $a=new Parsedown();
+//     $a->setSafeMode(true);
+//     $a->setMarkupEscaped(true);
+//     $b=$a->text(Request()->markdowneditor);
+//     return view('welcome',compact("b"));
+// });
+
+Route::view("/","welcome");
 
 Auth::routes();
 
