@@ -199,27 +199,25 @@
         <!-- Footer section -->
         <footer class="footer-section">
             <div class="container">
-                <div class="footer-left-pic">
-                    {{-- <img src="" alt=""> --}}
-                </div>
+                <div class="footer-left-pic"></div>
                 <a href="#" class="footer-logo">
                     <img src="{{ asset('favicon.ico') }}" alt="">
                 </a>
-                <ul class="main-menu footer-meslicknav_btn slicknav_collapsedu">
+                {{-- <ul class="main-menu footer-meslicknav_btn slicknav_collapsedu">
                     <li><a href="">Home</a></li>
                     <li><a href="">Games</a></li>
                     <li><a href="">Reviews</a></li>
                     <li><a href="">News</a></li>
                     <li><a href="">Contact</a></li>
-                </ul>
+                </ul> --}}
                 <div class="footer-social d-flex justify-content-center">
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                    <a href="#"><i class="fa fa-behance"></i></a>
+                    <a href="#" title="Telegram" data-toggle="tooltip"><i class="fa fa-telegram fa-2x"></i></a>
+                    <a href="#" title="Twitter" data-toggle="tooltip"><i class="fa fa-twitter fa-2x"></i></a>
+                    <a href="#" title="Github" data-toggle="tooltip"><i class="fa fa-github fa-2x"></i></a>
+                    <a href="#" title="Gitlab" data-toggle="tooltip"><i class="fa fa-gitlab fa-2x"></i></a>
+                    <a href="#" title="Instagram" data-toggle="tooltip"><i class="fa fa-instagram fa-2x"></i></a>
                 </div>
-                <div class="copyright"><a href="">Rp76</a> 2021 @ All rights reserved</div>
+                <div class="copyright" data-toggle="tooltip" title="Rp76 2021 @ All rights reserved"><a href="">Rp76</a> 2021 @ All rights reserved</div>
             </div>
         </footer>
         <!-- Footer section end -->

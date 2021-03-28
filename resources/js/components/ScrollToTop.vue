@@ -1,6 +1,7 @@
 <template>
     <button
     type="button"
+    data-toggle="tooltip"
     title="بروبالا"
     class="scrolltotop btn rounded-pill position-relative text-white-50"
     @click="Scroll"

@@ -2103,6 +2103,9 @@ __webpack_require__.r(__webpack_exports__);
       });
       window.history.pushState("", "", '?page=' + page);
     },
+    HoverToolTip: function HoverToolTip() {
+      $('[data-toggle="tooltip"]').tooltip();
+    },
     AddLeadingZero: function AddLeadingZero(number) {
       return String(number).padStart(2, '0');
     },
@@ -2147,6 +2150,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -41610,7 +41614,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "section",
-    { staticClass: "position-relative", attrs: { id: "post_section" } },
+    {
+      staticClass: "position-relative",
+      attrs: { hover: _vm.HoverToolTip, id: "post_section" }
+    },
     [
       _vm.loading
         ? _c(
@@ -41632,7 +41639,7 @@ var render = function() {
         return _c("div", { key: index["id"], staticClass: "big-blog-item" }, [
           _c("img", {
             staticClass: "blog-thumbnail",
-            attrs: { src: "img/blog-big/1.jpg", alt: "#" }
+            attrs: { src: "img/blog-big/1.jpg", alt: "image" }
           }),
           _vm._v(" "),
           _c("div", { staticClass: "blog-content text-box text-white rtl" }, [
@@ -41653,9 +41660,14 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("a", { staticClass: "read-more", attrs: { href: "#" } }, [
-              _vm._v("\n                بیشتر\n            ")
-            ])
+            _c(
+              "a",
+              {
+                staticClass: "read-more",
+                attrs: { href: "#", "data-toggle": "tooltip", title: "بیشتر" }
+              },
+              [_vm._v("\n                بیشتر\n            ")]
+            )
           ])
         ])
       }),
@@ -41669,7 +41681,11 @@ var render = function() {
             {
               key: index,
               class: _vm.current == index ? "active disable" : "",
-              attrs: { href: "#post_section" },
+              attrs: {
+                href: "#post_section",
+                "data-toggle": "tooltip",
+                title: "صفحه " + index
+              },
               on: {
                 click: function($event) {
                   return _vm.GetPosts(index)
@@ -41713,7 +41729,7 @@ var render = function() {
     {
       staticClass:
         "scrolltotop btn rounded-pill position-relative text-white-50",
-      attrs: { type: "button", title: "بروبالا" },
+      attrs: { type: "button", "data-toggle": "tooltip", title: "بروبالا" },
       on: { click: _vm.Scroll }
     },
     [_c("i", { staticClass: "fa fa-chevron-up" })]
