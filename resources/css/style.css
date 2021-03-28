@@ -986,12 +986,11 @@ ul, ol {
 	position: absolute;
 	left: -13px;
 	bottom: 19px;
-}
-
-.footer-right-pic {
-	position: absolute;
-	right: 50px;
-	bottom: 19px;
+	width: 12rem;
+	background: url(/img/footer-left-pic.png);
+	height: 30rem;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .footer-menu {
