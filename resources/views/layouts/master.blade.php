@@ -182,9 +182,9 @@
             </div>
         </section>
         <!-- Blog page end-->
-        <button type="button" @click="Scroll"><i class="fa fa-chevron-up"></i></button>
         <!-- Newsletter section -->
-        <section class="newsletter-section">
+        <section class="newsletter-section position-relative">
+            <button type="button" title="بروبالا" class="scrolltotop btn rounded-pill position-relative text-white-50" @click="Scroll"><i class="fa fa-chevron-up"></i></button>
             <div class="container">
                 <h2 class="rtl text-center">مشترک خبرنامه ما شوید.</h2>
                 <form class="newsletter-form">
