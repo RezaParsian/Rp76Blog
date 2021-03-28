@@ -2195,6 +2195,9 @@ var app = new Vue({
   methods: {
     Search: function Search() {
       this.$children[0].GetPosts();
+    },
+    Scroll: function Scroll() {
+      scrollTo(0, 0);
     }
   }
 });

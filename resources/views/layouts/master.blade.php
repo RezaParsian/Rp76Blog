@@ -85,7 +85,7 @@
                             <div class="widget-item">
                                 <form class="search-widget">
                                     <input v-model="searchquery" type="text">
-                                    <button @click="Search" type="button">search</button>
+                                    <button @click="Search" type="button">جستجو</button>
                                 </form>
                             </div>
                             <div class="widget-item">
@@ -182,15 +182,14 @@
             </div>
         </section>
         <!-- Blog page end-->
-
-
+        <button type="button" @click="Scroll"><i class="fa fa-chevron-up"></i></button>
         <!-- Newsletter section -->
         <section class="newsletter-section">
             <div class="container">
-                <h2>Subscribe to our newsletter</h2>
+                <h2 class="rtl text-center">مشترک خبرنامه ما شوید.</h2>
                 <form class="newsletter-form">
-                    <input type="text" placeholder="ENTER YOUR E-MAIL">
-                    <button class="site-btn">subscribe <img src="img/icons/double-arrow.png" alt="#" /></button>
+                    <input type="text" placeholder="ایمیل شما">
+                    <button class="site-btn">اشتراک <img src="img/icons/double-arrow.png" alt="arrow" /></button>
                 </form>
             </div>
         </section>
@@ -223,7 +222,7 @@
                     <a href="#"><i class="fa fa-dribbble"></i></a>
                     <a href="#"><i class="fa fa-behance"></i></a>
                 </div>
-                <div class="copyright"><a href="">Colorlib</a> 2018 @ All rights reserved</div>
+                <div class="copyright"><a href="">Rp76</a> 2021 @ All rights reserved</div>
             </div>
         </footer>
         <!-- Footer section end -->

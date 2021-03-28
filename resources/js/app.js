@@ -44,6 +44,9 @@ const app = new Vue({
     methods:{
         Search:function() {
             this.$children[0].GetPosts();
-        }
+        },
+        Scroll() {
+            scrollTo(0, 0);
+        },
     }
 });
