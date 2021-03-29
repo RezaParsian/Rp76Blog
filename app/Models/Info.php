@@ -16,12 +16,8 @@ class Info extends Model
         self::VALUE,
     ];
 
-    protected $casts=[
-        self::VALUE => 'array'
-    ];
-
-    public function userInfo()
+    public function getValueAttribute()
     {
-        return $this->belongsToMany(User::class);
+        return json_decode($this->attributes[self::VALUE],true);
     }
 }
