@@ -35,7 +35,8 @@ export default {
     },
     methods:{
         GetPosts:function(page=1){
-            var vm = this
+            let vm = this;
+            page= page ?? 1;
             vm.loading=true;
             $.get('/api/post?q='+this.$root.searchquery+'&page='+page,function(data,status){
                 if(status==="success"){
@@ -55,20 +56,20 @@ export default {
             return String(number).padStart(2, '0');
         },
         MakePaginate:function(){
-            var result=[];
-            var lastpage=parseInt(this.current) + 5;
+            const result = [];
+            let lastPage = parseInt(this.current) + 5;
 
-            while(lastpage>this.total){
-                lastpage--;
+            while(lastPage>this.total){
+                lastPage--;
             }
 
-            var firstpage=parseInt(this.current) - 5;
+            let firstPage = parseInt(this.current) - 5;
 
-            while(firstpage<1){
-                firstpage++
+            while(firstPage<1){
+                firstPage++
             }
 
-            for(var i=firstpage;i<=lastpage;i++){
+            for(let i=firstPage; i<=lastPage; i++){
                 result.push(i);
             }
 
@@ -76,8 +77,8 @@ export default {
         }
     },
     mounted(){
-        var url=new URL(document.URL);
-        var pageID=url.searchParams.get("page");
+        const url = new URL(document.URL);
+        const pageID = url.searchParams.get("page");
         this.GetPosts(pageID);
     }
 };

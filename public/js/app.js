@@ -2089,8 +2089,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     GetPosts: function GetPosts() {
+      var _page;
+
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       var vm = this;
+      page = (_page = page) !== null && _page !== void 0 ? _page : 1;
       vm.loading = true;
       $.get('/api/post?q=' + this.$root.searchquery + '&page=' + page, function (data, status) {
         if (status === "success") {
@@ -2111,19 +2114,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     MakePaginate: function MakePaginate() {
       var result = [];
-      var lastpage = parseInt(this.current) + 5;
+      var lastPage = parseInt(this.current) + 5;
 
-      while (lastpage > this.total) {
-        lastpage--;
+      while (lastPage > this.total) {
+        lastPage--;
       }
 
-      var firstpage = parseInt(this.current) - 5;
+      var firstPage = parseInt(this.current) - 5;
 
-      while (firstpage < 1) {
-        firstpage++;
+      while (firstPage < 1) {
+        firstPage++;
       }
 
-      for (var i = firstpage; i <= lastpage; i++) {
+      for (var i = firstPage; i <= lastPage; i++) {
         result.push(i);
       }
 
