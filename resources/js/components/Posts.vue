@@ -1,7 +1,7 @@
 <template>
     <section @mouseover="HoverToolTip" id="post_section" class="position-relative">
         <div v-if="loading" style="background: #33333391;" class="position-absolute p-0 m-0 w-100 h-100 d-flex justify-content-center">
-            <div class="align-self-center spinner-grow text-warning"></div>
+            <div class="spinner-grow text-warning"></div>
         </div>
         <div class="big-blog-item" v-for="index in posts" :key="index['id']">
             <img src="img/blog-big/1.jpg" alt="image" class="blog-thumbnail" />

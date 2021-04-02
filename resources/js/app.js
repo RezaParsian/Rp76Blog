@@ -30,12 +30,12 @@ Vue.component('markdown', require('./components/MarkDownEditor.vue').default);
 Vue.component('paginate', require('./components/Paginate.vue').default);
 Vue.component('post', require('./components/Posts.vue').default);
 Vue.component('scrolltotop', require('./components/ScrollToTop.vue').default);
+Vue.component('social', require('./components/Social.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 const app = new Vue({
     el: '#app',
     data: {
@@ -44,7 +44,13 @@ const app = new Vue({
     },
     methods:{
         Search:function() {
-            this.$children[0].GetPosts();
+            this.$children[this.findComponent("post")].GetPosts();
         },
+        findComponent(name){
+            for (var index=0;index<this.$children.length;index++){
+                if (this.$children[index].$options['_componentTag']==name)
+                    return index;
+            }
+        }
     }
 });
