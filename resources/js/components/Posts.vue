@@ -3,6 +3,9 @@
         <div v-if="loading" style="background: #33333391;" class="position-absolute p-0 m-0 w-100 h-100 d-flex justify-content-center">
             <div class="spinner-grow text-warning"></div>
         </div>
+        <div class="rtl" v-if="posts.length==0">
+            <h1 class="text-center text-white">نتیجه ای یافت نشد.</h1>
+        </div>
         <div class="big-blog-item" v-for="index in posts" :key="index['id']">
             <img src="img/blog-big/1.jpg" alt="image" class="blog-thumbnail" />
             <div class="blog-content text-box text-white rtl">
