@@ -1,9 +1,9 @@
 $(window).on('load', function () {
     /*------------------
-        Preloder
+        preloader
     --------------------*/
     $(".loader").fadeOut();
-    $("#preloder").delay(400).fadeOut("slow");
+    $("#preloader").delay(400).fadeOut("slow");
     $(".slicknav_btn").on("click",function(){
         $(".slicknav_nav.slicknav_hidden").toggle(1250);
     });

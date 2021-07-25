@@ -12,8 +12,8 @@
 
 <body>
 <div class="container-fluid p-0" id="app">
-    <!-- Page Preloder -->
-    <div id="preloder">
+    <!-- Page Preloader -->
+    <div id="preloader">
         <div class="loader"></div>
     </div>
 
@@ -35,7 +35,7 @@
                     </a>
                     <!--Menu -->
                     <ul id="menu" class="main-menu primary-menu rtl">
-                        <li><a href="index.html">خانه</a></li>
+                        <li><a href="{{route("blog")}}">خانه</a></li>
                         <li><a href="games.html">بازی</a>
                             <ul class="sub-menu">
                                 <li><a href="game-single.html">بازی ۱</a></li>
@@ -53,7 +53,7 @@
 
 
     <!-- Page top section -->
-    <section class="page-top-section" id="topheader">
+    <section class="page-top-section" id="topHeader">
         <div class="page-info rtl">
             <h2>مطالب اخیر</h2>
             <div class="site-breadcrumb">
