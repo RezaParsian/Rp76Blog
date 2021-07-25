@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome',compact("b"));
 // });
 
-Route::view("/","welcome");
+Route::view("/","welcome")->name("blog");
 
 Auth::routes();
 

@@ -5,13 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>
-        {{ env('APP_NAME') }}
-        @hasSection ('ex-title')
-
-            - @yield('ex-title')
-        @endif
-    </title>
+    <title>{{ env('APP_NAME') }}@hasSection ('ex-title') - @yield('ex-title') @endif</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @yield('ex-css')
 </head>
@@ -36,7 +30,7 @@
                     <a href="">Login</a> / <a href="">Register</a>
                 </div>
                 <nav class="top-nav-area w-100">
-                    <a href="index.html" class="site-logo p-1">
+                    <a href="{{route("blog")}}" class="site-logo p-1">
                         <h1 class="text-white p-0">برنامه نویس کوچک</h1>
                     </a>
                     <!--Menu -->
