@@ -11,7 +11,7 @@
     <title>Gentelella Alela! | قالب مدیریت رایگان </title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{filemtime("css/app.css")}}">
 
 {{--    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">--}}
 {{--    <link href="../vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css" rel="stylesheet">--}}
@@ -31,7 +31,7 @@
 </head>
 <!-- /header content -->
 <body class="nav-md">
-<div class="container body">
+<div class="container body" id="app">
     <div class="main_container">
         <div class="col-md-3 left_col hidden-print">
             <div class="left_col scroll-view">
