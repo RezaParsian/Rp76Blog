@@ -36,4 +36,38 @@
 
 @import "animate.css";
 
-@import "dashboard_custom.css";
+@import "https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700";
+
+
+@import "/../public/dist/css/adminlte.min.css";
+@import "/../public/plugins/iCheck/flat/blue.css";
+@import "/../public/plugins/morris/morris.css";
+@import "/../public/plugins/daterangepicker/daterangepicker-bs3.css";
+@import "/../public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css";
+@import "/../public/dist/css/custom-style.css";
+@import "/../public/plugins/jvectormap/jquery-jvectormap-1.2.2.css";
+@import "/../public/dist/css/bootstrap-rtl.min.css";
+
+
+/*<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">*/
+/*<!-- Theme style -->*/
+/*<link rel="stylesheet" href="dist/css/adminlte.min.css">*/
+/*<!-- iCheck -->*/
+/*<link rel="stylesheet" href="">*/
+/*<!-- Morris chart -->*/
+/*<link rel="stylesheet" href="">*/
+/*<!-- jvectormap -->*/
+/*<link rel="stylesheet" href="">*/
+/*<!-- Date Picker -->*/
+/*<link rel="stylesheet" href="plugins/datepicker/datepicker3.css">*/
+/*<!-- Daterange picker -->*/
+/*<link rel="stylesheet" href="">*/
+/*<!-- bootstrap wysihtml5 - text editor -->*/
+/*<link rel="stylesheet" href="">*/
+/*<!-- Google Font: Source Sans Pro -->*/
+/*<link href="" rel="stylesheet">*/
+/*<!-- bootstrap rtl -->*/
+/*<link rel="stylesheet" href="">*/
+/*<!-- template rtl version -->*/
+/*<link rel="stylesheet" href="{{asset("")}}">*/

@@ -1,20 +1,14 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 
-//css
-@import url('../css/app.css');
-
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import '~bootstrap-v4-rtl/scss/bootstrap';
 
 //font awsome
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 
-@import "~nprogress/nprogress.css";
-@import "~bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css";
-@import "~icheck/skins/all.css";
-@import "~bootstrap-daterangepicker/daterangepicker.css";
+//css
+@import url('../css/app.css');

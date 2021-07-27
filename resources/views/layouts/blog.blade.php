@@ -10,7 +10,7 @@
     @yield('ex-css')
 </head>
 
-<body>
+<body class="ltr">
 <div class="container-fluid p-0" id="app">
     <!-- Page Preloader -->
     <div id="preloader">

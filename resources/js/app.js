@@ -14,20 +14,12 @@ require('./jquery.sticky-sidebar.min');
 require('./jquery.slicknav.min');
 require('./run_prettify');
 require('./main');
-require("fastclick")
-require("nprogress")
-require("bootstrap-daterangepicker")
-require("bootstrap-progressbar/bootstrap-progressbar")
-require("icheck")
-require("chart.js")
-require("jquery-sparkline")
-require("gauge.js")
-require("skycons")
-require("flot")
-require("flot-plugins/lib/cbuffer")
-require("datejs")
-require("jqvmap")
-require("jqvmap")
+require("jquery-ui")
+
+require("../../public/dist/js/adminlte.js")
+require("../../public/dist/js/demo.js")
+
+
 window.Vue = require('vue').default;
 /**
  * The following block of code may be used to automatically register your
