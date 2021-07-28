@@ -1733,3 +1733,11 @@ ul, ol {
     background: linear-gradient(#35185442, #35185442), url(/img/header.jpg);
     background-position: center;
 }
+
+.text-blog{
+    color: #331854 !important;
+}
+
+.bg-blog{
+    background: #331854 !important;
+}
