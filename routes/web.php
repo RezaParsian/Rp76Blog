@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,11 +23,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome',compact("b"));
 // });
 
-Route::view("/","welcome")->name("blog");
+Route::view("/", "welcome")->name("blog");
 
 Auth::routes();
 //['verify' => true]
 
-Route::group(["prefix"=>"dashboard","middleware"=>["auth"]],function (){
+Route::group(["prefix" => "dashboard", "middleware" => ["auth"]], function () {
     Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::resource("article", ArticleController::class);
 });

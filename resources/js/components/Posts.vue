@@ -1,28 +1,28 @@
 <template>
-    <section @mouseover="HoverToolTip" id="post_section" class="position-relative">
+    <article @mouseover="HoverToolTip" id="post_section" class="position-relative">
         <div v-if="loading" style="background: #33333391;" class="position-absolute p-0 m-0 w-100 h-100 d-flex justify-content-center">
             <div class="spinner-grow text-warning"></div>
         </div>
         <div class="rtl" v-if="posts.length==0">
             <h1 class="text-center text-white">نتیجه ای یافت نشد.</h1>
         </div>
-        <div class="big-blog-item" v-for="index in posts" :key="index['id']">
-            <img src="img/blog-big/1.jpg" alt="image" class="blog-thumbnail" />
-            <div class="blog-content text-box text-white rtl">
-                <div class="top-meta">11.11.18 / By <a href="">{{index["name"]}}</a></div>
-                <h3>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</h3>
-                <p>
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                </p>
-                <a href="#" data-toggle="tooltip" title="بیشتر" class="read-more">
-                    بیشتر
-                </a>
+        <div class="card bg-blog shadow" v-for="index in posts" :key="index['id']">
+            <div class="card-body">
+                <div class="big-blog-item mb-0">
+                    <img src="img/blog-big/1.jpg" alt="image" class="blog-thumbnail rounded" />
+                    <div class="blog-content text-box text-white rtl">
+                        <div class="top-meta">{{ index.custom_date }} / By <a href="">{{index.user.name}}</a></div>
+                        <h3>{{index.title}}</h3>
+                        <section v-html="index.content"></section>
+                        <p class="mt-3"><a href="#" data-toggle="tooltip" title="بیشتر" class="read-more">بیشتر</a></p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="site-pagination">
             <a href="#post_section" data-toggle="tooltip" :title="'صفحه '+index" @click="GetPosts(index)" v-for="index in paginate" :class="current==index ? 'active disable' : ''" :key="index">{{AddLeadingZero(index)}}.</a>
         </div>
-    </section>
+    </article>
 </template>
 
 <script>

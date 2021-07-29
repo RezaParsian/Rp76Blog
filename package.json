@@ -25,7 +25,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "datatables": "^1.10.18",
         "font-awesome": "^4.7.0",
-        "jquery-ui": "^1.12.1"
+        "jquery-ui": "^1.12.1",
+        "sweetalert2": "^11.0.20"
     }
 }

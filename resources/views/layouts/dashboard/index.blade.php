@@ -43,6 +43,35 @@
 </div>
 
 <script src="{{asset("js/app.js")}}"></script>
-
+<script>
+    @if(env("APP_DEBUG"))
+    console.log({!! json_encode(DB::getQueryLog()) !!});
+    @endif
+    $(document).ready(function () {
+        const msg = "{{session()->has("msg")}}";
+        const error = "{{session()->has("error")}}";
+        if (msg !== "") {
+            setTimeout(function () {
+                Swal.fire({
+                    title: 'موفق!',
+                    html: '{!! session()->get("msg")  !!}',
+                    icon: 'success',
+                    confirmButtonText: 'بستن'
+                })
+            }, 250);
+        }
+        if (error !== "") {
+            setTimeout(function () {
+                Swal.fire({
+                    title: '‌خطا!',
+                    html: '{!! session()->get("error")  !!}',
+                    icon: 'error',
+                    confirmButtonText: 'بستن'
+                })
+            }, 250);
+        }
+    })
+</script>
+@yield("ex-js")
 </body>
 </html>

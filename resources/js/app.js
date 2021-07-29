@@ -3,7 +3,6 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 const { method } = require('lodash');
 
 require('./bootstrap');
@@ -18,9 +17,11 @@ require("jquery-ui")
 
 require("../../public/dist/js/adminlte.js")
 require("../../public/dist/js/demo.js")
+require("../../public/plugins/datatables/jquery.dataTables.js")
 
 
 window.Vue = require('vue').default;
+window.Swal = require('sweetalert2')
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

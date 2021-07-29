@@ -1,3 +1,7 @@
+.space {
+    white-space: break-spaces;
+}
+
 kholase {
     white-space: pre-wrap;
 }

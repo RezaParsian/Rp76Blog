@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get("/post",function(Request $request){
-    return User::where("name","like", "%{$request->q}%")->orderby("id","desc")->paginate(1);
+    return Article::where(function ($query) use($request){
+        $query->where("title","like", "%{$request->q}%")->orWhere("content","like", "%{$request->q}%");
+    })
+        ->with("user")
+        ->orderby("id","desc")
+        ->paginate();
 });
