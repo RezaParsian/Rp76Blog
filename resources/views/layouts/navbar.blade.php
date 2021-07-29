@@ -7,7 +7,12 @@
         <div class="header-bar-warp d-flex">
             <!-- site logo -->
             <div class="user-panel w-25 d-none d-md-block">
-                <a href="{{route("login")}}">Login</a> / <a href="{{route("register")}}">Register</a>
+                @auth
+                    <a href="{{route("login")}}">Dashboard</a>
+                @endauth
+                @guest
+                    <a href="{{route("login")}}">Login</a> / <a href="{{route("register")}}">Register</a>
+                @endguest
             </div>
             <div class="user-panel w-25 d-block d-md-none">
                 <a href="{{route("login")}}" title="login">

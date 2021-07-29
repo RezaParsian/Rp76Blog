@@ -27,4 +27,6 @@ Route::view("/","welcome")->name("blog");
 Auth::routes();
 //['verify' => true]
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->middleware("verified")->name('dashboard');
+Route::group(["prefix"=>"dashboard","middleware"=>["auth"]],function (){
+    Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+});
