@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Helper\CustomModel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,7 +16,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable /*implements MustVerifyEmail*/
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes,CustomModel;
 
     const ROLE_ID = "role_id",
         NAME = "name",
