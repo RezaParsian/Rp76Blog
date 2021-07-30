@@ -14,6 +14,7 @@ require('./jquery.slicknav.min');
 require('./run_prettify');
 require('./main');
 require("jquery-ui")
+require("select2")
 
 require("../../public/dist/js/adminlte.js")
 require("../../public/dist/js/demo.js")

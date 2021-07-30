@@ -60,12 +60,10 @@
 
 @section("ex-js")
     <script>
-        $("#{{\App\Models\Article::TITLE}}").val("{{old(\App\Models\Article::TITLE)}}");
-        $("#{{\App\Models\Article::TYPE}}").val("{{old(\App\Models\Article::TYPE)}}");
-        $("#{{\App\Models\Article::SLUG}}").val("{{old(\App\Models\Article::SLUG)}}");
-        $("#{{\App\Models\Article::CONTENT}}").val("{{old(\App\Models\Article::CONTENT)}}");
-        @if(old("category"))
-        $("#category").val("{{old("category")}}");
-        @endif
+        $("#{{\App\Models\Article::TITLE}}").val("{{old(\App\Models\Article::TITLE,$article->title)}}");
+        $("#{{\App\Models\Article::TYPE}}").val("{{old(\App\Models\Article::TYPE,$article->type)}}");
+        $("#{{\App\Models\Article::SLUG}}").val("{{old(\App\Models\Article::SLUG,$article->slug)}}");
+        $("#{{\App\Models\Article::CONTENT}}").val(`{!! old(str_replace("`","\`",\App\Models\Article::CONTENT),str_replace("`","\`",$article->content)) !!}`);
+        {{--        $("#category").val("{{old("category",$article->category)}}");--}}
     </script>
 @endsection

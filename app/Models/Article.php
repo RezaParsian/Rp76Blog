@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static limit(int $int)
+ * @method static create(array $valid)
  * @property mixed content
  */
 class Article extends Model
@@ -24,6 +25,11 @@ class Article extends Model
         CONTENT = "content",
         IMAGE = "image",
         TYPE = "type";
+
+    const POST_TYPE=[
+        "blog"=>"پست بلند",
+        "twit"=>"پست کوتاه"
+    ];
 
     protected $fillable = [
         self::USER_ID,
@@ -40,7 +46,8 @@ class Article extends Model
         "updated_at_p",
         "updated_at_diff",
         "custom_date",
-        "summary"
+        "summary",
+        "markdown"
     ];
 
     /**
@@ -62,7 +69,7 @@ class Article extends Model
     /**
      * @return string
      */
-    public function getContentAttribute(): string
+    public function getMarkdownAttribute(): string
     {
         $parsedown = new Parsedown();
         $parsedown->setSafeMode(true);
@@ -73,7 +80,7 @@ class Article extends Model
     public function getSummaryAttribute(): string
     {
         $re = '/<summary.*?>(.*?)<\/summary>/ms';
-        preg_match_all($re, $this->content, $matches, PREG_SET_ORDER, 0);
+        preg_match_all($re, $this->Markdown, $matches, PREG_SET_ORDER, 0);
         return $matches[0][1] ?? "";
     }
 }

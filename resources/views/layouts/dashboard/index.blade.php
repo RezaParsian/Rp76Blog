@@ -50,6 +50,7 @@
     $(document).ready(function () {
         const msg = "{{session()->has("msg")}}";
         const error = "{{session()->has("error")}}";
+        const errors = "{{$errors->any()}}";
 
         if (msg !== "") {
             setTimeout(function () {
@@ -71,6 +72,14 @@
                     confirmButtonText: 'بستن'
                 })
             }, 250);
+        }
+
+        if(errors!==""){
+            const  er={!! $errors !!};
+            for(const item in er){
+                $("#"+item).after(`<p class="text-danger small m-0">${er[item]}</p>`);
+                $("#"+item).addClass("border border-danger");
+            }
         }
 
         const slug = $(".active").data("parent");

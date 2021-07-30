@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string("title",256);
             $table->string("slug",512);
             $table->longText("content");
-            $table->string("image",50);
+            $table->string("image",50)->nullable();
             $table->string("type");
             $table->softDeletes();
             $table->timestamps();
