@@ -12,8 +12,8 @@
                     <img src="img/blog-big/1.jpg" alt="image" class="blog-thumbnail rounded" />
                     <div class="blog-content text-box text-white rtl">
                         <div class="top-meta">{{ index.custom_date }} / By <a href="">{{index.user.name}}</a></div>
-                        <h3>{{index.title}}</h3>
-                        <section v-html="index.content"></section>
+                        <h3 class="m-0">{{index.title}}</h3>
+                        <summary v-html="index.summary"></summary>
                         <p class="mt-3"><a href="#" data-toggle="tooltip" title="بیشتر" class="read-more">بیشتر</a></p>
                     </div>
                 </div>

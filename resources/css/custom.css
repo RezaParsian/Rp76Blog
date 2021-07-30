@@ -49,3 +49,33 @@ kholase {
         transform: rotate(-25deg);
     }
 }
+
+blockquote {
+    border-right: 0.35rem solid crimson;
+    padding: 0.5rem 0.5rem 1.7rem 0.5rem;
+    background: #f8f8f8;
+    border-radius: 3px;
+    font-style: italic;
+}
+
+blockquote::before {
+    content: "\f10e";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: x-large;
+    margin: 0 0 0 1rem;
+    color: #1fa67a;
+}
+
+blockquote::after {
+    content:"\f10d";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: x-large;
+    margin: 0 0 0 1rem;
+    color: #1fa67a;
+    float: left;
+}
+
+summary{
+    display: block !important;
+    color: white;
+}

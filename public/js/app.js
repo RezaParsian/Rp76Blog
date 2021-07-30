@@ -60673,10 +60673,12 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("h3", [_vm._v(_vm._s(index.title))]),
+                    _c("h3", { staticClass: "m-0" }, [
+                      _vm._v(_vm._s(index.title))
+                    ]),
                     _vm._v(" "),
-                    _c("section", {
-                      domProps: { innerHTML: _vm._s(index.content) }
+                    _c("summary", {
+                      domProps: { innerHTML: _vm._s(index.summary) }
                     }),
                     _vm._v(" "),
                     _vm._m(0, true)

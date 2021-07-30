@@ -215,6 +215,36 @@ kholase {
     }
 }
 
+blockquote {
+    border-right: 0.35rem solid crimson;
+    padding: 0.5rem 0.5rem 1.7rem 0.5rem;
+    background: #f8f8f8;
+    border-radius: 3px;
+    font-style: italic;
+}
+
+blockquote::before {
+    content: "\f10e";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: x-large;
+    margin: 0 0 0 1rem;
+    color: #1fa67a;
+}
+
+blockquote::after {
+    content:"\f10d";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: x-large;
+    margin: 0 0 0 1rem;
+    color: #1fa67a;
+    float: left;
+}
+
+summary{
+    display: block !important;
+    color: white;
+}
+
 html, body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
@@ -744,7 +774,7 @@ ul, ol {
 .text-box p {
     font-size: 15px;
     font-weight: 500;
-    color: #68647d;
+    color: #b3a5ff;
     margin-bottom: 35px;
 }
 
@@ -5258,10 +5288,10 @@ output {
     display: inline-block
 }
 
-summary {
-    display: list-item;
-    cursor: pointer
-}
+/*summary {*/
+/*    display: list-item;*/
+/*    cursor: pointer*/
+/*}*/
 
 template {
     display: none
