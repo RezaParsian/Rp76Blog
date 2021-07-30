@@ -15,14 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     $a=new Parsedown();
-//     $a->setSafeMode(true);
-//     $a->setMarkupEscaped(true);
-//     $b=$a->text(Request()->markdowneditor);
-//     return view('welcome',compact("b"));
-// });
-
 Route::view("/", "welcome")->name("blog");
 
 Auth::routes();

@@ -1893,62 +1893,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     vname: {
@@ -60471,11 +60415,17 @@ var staticRenderFns = [
       [
         _c("li", { staticClass: "nav-item" }, [
           _c("i", {
+            staticClass: "fa nav-link fa-eercast",
+            attrs: { role: "button", "data-toggle": "tooltip", title: "خلاصه" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c("i", {
             staticClass: "fa nav-link fa-bold",
             attrs: { role: "button", "data-toggle": "tooltip", title: "درشت" }
           })
         ]),
-        _vm._v(" "),
         _c("li", { staticClass: "nav-item" }, [
           _c("i", {
             staticClass: "fa nav-link fa-italic",

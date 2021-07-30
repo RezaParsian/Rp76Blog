@@ -50,6 +50,7 @@
     $(document).ready(function () {
         const msg = "{{session()->has("msg")}}";
         const error = "{{session()->has("error")}}";
+
         if (msg !== "") {
             setTimeout(function () {
                 Swal.fire({
@@ -60,6 +61,7 @@
                 })
             }, 250);
         }
+
         if (error !== "") {
             setTimeout(function () {
                 Swal.fire({
@@ -70,7 +72,12 @@
                 })
             }, 250);
         }
-    })
+
+        const slug = $(".active").data("parent");
+        const element = $(`#${slug}`);
+        $(element).addClass("active");
+        $(element.parent()).addClass("menu-open")
+    });
 </script>
 @yield("ex-js")
 </body>

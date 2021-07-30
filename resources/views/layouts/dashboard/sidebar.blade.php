@@ -21,52 +21,7 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview menu-open">
-                        <a href="{{route("dashboard")}}" class="nav-link active">
-                            <i class="nav-icon fa fa-dashboard"></i>
-                            <p class="text-white">داشبورد</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item has-treeview {{--menu-open active--}}">
-                        <a href="#" class="nav-link {{--active--}}">
-                            <i class="nav-icon fa fa-thumb-tack"></i>
-                            <p class="text-white">
-                                CRM
-                                <i class="right fa fa-angle-left"></i>
-                            </p>
-                        </a>
-
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route("article.index")}}" class="nav-link {{--active--}}">
-                                    <i class="fa fa-book nav-icon"></i>
-                                    <p>مقالات</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-cogs"></i>
-                            <p class="text-white">
-                                تنظیمات
-                                <i class="right fa fa-angle-left"></i>
-                            </p>
-                        </a>
-
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="./index.html" class="nav-link {{--active--}}">
-                                    <i class="fa fa-user nav-icon"></i>
-                                    <p>پروفایل</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    {!! (new \App\Http\Helper\Menu())->render() !!}
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
