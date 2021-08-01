@@ -8,7 +8,7 @@
             <a href="{{route("article.create")}}" class="btn btn-outline-success"><i class="fa fa-plus-circle align-self-center mx-1"></i>پست جدید</a>
         </div>
         <div class="card-body">
-            <table class="dtTable table table-bordered table-striped table-responsive-md">
+            <table class="text-center dtTable table table-bordered table-striped table-responsive-md">
                 <thead>
                 <tr>
                     <th>ردیف</th>
@@ -26,9 +26,16 @@
                         <td>{{$article->created_at_diff}}</td>
                         <td>{{$article->updated_at_diff}}</td>
                         <td>
-                            <a href="{{route("article.edit",$article->id)}}" class="btn btn-warning rounded-circle">
-                                <i class="fa fa-eye"></i>
-                            </a>
+                            <form action="{{route("article.destroy",$article->id)}}" method="post">
+                                <a href="{{route("article.edit",$article->id)}}" class="btn btn-warning rounded-circle">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                @csrf
+                                @method("delete")
+                                <button class="btn btn-danger rounded-circle" type="button" onclick="verify(this)">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -40,6 +47,30 @@
 
 @section("ex-js")
     <script>
+        function verify(element) {
+            Swal.fire({
+                title: 'آیا از مقاله این محصول مطمئن هستید؟',
+                showCancelButton: true,
+                input:"text",
+                cancelButtonText: "خیر",
+                confirmButtonText: `بله`,
+            }).then((result) => {
+                if (result.isConfirmed && result.value==="confirm") {
+
+                    Swal.fire({
+                        icon: "success",
+                        showCancelButton: false,
+                        showConfirmButton: false
+                    });
+
+                    setTimeout(function () {
+                        $(element).parent().submit();
+                    }, 700);
+                }
+                return false;
+            })
+        }
+
         $(function () {
             table1 = $('.dtTable').DataTable({
                 responsive: true,
@@ -71,7 +102,7 @@
             $("select[aria-controls='DataTables_Table_0']").parent().addClass("form-inline");
             $('input[aria-controls=\'DataTables_Table_0\']').addClass("form-control mx-2");
             $("input[aria-controls='DataTables_Table_0']").parent().addClass("form-inline");
-            table1.order([0,"desc"]).draw();
+            table1.order([0, "desc"]).draw();
         });
     </script>
 @endsection

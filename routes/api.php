@@ -21,13 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get("/post", function (Request $request) {
-    Cache::pull("article");
-    $articles = Cache::rememberForever("article", function () use ($request) {
-        return Article::where(function ($query) use ($request) {
-            $query->where("title", "like", "%{$request->q}%")->orWhere("content", "like", "%{$request->q}%");
-        })->with("user")
-            ->orderby("id", "DESC")
-            ->paginate();
-    });
-    return $articles;
+    return Article::where(function ($query) use ($request) {
+        $query->where("title", "like", "%{$request->q}%")->orWhere("content", "like", "%{$request->q}%");
+    })->with("user")
+        ->orderby("id", "DESC")
+        ->paginate();
 });

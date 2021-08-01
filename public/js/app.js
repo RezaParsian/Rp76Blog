@@ -2086,9 +2086,11 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    var _url$searchParams$get;
+
     var url = new URL(document.URL);
     var pageID = url.searchParams.get("page");
-    this.$root.searchquery = url.searchParams.get("search");
+    this.$root.searchquery = (_url$searchParams$get = url.searchParams.get("search")) !== null && _url$searchParams$get !== void 0 ? _url$searchParams$get : "";
     this.GetPosts(pageID);
   }
 });

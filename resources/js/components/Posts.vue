@@ -87,7 +87,7 @@ export default {
     mounted() {
         const url = new URL(document.URL);
         const pageID = url.searchParams.get("page");
-        this.$root.searchquery=url.searchParams.get("search");
+        this.$root.searchquery=url.searchParams.get("search") ?? "";
         this.GetPosts(pageID);
     }
 };

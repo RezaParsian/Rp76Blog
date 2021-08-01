@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Routing\Redirector, Support\Facades\Auth};
+use Exception;
 
 class ArticleController extends Controller
 {
@@ -63,7 +64,7 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-        return view("dashboard.article.edit",compact("article"));
+        return view("dashboard.article.edit", compact("article"));
     }
 
     /**
@@ -86,18 +87,19 @@ class ArticleController extends Controller
 
         $article->update($valid);
 
-        return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
+        Cache::pull("");
 
+        return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return Response
+     * @param Article $article
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Article $article): RedirectResponse
     {
-        //
+        $article->delete();
+        return back()->with("msg", "مقاله موردنظر با موفقیت حذف شد.");
     }
 }
