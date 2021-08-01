@@ -47,7 +47,8 @@ class Article extends Model
         "updated_at_diff",
         "custom_date",
         "summary",
-        "markdown"
+        "markdown",
+        "link"
     ];
 
     /**
@@ -82,5 +83,10 @@ class Article extends Model
         $re = '/<summary.*?>(.*?)<\/summary>/ms';
         preg_match_all($re, $this->Markdown, $matches, PREG_SET_ORDER, 0);
         return $matches[0][1] ?? "";
+    }
+
+    public function getLinkAttribute(): string
+    {
+       return route("post.single",$this->attributes["slug"]);
     }
 }

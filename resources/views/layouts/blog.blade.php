@@ -18,8 +18,8 @@
     </div>
 
     <!-- Header section -->
-    @include("layouts.navbar")
-    <!-- Header section end -->
+@include("layouts.navbar")
+<!-- Header section end -->
 
 
     <!-- Page top section -->
@@ -37,9 +37,9 @@
     <section class="blog-page">
         <div class="container">
             <div class="row">
-
-                @yield('body')
-
+                <div class="col-xl-9 col-lg-8 col-md-7">
+                    @yield('body')
+                </div>
                 <div class="col-xl-3 col-lg-4 col-md-5 sidebar">
                     <div id="stickySidebar">
                         <div class="widget-item">

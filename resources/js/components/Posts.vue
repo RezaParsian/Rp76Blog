@@ -9,77 +9,82 @@
         <div class="card bg-blog shadow" v-for="index in posts" :key="index['id']">
             <div class="card-body">
                 <div class="big-blog-item mb-0">
-                    <img src="img/blog-big/1.jpg" alt="image" class="blog-thumbnail rounded" />
+                    <img src="img/blog-big/1.jpg" alt="image" class="blog-thumbnail rounded"/>
                     <div class="blog-content text-box text-white rtl">
-                        <div class="top-meta">{{ index.custom_date }} / By <a href="">{{index.user.name}}</a></div>
-                        <h3 class="m-0">{{index.title}}</h3>
+                        <div class="top-meta">{{ index.custom_date }} / By <a href="">{{ index.user.name }}</a></div>
+                        <h3 class="m-0">{{ index.title }}</h3>
                         <summary v-html="index.summary"></summary>
-                        <p class="mt-3"><a href="#" data-toggle="tooltip" title="بیشتر" class="read-more">بیشتر</a></p>
+                        <p class="mt-3"><a :href="index.link" data-toggle="tooltip" title="بیشتر" :data-post="index.id" class="read-more">بیشتر</a></p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="site-pagination">
-            <a href="#post_section" data-toggle="tooltip" :title="'صفحه '+index" @click="GetPosts(index)" v-for="index in paginate" :class="current==index ? 'active disable' : ''" :key="index">{{AddLeadingZero(index)}}.</a>
+            <a href="#post_section" data-toggle="tooltip" :title="'صفحه '+index" @click="GetPosts(index)" v-for="index in paginate" :class="current==index ? 'active disable' : ''"
+               :key="index">{{ AddLeadingZero(index) }}.</a>
         </div>
     </article>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-            posts:[],
-            total:1,
-            current:1,
-            loading:true,
-            paginate:[],
+    data() {
+        return {
+            posts: [],
+            total: 1,
+            current: 1,
+            loading: true,
+            paginate: [],
+            singlePost: {
+                title: "",
+                content: "",
+            },
         }
     },
-    methods:{
-        GetPosts:function(page=1){
+    methods: {
+        GetPosts: function (page = 1) {
             let vm = this;
-            page= page ?? 1;
-            vm.loading=true;
-            $.get('/api/post?q='+this.$root.searchquery+'&page='+page,function(data,status){
-                if(status==="success"){
-                    vm.posts=data["data"];
-                    vm.current=data["current_page"];
-                    vm.total=data["last_page"];
-                    vm.loading=false;
+            page = page ?? 1;
+            vm.loading = true;
+            $.get('/api/post?q=' + this.$root.searchquery + '&page=' + page, function (data, status) {
+                if (status === "success") {
+                    vm.posts = data["data"];
+                    vm.current = data["current_page"];
+                    vm.total = data["last_page"];
+                    vm.loading = false;
                     vm.MakePaginate();
                 }
             });
-            window.history.pushState("", "", '?page='+page);
+            window.history.pushState("", "", '?page=' + page);
         },
-        HoverToolTip(){
+        HoverToolTip() {
             $('[data-toggle="tooltip"]').tooltip();
         },
-        AddLeadingZero:function(number){
+        AddLeadingZero: function (number) {
             return String(number).padStart(2, '0');
         },
-        MakePaginate:function(){
+        MakePaginate: function () {
             const result = [];
             let lastPage = parseInt(this.current) + 5;
 
-            while(lastPage>this.total){
+            while (lastPage > this.total) {
                 lastPage--;
             }
 
             let firstPage = parseInt(this.current) - 5;
 
-            while(firstPage<1){
+            while (firstPage < 1) {
                 firstPage++
             }
 
-            for(let i=firstPage; i<=lastPage; i++){
+            for (let i = firstPage; i <= lastPage; i++) {
                 result.push(i);
             }
 
-            this.paginate= result;
+            this.paginate = result;
         }
     },
-    mounted(){
+    mounted() {
         const url = new URL(document.URL);
         const pageID = url.searchParams.get("page");
         this.GetPosts(pageID);
