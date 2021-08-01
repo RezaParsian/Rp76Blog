@@ -5,8 +5,9 @@
 @section("content")
     <div class="card">
         <div class="card-body">
-            <form action="{{route("article.store")}}" method="post">
+            <form action="{{route("article.update",$article->id)}}" method="post">
                 @csrf
+                @method("put")
                 <div class="form-group row">
                     <div class="col-md">
                         <label for="{{\App\Models\Article::TITLE}}">موضوع</label>

@@ -2088,6 +2088,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var url = new URL(document.URL);
     var pageID = url.searchParams.get("page");
+    this.$root.searchquery = url.searchParams.get("search");
     this.GetPosts(pageID);
   }
 });
@@ -17234,14 +17235,18 @@ var app = new Vue({
   },
   methods: {
     Search: function Search() {
-      this.$children[this.findComponent("post")].GetPosts();
+      var element = this.findComponent("post");
+      if (element !== 0) this.$children[this.findComponent("post")].GetPosts();else window.location.href = "/?search=" + this.searchquery;
     },
     findComponent: function findComponent(name) {
       for (var index = 0; index < this.$children.length; index++) {
         if (this.$children[index].$options['_componentTag'] == name) return index;
       }
+
+      return 0;
     }
-  }
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -68575,7 +68580,7 @@ var render = function() {
               _c("div", { staticClass: "big-blog-item mb-0" }, [
                 _c("img", {
                   staticClass: "blog-thumbnail rounded",
-                  attrs: { src: "img/blog-big/1.jpg", alt: "image" }
+                  attrs: { src: index.image, alt: "image" }
                 }),
                 _vm._v(" "),
                 _c(

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static limit(int $int)
  * @method static create(array $valid)
  * @property mixed content
+ * @property mixed id
  */
 class Article extends Model
 {
@@ -88,5 +89,10 @@ class Article extends Model
     public function getLinkAttribute(): string
     {
        return route("post.single",$this->attributes["slug"]);
+    }
+
+    public function getImageAttribute(): string
+    {
+       return asset($this->attributes["image"]);
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Support\Facades\Auth};
+use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Routing\Redirector, Support\Facades\Auth};
 
 class ArticleController extends Controller
 {
@@ -70,12 +70,24 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param int $id
-     * @return Response
+     * @param Article $article
+     * @return Application|Redirector|RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $valid = $request->validate([
+            Article::TITLE => ["required"],
+            Article::SLUG => ["required"],
+            Article::TYPE => ["required"],
+            Article::IMAGE => ["nullable", "max:2024", "image"],
+            Article::CONTENT => ["required"],
+//            "category" => ["required"],
+        ]);
+
+        $article->update($valid);
+
+        return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
+
     }
 
     /**

@@ -25,7 +25,11 @@
                         <td>{{$article->title}}</td>
                         <td>{{$article->created_at_diff}}</td>
                         <td>{{$article->updated_at_diff}}</td>
-                        <td>edit</td>
+                        <td>
+                            <a href="{{route("article.edit",$article->id)}}" class="btn btn-warning rounded-circle">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

@@ -9,7 +9,7 @@
         <div class="card bg-blog shadow" v-for="index in posts" :key="index['id']">
             <div class="card-body">
                 <div class="big-blog-item mb-0">
-                    <img src="img/blog-big/1.jpg" alt="image" class="blog-thumbnail rounded"/>
+                    <img :src="index.image" alt="image" class="blog-thumbnail rounded"/>
                     <div class="blog-content text-box text-white rtl">
                         <div class="top-meta">{{ index.custom_date }} / By <a href="">{{ index.user.name }}</a></div>
                         <h3 class="m-0">{{ index.title }}</h3>
@@ -87,6 +87,7 @@ export default {
     mounted() {
         const url = new URL(document.URL);
         const pageID = url.searchParams.get("page");
+        this.$root.searchquery=url.searchParams.get("search");
         this.GetPosts(pageID);
     }
 };
