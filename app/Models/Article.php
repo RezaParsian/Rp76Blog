@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Helper\CategorizeAble;
 use App\Http\Helper\CustomModel;
 use App\Http\Helper\Parsedown;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Article extends Model
 {
-    use HasFactory, SoftDeletes, CustomModel;
+    use HasFactory, SoftDeletes, CustomModel,CategorizeAble;
 
     const
         USER_ID = "user_id",

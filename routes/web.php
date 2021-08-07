@@ -23,10 +23,15 @@ Auth::routes();
 //['verify' => true]
 
 Route::group(["prefix" => "dashboard", "middleware" => ["auth"]], function () {
-    Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::name('dashboard')->get('', [App\Http\Controllers\HomeController::class, 'index']);
     Route::resource("article", ArticleController::class);
 });
 
-Route::group(["prefix"=>"blog"],function (){
-    Route::get("post/{slug:slug}",[BlogController::class,"post"])->name("post.single");
+Route::group(["prefix" => "blog"], function () {
+    Route::get("post/{slug:slug}", [BlogController::class, "post"])->name("post.single");
+});
+
+
+Route::get("salam", function () {
+    return Auth::user()->role->categorize->load("category");
 });
