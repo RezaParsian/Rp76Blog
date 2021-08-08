@@ -1,10 +1,7 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{Blog\BlogController, Dashboard\ArticleController, Dashboard\CategoryController, HomeController};
+use Illuminate\Support\{Facades\Auth, Facades\Route};
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +20,11 @@ Auth::routes();
 //['verify' => true]
 
 Route::group(["prefix" => "dashboard", "middleware" => ["auth"]], function () {
-    Route::name('dashboard')->get('', [App\Http\Controllers\HomeController::class, 'index']);
+    Route::name('dashboard')->get('', [HomeController::class, 'index']);
     Route::resource("article", ArticleController::class);
+    Route::resource("category", CategoryController::class);
 });
 
 Route::group(["prefix" => "blog"], function () {
     Route::get("post/{slug:slug}", [BlogController::class, "post"])->name("post.single");
-});
-
-
-Route::get("salam", function () {
-    return Auth::user()->role->categorize->load("category");
 });
