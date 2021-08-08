@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Routing\Redirector, Support\Facades\Auth};
 use Exception;
 
@@ -26,7 +27,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view("dashboard.article.create");
+        $categories=Category::all();
+        return view("dashboard.article.create",compact("categories"));
     }
 
     /**
@@ -59,12 +61,13 @@ class ArticleController extends Controller
      */
     public function show(int $id)
     {
-        //
+        abort(404);
     }
 
     public function edit(Article $article)
     {
-        return view("dashboard.article.edit", compact("article"));
+        $categories=Category::all();
+        return view("dashboard.article.edit", compact("article","categories"));
     }
 
     /**
@@ -86,8 +89,6 @@ class ArticleController extends Controller
         ]);
 
         $article->update($valid);
-
-        Cache::pull("");
 
         return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
     }

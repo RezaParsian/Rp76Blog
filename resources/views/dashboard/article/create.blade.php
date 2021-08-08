@@ -22,7 +22,6 @@
                     <div class="col-md">
                         <label for="{{\App\Models\Article::TYPE}}">نوع پست</label>
                         <select name="{{\App\Models\Article::TYPE}}" id="{{\App\Models\Article::TYPE}}" class="form-control" required>
-                            <option value="">یک نوع انتخاب کنید</option>
                             @foreach(\App\Models\Article::POST_TYPE as $key=>$type)
                                 <option value="{{$key}}">{{$type}}</option>
                             @endforeach
@@ -31,9 +30,8 @@
                     <div class="col-md">
                         <label for="category">دسته بندی</label>
                         <select name="category" id="category" class="form-control" required multiple>
-                            <option value="">یک دسته بندی انتخاب کنید</option>
-                            @foreach(\App\Models\Article::POST_TYPE as $key=>$type)
-                                <option value="{{$key}}">{{$type}}</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->title}}</option>
                             @endforeach
                         </select>
                     </div>

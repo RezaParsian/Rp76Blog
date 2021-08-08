@@ -23,6 +23,7 @@ class Menu
         $this->add("داشبورد", "dashboard", "", "fa fa-dashboard", route("dashboard"), "dashboard");
         $this->add("CMS", "cms", "", "fa fa-thumb-tack");
         $this->add("مقالات", "cms.article", "cms", "fa fa-thumb-tack", route("article.index"), "dashboard/article*");
+        $this->add("دسته بندی ها", "cms.category", "cms", "fa fa-user", route("article.index"), "dashboard/article*");
         $this->add("تنظیمات", "setting", "", "fa fa-cogs");
         $this->add("پروفایل", "setting.profile", "setting", "fa fa-user");
     }
@@ -60,7 +61,7 @@ class Menu
         $result .= "<i class='nav-icon {$menu[0]->icon}'></i>";
         $result .= "<p class='text-white'>{$menu[0]->title}{$arrow}</i></p></a>";
 
-        $menu = array_slice($menu, 1, 1);
+        $menu = array_slice($menu, 1);
 
         if ($menu) {
             $result .= "<ul class='nav nav-treeview'>";
