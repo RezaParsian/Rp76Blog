@@ -53,14 +53,13 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return void
+     * Show the data for api in dashboard not public
+     * @param Category $category
+     * @return Category
      */
-    public function show(int $id)
+    public function show(Category  $category): Category
     {
-        abort(404);
+        return $category;
     }
 
     /**

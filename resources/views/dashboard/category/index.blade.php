@@ -16,7 +16,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="{{route("category.update")}}" method="post"></form>
+
                 </div>
 
                 <!-- Modal footer -->
@@ -54,7 +54,7 @@
                         <td>{{$category->created_at_diff}}</td>
                         <td>
                             <form action="{{route("category.destroy",$category->id)}}" method="post">
-                                <button class="btn btn-warning rounded-circle btnEdit" data-category="{{$category->id}}">
+                                <button class="btn btn-warning rounded-circle btnEdit" type="button" data-update="{{route("category.update",$category->id)}}" data-view="{{route("category.show",$category->id)}}">
                                     <i class="fa fa-eye"></i>
                                 </button>
                                 @csrf
@@ -104,9 +104,19 @@
             $("#myModal").modal("show");
         })
 
-        $(".btnEdit").click(function (){
-           const categoryID=$(this).data("category");
-           alert(categoryID)
+        $(".btnEdit").click(function () {
+            const update = $(this).data("update");
+            const view = $(this).data("view");
+            $(".modal-body").html(`<form action="${update}" method="post"> @csrf @method("put") <div class="form-group"> <label for="{{\App\Models\Category::TITLE}}">موضوع</label> <input type="text" class="form-control" required name="{{\App\Models\Category::TITLE}}" id="{{\App\Models\Category::TITLE}}"> </div> <div class="form-group"> <label for="{{\App\Models\Category::SLUG}}">Slug</label> <input type="text" class="form-control" required name="{{\App\Models\Category::SLUG}}" id="{{\App\Models\Category::SLUG}}"></div> <div class="form-group"> <label for="{{\App\Models\Category::TYPE}}">نوع</label> <select name="{{\App\Models\Category::TYPE}}" id="{{\App\Models\Category::TYPE}}" class="form-control"> <option value="">یک نوع انتخاب کنید</option> </select> </div> <div class="form-group"> <label for="{{\App\Models\Category::PARENT_ID}}">دسته بندی والد</label> <select name="{{\App\Models\Category::PARENT_ID}}" id="{{\App\Models\Category::PARENT_ID}}" class="form-control"> <option value="0">یک والد انتخاب کنید</option> @foreach($categories as $category) <option value="{{$category->id}}">{{$category->title}}</option> @endforeach </select> </div> <input type="submit" id="submit" hidden> </form>`)
+
+            $.get(view,function (data){
+                $("#{{\App\Models\Category::TITLE}}").val(data.title);
+                $("#{{\App\Models\Category::SLUG}}").val(data.slug);
+                $("#{{\App\Models\Category::TYPE}}").val(data.type);
+                $("#{{\App\Models\Category::PARENT_ID}}").val(data.parent_id);
+            });
+
+            $("#myModal").modal("show");
         });
     </script>
 @endsection
