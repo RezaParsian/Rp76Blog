@@ -5,7 +5,7 @@
 @section("content")
     <div class="card">
         <div class="card-body">
-            <form action="{{route("article.update",$article->id)}}" method="post">
+            <form action="{{route("article.update",$article->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method("put")
                 <div class="form-group row">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-md">
                         <label for="{{\App\Models\Article::SLUG}}">نامک</label>
-                        <input type="text" name="{{\App\Models\Article::SLUG}}" id="{{\App\Models\Article::SLUG}}" class="form-control" placeholder="نامک" required>
+                        <input type="text" name="{{\App\Models\Article::SLUG}}" id="{{\App\Models\Article::SLUG}}" class="form-control" placeholder="نامک">
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-md">
                         <label for="category">دسته بندی</label>
-                        <select name="category" id="category" class="form-control" required multiple>
+                        <select name="category[]" id="category" class="form-control" required multiple>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->title}}</option>
                             @endforeach
@@ -63,6 +63,6 @@
         $("#{{\App\Models\Article::TYPE}}").val("{{old(\App\Models\Article::TYPE,$article->type)}}");
         $("#{{\App\Models\Article::SLUG}}").val("{{old(\App\Models\Article::SLUG,$article->slug)}}");
         $("#{{\App\Models\Article::CONTENT}}").val(`{!! old(str_replace("`","\`",\App\Models\Article::CONTENT),str_replace("`","\`",$article->content)) !!}`);
-        {{--        $("#category").val("{{old("category",$article->category)}}");--}}
+        $("#category").val({{old("category",$article->categorize->pluck("category_id"))}}).trigger("change");
     </script>
 @endsection

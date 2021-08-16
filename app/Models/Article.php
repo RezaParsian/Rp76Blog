@@ -94,6 +94,11 @@ class Article extends Model
 
     public function getImageAttribute(): string
     {
-       return asset($this->attributes["image"]);
+       return asset("upload/article/".$this->attributes["image"]);
+    }
+
+    public function getImageNameAttribute()
+    {
+        return $this->attributes["image"];
     }
 }

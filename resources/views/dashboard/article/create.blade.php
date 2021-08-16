@@ -5,7 +5,7 @@
 @section("content")
     <div class="card">
         <div class="card-body">
-            <form action="{{route("article.store")}}" method="post">
+            <form action="{{route("article.store")}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <div class="col-md">
@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-md">
                         <label for="{{\App\Models\Article::SLUG}}">نامک</label>
-                        <input type="text" name="{{\App\Models\Article::SLUG}}" id="{{\App\Models\Article::SLUG}}" class="form-control" placeholder="نامک" required>
+                        <input type="text" name="{{\App\Models\Article::SLUG}}" id="{{\App\Models\Article::SLUG}}" class="form-control" placeholder="نامک">
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-md">
                         <label for="category">دسته بندی</label>
-                        <select name="category" id="category" class="form-control" required multiple>
+                        <select name="category[]" id="category" class="form-control" required multiple>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->title}}</option>
                             @endforeach
