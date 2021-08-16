@@ -79,7 +79,7 @@ class ArticleController extends Controller
         $article->categorize()->delete();
 
         if ($request->hasFile(Article::IMAGE))
-            unlink(public_path("upload/article/".$article->imageName));
+            @unlink(public_path("upload/article/".$article->imageName));
 
         $article->update($valid);
 

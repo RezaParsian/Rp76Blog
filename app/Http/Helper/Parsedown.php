@@ -991,11 +991,15 @@ class Parsedown
 
     protected function paragraph($Line)
     {
+        $re = '/{\.(.*?)}/m';
+        preg_match($re, $Line["text"], $ms);
+        $class = ($ms[1] ?? "");
+
         $Block = array(
             'element' => array(
                 'name' => 'p',
                 'text' => $Line['text'],
-                "attributes" => ["class" => "m-0"],
+                "attributes" => ["class" => $class." m-0" ?? "m-0"],
                 'handler' => 'line',
             ),
         );
