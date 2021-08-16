@@ -9,6 +9,8 @@ use Exception;
 
 class CategoryController extends Controller
 {
+    private $path="dashboard.category.";
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view("dashboard.category.index", compact("categories"));
+        return view($this->path."index", compact("categories"));
     }
 
     /**

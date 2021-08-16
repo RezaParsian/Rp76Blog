@@ -11,6 +11,8 @@ use Exception;
 
 class ArticleController extends Controller
 {
+    private $path = "dashboard.article.";
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +21,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::limit(200)->get();
-        return view("dashboard.article.index", compact("articles"));
+        return view($this->path . "index", compact("articles"));
     }
 
     /**
@@ -30,7 +32,7 @@ class ArticleController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view("dashboard.article.create", compact("categories"));
+        return view($this->path . "create", compact("categories"));
     }
 
     /**
@@ -62,7 +64,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         $categories = Category::all();
-        return view("dashboard.article.edit", compact("article", "categories"));
+        return view($this->path . "edit", compact("article", "categories"));
     }
 
     /**
@@ -79,7 +81,7 @@ class ArticleController extends Controller
         $article->categorize()->delete();
 
         if ($request->hasFile(Article::IMAGE))
-            @unlink(public_path("upload/article/".$article->imageName));
+            @unlink(public_path("upload/article/" . $article->imageName));
 
         $article->update($valid);
 
@@ -115,7 +117,7 @@ class ArticleController extends Controller
         ]);
 
         if ($request->has(Article::IMAGE))
-            $valid=array_merge($valid,[
+            $valid = array_merge($valid, [
                 Article::IMAGE => (new UploadFile($request->file(Article::IMAGE), "upload/article/"))->fileName,
             ]);
 

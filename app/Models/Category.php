@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\{Factories\HasFactory, Model, Relations\MorphOn
  */
 class Category extends Model
 {
-    use HasFactory,SoftDeletes,CustomModel,CategorizeAble;
+    use HasFactory,SoftDeletes,CustomModel;
 
     const PARENT_ID = "parent_id",
         TITLE = "title",

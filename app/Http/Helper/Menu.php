@@ -23,7 +23,8 @@ class Menu
         $this->add("داشبورد", "dashboard", "", "fa fa-dashboard", route("dashboard"), "dashboard");
         $this->add("CMS", "cms", "", "fa fa-thumb-tack");
         $this->add("مقالات", "cms.article", "cms", "fa fa-thumb-tack", route("article.index"), "dashboard/article*");
-        $this->add("دسته بندی ها", "cms.category", "cms", "fa fa-user", route("category.index"), "dashboard/category*");
+        $this->add("دسته بندی ها", "cms.category", "cms", "fa fa-sitemap", route("category.index"), "dashboard/category*");
+        $this->add("تگ ها", "cms.tag", "cms", "fa fa-tags", route("tag.index"), "dashboard/tag*");
         $this->add("تنظیمات", "setting", "", "fa fa-cogs");
         $this->add("پروفایل", "setting.profile", "setting", "fa fa-user");
     }
@@ -69,7 +70,7 @@ class Menu
                 $active = Request()->is("$item->active") ? " active" : "";
                 $result .= "<li class='nav-item'>";
                 $result .= "<a href='{$item->link}' data-parent='{$item->parent}' class='nav-link {$active}'>";
-                $result .= "<i class='fa fa-book nav-icon'></i>";
+                $result .= "<i class='fa {$item->icon} nav-icon'></i>";
                 $result .= "<p>{$item->title}</p></a></li>";
             });
             $result .= "</ul>";
