@@ -16,7 +16,19 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
+                    <form action="{{route("tag.store")}}" method="post">
+                        @csrf
+                        @method("put")
+                        <div class="form-group">
+                            <label for="{{\App\Models\Tag::TITLE}}">موضوع</label>
+                            <input type="text" name="{{\App\Models\Tag::TITLE}}" id="{{\App\Models\Tag::TITLE}}" class="form-control">
+                        </div>
 
+                        <div class="form-group">
+                            <label for="{{\App\Models\Tag::SLUG}}">نامک</label>
+                            <input type="text" name="{{\App\Models\Tag::SLUG}}" id="{{\App\Models\Tag::SLUG}}" class="form-control">
+                        </div>
+                    </form>
                 </div>
 
                 <!-- Modal footer -->
@@ -35,6 +47,8 @@
             <button class="btn btn-outline-success" id="make"><i class="fa fa-plus-circle align-self-center mx-1"></i>تگ جدید</button>
         </div>
         <div class="card-body">
+            {{$tags->appends(Request()->all())->links("pagination::bootstrap-4")}}
+
             <table class="text-center table table-bordered table-striped table-responsive-md">
                 <thead>
                 <tr>
@@ -66,8 +80,8 @@
                 @endforeach
                 </tbody>
             </table>
+            {{$tags->appends(Request()->all())->links("pagination::bootstrap-4")}}
         </div>
-        {{$tags->links()}}
     </div>
 @endsection
 
@@ -75,7 +89,7 @@
     <script>
         function verify(element) {
             Swal.fire({
-                title: 'آیا از مقاله این تگ مطمئن هستید؟',
+                title: 'آیا از تگ این تگ مطمئن هستید؟',
                 showCancelButton: true,
                 input: "text",
                 cancelButtonText: "خیر",
@@ -99,14 +113,14 @@
 
         $("#make").click(function () {
             $(".modal-title").text("تگ جدید")
-            $(".modal-body").html(``);
+            $(".modal-body").html(`<form action="{{route("tag.store")}}" method="post"> @csrf <div class="form-group"> <label for="{{\App\Models\Tag::TITLE}}">موضوع</label> <input type="text" name="{{\App\Models\Tag::TITLE}}" id="{{\App\Models\Tag::TITLE}}" class="form-control"> </div> <div class="form-group"> <label for="{{\App\Models\Tag::SLUG}}">نامک</label> <input type="text" name="{{\App\Models\Tag::SLUG}}" id="{{\App\Models\Tag::SLUG}}" class="form-control"> </div> </form>`);
             $("#myModal").modal("show");
         })
 
         $(".btnEdit").click(function () {
             const update = $(this).data("update");
             const view = $(this).data("view");
-            $(".modal-body").html(``)
+            // $(".modal-body").html(``)
 
             $.get(view, function (data) {
                 $("#{{\App\Models\Category::TITLE}}").val(data.title);

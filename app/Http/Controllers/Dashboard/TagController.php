@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -18,9 +20,9 @@ class TagController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tags=Tag::paginate();
+        $tags=Tag::where(Tag::TITLE,"like","%".$request->input("name")."%")->paginate();
         return view($this->path."index",compact("tags"));
     }
 
@@ -80,13 +82,13 @@ class TagController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param Tag $tag
-     * @return Response
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy(Tag $tag)
+    public function destroy(Tag $tag): RedirectResponse
     {
-        //
+        $tag->delete();
+        return back()->with("msg","تگ موردنظر حذف شد");
     }
 }
