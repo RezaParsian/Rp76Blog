@@ -63,6 +63,6 @@
         $("#{{\App\Models\Article::TYPE}}").val("{{old(\App\Models\Article::TYPE,$article->type)}}");
         $("#{{\App\Models\Article::SLUG}}").val("{{old(\App\Models\Article::SLUG,$article->slug)}}");
         $("#{{\App\Models\Article::CONTENT}}").val(`{!! old(str_replace("`","\`",\App\Models\Article::CONTENT),str_replace("`","\`",$article->content)) !!}`);
-        $("#category").val({{old("category",$article->categorize->pluck("category_id"))}}).trigger("change");
+        $("#category").val({!! json_encode(old("category",$article->categorize->pluck("category_id"))) !!}).trigger("change");
     </script>
 @endsection

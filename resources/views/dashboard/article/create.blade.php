@@ -60,10 +60,8 @@
     <script>
         $("#{{\App\Models\Article::TITLE}}").val("{{old(\App\Models\Article::TITLE)}}");
         $("#{{\App\Models\Article::TYPE}}").val("{{old(\App\Models\Article::TYPE)}}");
-        $("#{{\App\Models\Article::SLUG}}").val("{{old(\App\Models\Article::SLUG)}}");
-        $("#{{\App\Models\Article::CONTENT}}").val("{{old(\App\Models\Article::CONTENT)}}");
-        @if(old("category"))
-        $("#category").val("{{old("category")}}");
-        @endif
+        $("#{{\App\Models\Article::SLUG}}").val("{!! old(\App\Models\Article::SLUG) !!}");
+        $("#{{\App\Models\Article::CONTENT}}").val(`{!! old(str_replace("`","\`",\App\Models\Article::CONTENT)) !!}`);
+        $("#category").val({!! json_encode(old("category")) !!}).trigger("change");
     </script>
 @endsection
