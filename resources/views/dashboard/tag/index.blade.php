@@ -16,19 +16,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="{{route("tag.store")}}" method="post">
-                        @csrf
-                        @method("put")
-                        <div class="form-group">
-                            <label for="{{\App\Models\Tag::TITLE}}">موضوع</label>
-                            <input type="text" name="{{\App\Models\Tag::TITLE}}" id="{{\App\Models\Tag::TITLE}}" class="form-control">
-                        </div>
 
-                        <div class="form-group">
-                            <label for="{{\App\Models\Tag::SLUG}}">نامک</label>
-                            <input type="text" name="{{\App\Models\Tag::SLUG}}" id="{{\App\Models\Tag::SLUG}}" class="form-control">
-                        </div>
-                    </form>
                 </div>
 
                 <!-- Modal footer -->
@@ -87,33 +75,9 @@
 
 @section("ex-js")
     <script>
-        function verify(element) {
-            Swal.fire({
-                title: 'آیا از تگ این تگ مطمئن هستید؟',
-                showCancelButton: true,
-                input: "text",
-                cancelButtonText: "خیر",
-                confirmButtonText: `بله`,
-            }).then((result) => {
-                if (result.isConfirmed && result.value === "confirm") {
-
-                    Swal.fire({
-                        icon: "success",
-                        showCancelButton: false,
-                        showConfirmButton: false
-                    });
-
-                    setTimeout(function () {
-                        $(element).parent().submit();
-                    }, 700);
-                }
-                return false;
-            })
-        }
-
         $("#make").click(function () {
             $(".modal-title").text("تگ جدید")
-            $(".modal-body").html(`<form action="{{route("tag.store")}}" method="post"> @csrf <div class="form-group"> <label for="{{\App\Models\Tag::TITLE}}">موضوع</label> <input type="text" name="{{\App\Models\Tag::TITLE}}" id="{{\App\Models\Tag::TITLE}}" class="form-control"> </div> <div class="form-group"> <label for="{{\App\Models\Tag::SLUG}}">نامک</label> <input type="text" name="{{\App\Models\Tag::SLUG}}" id="{{\App\Models\Tag::SLUG}}" class="form-control"> </div> </form>`);
+            $(".modal-body").html(`<form action="{{route("tag.store")}}" method="post"> @csrf <div class="form-group"> <label for="{{\App\Models\Tag::TITLE}}">موضوع</label> <input type="text" name="{{\App\Models\Tag::TITLE}}" id="{{\App\Models\Tag::TITLE}}" class="form-control"> </div> <div class="form-group"> <label for="{{\App\Models\Tag::SLUG}}">نامک</label> <input type="text" name="{{\App\Models\Tag::SLUG}}" id="{{\App\Models\Tag::SLUG}}" class="form-control"> </div> <input type="submit" id="submit" class="d-none"> </form>`);
             $("#myModal").modal("show");
         })
 

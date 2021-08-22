@@ -17344,6 +17344,32 @@ $(function () {
   table1.order([0, "desc"]).draw();
 });
 
+window.verify = function (element) {
+  Swal.fire({
+    title: 'آیا از حذف این ایتم مطمئن هستید؟',
+    showCancelButton: true,
+    input: "text",
+    cancelButtonText: "خیر",
+    confirmButtonText: "\u0628\u0644\u0647"
+  }).then(function (result) {
+    console.log(result);
+
+    if (result.isConfirmed && result.value === "confirm") {
+      console.log(1);
+      Swal.fire({
+        icon: "success",
+        showCancelButton: false,
+        showConfirmButton: false
+      });
+      setTimeout(function () {
+        $(element).parent().submit();
+      }, 700);
+    }
+
+    return false;
+  });
+};
+
 /***/ }),
 
 /***/ "./resources/js/jquery.magnific-popup.min.js":

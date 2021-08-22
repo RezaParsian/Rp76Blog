@@ -44,31 +44,3 @@
         </div>
     </div>
 @endsection
-
-@section("ex-js")
-    <script>
-        function verify(element) {
-            Swal.fire({
-                title: 'آیا از مقاله این مقاله مطمئن هستید؟',
-                showCancelButton: true,
-                input:"text",
-                cancelButtonText: "خیر",
-                confirmButtonText: `بله`,
-            }).then((result) => {
-                if (result.isConfirmed && result.value==="confirm") {
-
-                    Swal.fire({
-                        icon: "success",
-                        showCancelButton: false,
-                        showConfirmButton: false
-                    });
-
-                    setTimeout(function () {
-                        $(element).parent().submit();
-                    }, 700);
-                }
-                return false;
-            })
-        }
-    </script>
-@endsection

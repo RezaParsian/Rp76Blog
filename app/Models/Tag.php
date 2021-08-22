@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static paginate()
+ * @method static create(array $array)
  */
 class Tag extends Model
 {

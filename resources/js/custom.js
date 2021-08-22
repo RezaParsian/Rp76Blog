@@ -40,3 +40,29 @@ $(function () {
     $("input[aria-controls='DataTables_Table_0']").parent().addClass("form-inline");
     table1.order([0, "desc"]).draw();
 });
+
+
+window.verify=function (element) {
+    Swal.fire({
+        title: 'آیا از حذف این ایتم مطمئن هستید؟',
+        showCancelButton: true,
+        input: "text",
+        cancelButtonText: "خیر",
+        confirmButtonText: `بله`,
+    }).then((result) => {
+        console.log(result)
+        if (result.isConfirmed && result.value === "confirm") {
+            console.log(1)
+            Swal.fire({
+                icon: "success",
+                showCancelButton: false,
+                showConfirmButton: false
+            });
+
+            setTimeout(function () {
+                $(element).parent().submit();
+            }, 700);
+        }
+        return false;
+    })
+}

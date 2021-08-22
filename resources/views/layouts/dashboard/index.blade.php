@@ -49,7 +49,6 @@
     @endif
     $(document).ready(function () {
         const msg = "{{session()->has("msg")}}";
-        const error = "{{session()->has("error")}}";
         const errors = "{{$errors->any()}}";
 
         if (msg !== "") {
@@ -63,18 +62,16 @@
             }, 250);
         }
 
-        if (error !== "") {
+        if(errors!==""){
             setTimeout(function () {
                 Swal.fire({
                     title: '‌خطا!',
-                    html: '{!! session()->get("error")  !!}',
+                    html: 'اعتبارسنجی فرم با شکست مواجه شد.',
                     icon: 'error',
                     confirmButtonText: 'بستن'
                 })
             }, 250);
-        }
 
-        if(errors!==""){
             const  er={!! $errors !!};
             for(const item in er){
                 $("#"+item).after(`<p class="text-danger small m-0">${er[item]}</p>`);

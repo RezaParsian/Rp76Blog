@@ -74,30 +74,6 @@
 
 @section("ex-js")
     <script>
-        function verify(element) {
-            Swal.fire({
-                title: 'آیا از مقاله این دسته مطمئن هستید؟',
-                showCancelButton: true,
-                input: "text",
-                cancelButtonText: "خیر",
-                confirmButtonText: `بله`,
-            }).then((result) => {
-                if (result.isConfirmed && result.value === "confirm") {
-
-                    Swal.fire({
-                        icon: "success",
-                        showCancelButton: false,
-                        showConfirmButton: false
-                    });
-
-                    setTimeout(function () {
-                        $(element).parent().submit();
-                    }, 700);
-                }
-                return false;
-            })
-        }
-
         $("#make").click(function () {
             $(".modal-title").text("دسته جدید")
             $(".modal-body").html(` <form action="{{route("category.store")}}" method="post"> @csrf <div class="form-group"> <label for="{{\App\Models\Category::TITLE}}">موضوع</label> <input type="text" class="form-control" required name="{{\App\Models\Category::TITLE}}" id="{{\App\Models\Category::TITLE}}"> </div> <div class="form-group"> <label for="{{\App\Models\Category::SLUG}}">Slug</label> <input type="text" class="form-control" required name="{{\App\Models\Category::SLUG}}" id="{{\App\Models\Category::SLUG}}"> </div> <div class="form-group"> <label for="{{\App\Models\Category::TYPE}}">نوع</label> <select name="{{\App\Models\Category::TYPE}}" id="{{\App\Models\Category::TYPE}}" class="form-control"> <option value="">یک نوع انتخاب کنید</option> </select> </div> <div class="form-group"> <label for="{{\App\Models\Category::PARENT_ID}}">دسته بندی والد</label> <select name="{{\App\Models\Category::PARENT_ID}}" id="{{\App\Models\Category::PARENT_ID}}" class="form-control"> <option value="0">یک والد انتخاب کنید</option> @foreach($categories as $category) <option value="{{$category->id}}">{{$category->title}}</option> @endforeach </select> </div> <input type="submit" id="submit" hidden> </form>`);

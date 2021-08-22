@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{Blog\BlogController, Dashboard\ArticleController, Dashboard\CategoryController, Dashboard\TagController, HomeController};
+use App\Http\Controllers\{Blog\BlogController};
 use Illuminate\Support\{Facades\Auth, Facades\Route};
 
 /*
@@ -18,13 +18,6 @@ Route::view("/", "welcome")->name("blog");
 
 Auth::routes();
 //['verify' => true]
-
-Route::group(["prefix" => "dashboard", "middleware" => ["auth"]], function () {
-    Route::name('dashboard')->get('', [HomeController::class, 'index']);
-    Route::resource("article", ArticleController::class);
-    Route::resource("category", CategoryController::class);
-    Route::resource("tag", TagController::class);
-});
 
 Route::group(["prefix" => "blog"], function () {
     Route::get("post/{slug:slug}", [BlogController::class, "post"])->name("post.single");
