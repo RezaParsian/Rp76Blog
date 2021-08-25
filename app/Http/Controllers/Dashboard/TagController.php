@@ -56,14 +56,12 @@ class TagController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param Tag $tag
-     * @return Response
+     * @return Tag
      */
-    public function show(Tag $tag)
+    public function show(Tag $tag): Tag
     {
-        //
+        return $tag;
     }
 
     /**
@@ -75,15 +73,23 @@ class TagController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param Request $request
      * @param Tag $tag
-     * @return Response
+     * @return RedirectResponse
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            Tag::TITLE => ["required"],
+            Tag::SLUG => ["nullable", "unique:tags"]
+        ]);
+
+        $tag->update([
+            Tag::TITLE => $request->input(Tag::TITLE),
+            Tag::SLUG => is_null($request->input(Tag::SLUG)) ? Slug::slugify($request->input(Tag::TITLE)) : Slug::slugify($request->input(Tag::SLUG)),
+        ]);
+
+        return back()->with("msg", "دسته بندی موردنظر با موفقیت ویرایش شد.");
     }
 
     /**

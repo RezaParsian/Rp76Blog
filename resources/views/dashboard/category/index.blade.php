@@ -91,7 +91,7 @@
                 $("#{{\App\Models\Category::TYPE}}").val(data.type);
                 $("#{{\App\Models\Category::PARENT_ID}}").val(data.parent_id);
             });
-
+            $(".modal-title").text("ویرایش دسته")
             $("#myModal").modal("show");
         });
     </script>

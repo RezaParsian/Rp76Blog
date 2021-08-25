@@ -84,15 +84,13 @@
         $(".btnEdit").click(function () {
             const update = $(this).data("update");
             const view = $(this).data("view");
-            // $(".modal-body").html(``)
+            $(".modal-body").html(` <form action="${update}" method="post"> @csrf @method("put") <div class="form-group"> <label for="{{\App\Models\Tag::TITLE}}">موضوع</label> <input type="text" name="{{\App\Models\Tag::TITLE}}" id="{{\App\Models\Tag::TITLE}}" class="form-control"> </div> <div class="form-group"> <label for="{{\App\Models\Tag::SLUG}}">نامک</label> <input type="text" name="{{\App\Models\Tag::SLUG}}" id="{{\App\Models\Tag::SLUG}}" class="form-control"> </div> <input type="submit" id="submit" class="d-none"> </form>`)
 
             $.get(view, function (data) {
                 $("#{{\App\Models\Category::TITLE}}").val(data.title);
                 $("#{{\App\Models\Category::SLUG}}").val(data.slug);
-                $("#{{\App\Models\Category::TYPE}}").val(data.type);
-                $("#{{\App\Models\Category::PARENT_ID}}").val(data.parent_id);
             });
-
+            $(".modal-title").text("ویرایش تگ")
             $("#myModal").modal("show");
         });
     </script>
