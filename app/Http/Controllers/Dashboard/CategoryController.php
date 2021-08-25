@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Slug;
 use App\Models\Category;
 use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Support\Str};
 use Exception;
@@ -47,7 +48,7 @@ class CategoryController extends Controller
             Category::SLUG => ["required"]
         ]);
 
-        $valid[Category::SLUG] = Str::slug($valid[Category::SLUG]);
+        $valid[Category::SLUG] = is_null($request->input(Category::SLUG)) ? Slug::slugify($request->input(Category::TITLE)) : Slug::slugify($request->input(Category::SLUG));
 
         Category::create($valid);
 
@@ -90,6 +91,8 @@ class CategoryController extends Controller
             Category::PARENT_ID => ["required", "numeric"],
             Category::SLUG => ["required"]
         ]);
+
+        $valid[Category::SLUG] = is_null($request->input(Category::SLUG)) ? Slug::slugify($request->input(Category::TITLE)) : Slug::slugify($request->input(Category::SLUG));
 
         $category->update($valid);
         return back()->with("msg", "دسته موردنظر با موفقیت ویرایش شد");

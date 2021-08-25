@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Helper\Slug;
 use App\Http\Helper\UploadFile;
-use App\Models\{Article, Categorize, Category};
+use App\Models\{Article, Categorize, Category, Tag};
 use App\Http\Controllers\Controller;
 use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Routing\Redirector, Support\Facades\Auth};
 use Exception;
@@ -32,7 +32,8 @@ class ArticleController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view($this->path . "create", compact("categories"));
+        $tags = Tag::all();
+        return view($this->path . "create", compact("categories","tags"));
     }
 
     /**
@@ -64,7 +65,8 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         $categories = Category::all();
-        return view($this->path . "edit", compact("article", "categories"));
+        $tags = Tag::all();
+        return view($this->path . "edit", compact("article", "categories","tags"));
     }
 
     /**
