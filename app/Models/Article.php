@@ -51,7 +51,8 @@ class Article extends Model
         "custom_date",
         "summary",
         "markdown",
-        "link"
+        "link",
+        "read_time",
     ];
 
     /**
@@ -101,5 +102,11 @@ class Article extends Model
     public function getImageNameAttribute()
     {
         return $this->attributes["image"];
+    }
+
+    public function getReadTimeAttribute()
+    {
+        $len=str_word_count($this->attributes[self::CONTENT]);
+        return ((int)($len/130)>0 ? (int)($len/130) : 1) . " دقیقه";
     }
 }

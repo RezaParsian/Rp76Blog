@@ -37,6 +37,24 @@
                     </div>
                 </div>
 
+
+                <div class="form-group row">
+                    <div class="col-md">
+                        <label for="tags">تگ</label>
+                       <div class="d-flex">
+                           <select name="tag[]" id="tag" class="form-control" required multiple>
+                               @foreach($tags as $tag)
+                                   <option value="{{$tag->id}}">{{$tag->title}}</option>
+                               @endforeach
+                           </select>
+                           <button class="btn rounded"type="button">
+                               <i class="fa fa-plus"></i>
+                           </button>
+                       </div>
+                    </div>
+                    <div class="col-md"></div>
+                </div>
+
                 <div class="form-group">
                     <input type="file" name="{{\App\Models\Article::IMAGE}}" id="{{\App\Models\Article::IMAGE}}" class="form-control">
                 </div>

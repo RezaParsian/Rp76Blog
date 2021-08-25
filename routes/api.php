@@ -23,7 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get("/post", function (Request $request) {
     return Article::where(function ($query) use ($request) {
         $query->where("title", "like", "%{$request->q}%")->orWhere("content", "like", "%{$request->q}%");
-    })->with("user")
-        ->orderby("id", "DESC")
+    })->with(["user" => function ($query) {
+        return $query->select("id", "name");
+    }])->orderby("id", "DESC")
         ->paginate();
 });

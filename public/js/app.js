@@ -68641,18 +68641,23 @@ var render = function() {
               _c("div", { staticClass: "big-blog-item mb-0" }, [
                 _c("img", {
                   staticClass: "blog-thumbnail rounded",
-                  attrs: { src: index.image, alt: "image" }
+                  attrs: { src: index.image, loading: "lazy", alt: "image" }
                 }),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "blog-content text-box text-white rtl" },
                   [
-                    _c("div", { staticClass: "top-meta" }, [
-                      _vm._v(_vm._s(index.custom_date) + " / By "),
+                    _c("div", { staticClass: "top-meta ltr text-right" }, [
+                      _c("label", { staticClass: "rtl small" }, [
+                        _c("i", { staticClass: "fa fa-clock-o" }),
+                        _vm._v(" " + _vm._s(index.read_time))
+                      ]),
+                      _vm._v(" | "),
                       _c("a", { attrs: { href: "" } }, [
                         _vm._v(_vm._s(index.user.name))
-                      ])
+                      ]),
+                      _vm._v(" | " + _vm._s(index.custom_date))
                     ]),
                     _vm._v(" "),
                     _c("h3", { staticClass: "m-0" }, [

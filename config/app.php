@@ -175,7 +175,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \Rp76\Module\ModuleServiceProvider::class,
+//        \Rp76\Module\ModuleServiceProvider::class,
     ],
 
     /*
