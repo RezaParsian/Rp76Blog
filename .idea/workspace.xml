@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8589f1c2-7fc0-493e-95b0-3cfab5257f3d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/module.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/ModulesServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/Views/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Rp76/Module/src/ModuleServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Rp76/Module/src/ModuleServiceProvider.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,18 +164,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/Rp76/Module/src/tmp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/Rp76/Module/src/Command" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/Rp76/Module/src/Command" />
       <recent name="$PROJECT_DIR$/packages/Rp76/Module/src/tmp" />
       <recent name="$PROJECT_DIR$/resources/views/dashboard" />
       <recent name="$PROJECT_DIR$/app/Http/Helper" />
@@ -224,6 +230,7 @@
       <workItem from="1629540117687" duration="2869000" />
       <workItem from="1629608392457" duration="4697000" />
       <workItem from="1629828199731" duration="4283000" />
+      <workItem from="1629952075921" duration="13219000" />
     </task>
     <servers />
   </component>
