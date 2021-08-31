@@ -4,17 +4,16 @@
 namespace App\Http\Helper;
 
 
-use App\Models\Categorize;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait CategorizeAble
 {
     /**
-     * @return MorphMany
+     * @return MorphToMany
      */
-    public function categorize(): MorphMany
+    public function categorize(): MorphToMany
     {
-        return $this->morphMany(Categorize::class,"categorizeable")->with("category");
+        return $this->morphToMany(Category::class,"categorizeable","categorizes");
     }
 }

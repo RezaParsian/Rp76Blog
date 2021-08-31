@@ -5,14 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8589f1c2-7fc0-493e-95b0-3cfab5257f3d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/module.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/ModulesServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/Rp76/Views/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/Rp76/router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/Views/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/composer.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/router.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/autoload.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/InstalledVersions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/autoload_real.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/autoload_static.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/installed.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Car/vendor/composer/installed.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/Migrations/2021_08_30_124211_create_rezxas_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/Models/rezxa.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/Rp76.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/composer.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/autoload.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/InstalledVersions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/autoload_real.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/autoload_static.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/installed.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Rp76/vendor/composer/installed.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Zizi/Views/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Zizi/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/Zizi/router.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Helper/CategorizeAble.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Helper/CategorizeAble.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/ModulesServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/ModulesServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/Rp76/router.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/Rp76/router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Rp76/Module/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Rp76/Module/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Rp76/Module/src/Command/Module.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Rp76/Module/src/Command/Module.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/Rp76/Module/src/ModuleServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Rp76/Module/src/ModuleServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/blog/post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/post.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +200,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/Rp76/Module/src/Command" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/Rp76/Module/src/config" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -176,6 +212,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/Rp76/Module/src/config" />
       <recent name="$PROJECT_DIR$/packages/Rp76/Module/src/Command" />
       <recent name="$PROJECT_DIR$/packages/Rp76/Module/src/tmp" />
       <recent name="$PROJECT_DIR$/resources/views/dashboard" />
@@ -230,7 +267,9 @@
       <workItem from="1629540117687" duration="2869000" />
       <workItem from="1629608392457" duration="4697000" />
       <workItem from="1629828199731" duration="4283000" />
-      <workItem from="1629952075921" duration="13219000" />
+      <workItem from="1629952075921" duration="13479000" />
+      <workItem from="1630311013925" duration="2050000" />
+      <workItem from="1630396171239" duration="7518000" />
     </task>
     <servers />
   </component>

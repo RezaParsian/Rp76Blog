@@ -22,7 +22,7 @@
                             */
                             $categories=[];
                             foreach ($slug->categorize as $category){
-                                $categories[]="<label>{$category->category->title}</label>";
+                                $categories[]="<label>{$category->title}</label>";
                             }
                         @endphp
                         {!! implode("،",$categories) !!}

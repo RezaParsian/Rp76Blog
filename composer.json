@@ -42,8 +42,7 @@
             "App\\": "app",
             "Database\\Factories\\": "databasefactories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Rp76\\Module\\": "packages/Rp76/Module/src",
-            "Modules\\": "modules/"
+            "Rp76\\Module\\": "packages/Rp76/Module/src"
         }
     },
     "autoload-dev": {

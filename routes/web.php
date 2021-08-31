@@ -22,3 +22,9 @@ Auth::routes();
 Route::group(["prefix" => "blog"], function () {
     Route::get("post/{slug:slug}", [BlogController::class, "post"])->name("post.single");
 });
+
+
+Route::get("rp",function (){
+    $post=\App\Models\Article::where("id",1)->with('categorize')->get();
+    return $post;
+});
