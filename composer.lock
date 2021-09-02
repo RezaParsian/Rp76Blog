@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e8cf5e7d6263648900dd55f8b2f15a7",
+    "content-hash": "e98a5f4db4f1dbd24d66eb7dd1cda121",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -458,56 +458,6 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
-        },
-        {
-            "name": "erusev/parsedown",
-            "version": "1.7.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/erusev/parsedown.git",
-                "reference": "cb17b6477dfff935958ba01325f2e8a2bfa6dab3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/cb17b6477dfff935958ba01325f2e8a2bfa6dab3",
-                "reference": "cb17b6477dfff935958ba01325f2e8a2bfa6dab3",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Parsedown": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Emanuil Rusev",
-                    "email": "hello@erusev.com",
-                    "homepage": "http://erusev.com"
-                }
-            ],
-            "description": "Parser for Markdown.",
-            "homepage": "http://parsedown.org",
-            "keywords": [
-                "markdown",
-                "parser"
-            ],
-            "support": {
-                "issues": "https://github.com/erusev/parsedown/issues",
-                "source": "https://github.com/erusev/parsedown/tree/1.7.x"
-            },
-            "time": "2019-12-30T22:54:17+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -2582,6 +2532,43 @@
                 }
             ],
             "time": "2020-08-18T17:17:46+00:00"
+        },
+        {
+            "name": "rp76/module",
+            "version": "1.2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RezaParsian/Modular_Laravel.git",
+                "reference": "dc886d0a8df51acf32794b76c6fc3d02ead80b5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RezaParsian/Modular_Laravel/zipball/dc886d0a8df51acf32794b76c6fc3d02ead80b5e",
+                "reference": "dc886d0a8df51acf32794b76c6fc3d02ead80b5e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rp76\\Module\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "RezaParsian",
+                    "email": "rezaparsian76@gmail.com"
+                }
+            ],
+            "description": "this package will help anyone who want to make a modular laravel project.",
+            "support": {
+                "issues": "https://github.com/RezaParsian/Modular_Laravel/issues",
+                "source": "https://github.com/RezaParsian/Modular_Laravel/tree/1.2.8"
+            },
+            "time": "2021-09-01T11:28:56+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7585,8 +7572,9 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-mbstring": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

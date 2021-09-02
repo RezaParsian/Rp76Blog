@@ -1,0 +1,5 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::view("Rp76","Rp76::index");
