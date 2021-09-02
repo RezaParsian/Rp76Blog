@@ -42,17 +42,14 @@ class TagController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            Tag::TITLE => ["required"],
-            Tag::SLUG => ["nullable", "unique:tags"]
-        ]);
+        $this->tagValidator($request);
 
-        Tag::create([
+       $tag= Tag::create([
             Tag::TITLE => $request->input(Tag::TITLE),
             Tag::SLUG => is_null($request->input(Tag::SLUG)) ? Slug::slugify($request->input(Tag::TITLE)) : Slug::slugify($request->input(Tag::SLUG)),
         ]);
 
-        return back()->with("msg", "دسته بندی موردنظر با موفقیت ثبت شد.");
+        return back()->with("msg", "تگ موردنظر با موفقیت ثبت شد.");
     }
 
     /**
@@ -79,17 +76,14 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        $request->validate([
-            Tag::TITLE => ["required"],
-            Tag::SLUG => ["nullable", "unique:tags"]
-        ]);
+        $this->tagValidator($request);
 
         $tag->update([
             Tag::TITLE => $request->input(Tag::TITLE),
             Tag::SLUG => is_null($request->input(Tag::SLUG)) ? Slug::slugify($request->input(Tag::TITLE)) : Slug::slugify($request->input(Tag::SLUG)),
         ]);
 
-        return back()->with("msg", "دسته بندی موردنظر با موفقیت ویرایش شد.");
+        return back()->with("msg", "تگ موردنظر با موفقیت ویرایش شد.");
     }
 
     /**
@@ -101,5 +95,26 @@ class TagController extends Controller
     {
         $tag->delete();
         return back()->with("msg", "تگ موردنظر حذف شد");
+    }
+
+    public function apiTagCreate(Request $request)
+    {
+        $this->tagValidator($request);
+
+        return Tag::create([
+            Tag::TITLE => $request->input(Tag::TITLE),
+            Tag::SLUG => is_null($request->input(Tag::SLUG)) ? Slug::slugify($request->input(Tag::TITLE)) : Slug::slugify($request->input(Tag::SLUG)),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     */
+    private function tagValidator(Request $request): void
+    {
+        $request->validate([
+            Tag::TITLE => ["required"],
+            Tag::SLUG => ["nullable", "unique:tags"]
+        ]);
     }
 }

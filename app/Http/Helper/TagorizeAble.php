@@ -5,15 +5,16 @@ namespace App\Http\Helper;
 
 
 use App\Models\Categorize;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use App\Models\Tag;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait TagorizeAble
 {
     /**
-     * @return MorphMany
+     * @return MorphToMany
      */
-    public function tagorize(): MorphMany
+    public function tagorize(): MorphToMany
     {
-        return $this->morphMany(Categorize::class,"tagorizeable")->with("tag");
+        return $this->morphToMany(Tag::class,"tagorize","tagorizes");
     }
 }

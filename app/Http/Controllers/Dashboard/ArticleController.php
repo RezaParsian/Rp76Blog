@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Helper\Slug;
 use App\Http\Helper\UploadFile;
-use App\Models\{Article, Categorize, Category, Tag};
+use App\Models\{Article, Categorize, Category, Tag, Tagorize};
 use App\Http\Controllers\Controller;
 use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Routing\Redirector, Support\Facades\Auth};
 use Exception;
@@ -33,7 +33,7 @@ class ArticleController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view($this->path . "create", compact("categories","tags"));
+        return view($this->path . "create", compact("categories", "tags"));
     }
 
     /**
@@ -47,6 +47,8 @@ class ArticleController extends Controller
         $article = Article::create($valid);
 
         $this->saveCategory($request, $article);
+
+        $this->saveTag($request, $article);
 
         return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
     }
@@ -66,7 +68,7 @@ class ArticleController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view($this->path . "edit", compact("article", "categories","tags"));
+        return view($this->path . "edit", compact("article", "categories", "tags"));
     }
 
     /**
@@ -80,14 +82,14 @@ class ArticleController extends Controller
     {
         $valid = $this->checkValid($request);
 
-        $article->categorize()->delete();
-
         if ($request->hasFile(Article::IMAGE))
             @unlink(public_path("upload/article/" . $article->imageName));
 
         $article->update($valid);
 
         $this->saveCategory($request, $article);
+
+        $this->saveTag($request, $article);
 
         return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
     }
@@ -116,6 +118,7 @@ class ArticleController extends Controller
             Article::IMAGE => ["nullable", "max:2024", "image"],
             Article::CONTENT => ["required"],
             "category" => ["required"],
+            "tag" => ["nullable"]
         ]);
 
         if ($request->has(Article::IMAGE))
@@ -136,10 +139,25 @@ class ArticleController extends Controller
      */
     private function saveCategory(Request $request, $article): void
     {
-        collect($request->input("category"))->map(function ($item) use ($article) {
-            $article->categorize()->create([
-                Categorize::CATEGORY_ID => $item,
-            ]);
+        $categories = [];
+        collect($request->input("category"))->map(function ($item) use ($article, &$categories) {
+            $categories[] = [Categorize::CATEGORY_ID => $item];
         });
+
+        $article->categorize()->sync($categories);
+    }
+
+    /**
+     * @param Request $request
+     * @param $article
+     */
+    private function saveTag(Request $request, $article): void
+    {
+        $tags = [];
+        collect($request->input("tag"))->map(function ($item) use ($article, &$tags) {
+            $tags[] = [Tagorize::TAG_ID => $item,];
+        });
+
+        $article->tagorize()->sync($tags);
     }
 }

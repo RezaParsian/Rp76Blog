@@ -29,32 +29,34 @@
                     </div>
                     <hr>
                     <div class="blog-content text-box text-white rtl post-tag">
-
+                        @foreach($slug->tagorize as $tag)
+                            <a href="#">{{$tag->title}}</a>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </article>
 
-    <div class="card bg-blog shadow text-white rtl">
-        <div class="card-header">
-            <h6>ارسال نظر :</h6>
-        </div>
-        <div class="card-body">
-            <form action="" method="post">
-                @csrf
-                <div class="form-group">
-                    <input type="email" name="email" id="email" required class="form-control" placeholder="ایمیل">
-                </div>
+{{--    <div class="card bg-blog shadow text-white rtl">--}}
+{{--        <div class="card-header">--}}
+{{--            <h6>ارسال نظر :</h6>--}}
+{{--        </div>--}}
+{{--        <div class="card-body">--}}
+{{--            <form action="" method="post">--}}
+{{--                @csrf--}}
+{{--                <div class="form-group">--}}
+{{--                    <input type="email" name="email" id="email" required class="form-control" placeholder="ایمیل">--}}
+{{--                </div>--}}
 
-                <div class="form-group">
-                    <markdown vname="comment"></markdown>
-                </div>
+{{--                <div class="form-group">--}}
+{{--                    <markdown vname="comment"></markdown>--}}
+{{--                </div>--}}
 
-                <button class="btn btn-success px-4">
-                    ثبت نظر
-                </button>
-            </form>
-        </div>
-    </div>
+{{--                <button class="btn btn-success px-4">--}}
+{{--                    ثبت نظر--}}
+{{--                </button>--}}
+{{--            </form>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 @endsection
