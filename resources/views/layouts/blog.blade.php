@@ -49,7 +49,7 @@
                             </form>
                         </div>
                         <div class="widget-item">
-                            <h4 class="widget-title">Trending</h4>
+                            <h4 class="widget-title">بلاگ های پرطرفدار</h4>
                             <div class="trending-widget">
                                 <div class="tw-item">
                                     <div class="tw-thumb">
@@ -90,15 +90,12 @@
                             </div>
                         </div>
                         <div class="widget-item">
-                            <div class="categories-widget">
-                                <h4 class="widget-title">categories</h4>
-                                <ul>
-                                    <li><a href="">Games</a></li>
-                                    <li><a href="">Gaming Tips & Tricks</a></li>
-                                    <li><a href="">Online Games</a></li>
-                                    <li><a href="">Team Games</a></li>
-                                    <li><a href="">Community</a></li>
-                                    <li><a href="">Uncategorized</a></li>
+                            <div class="categories-widget rtl">
+                                <h4 class="widget-title text-center p-0">دسته بندی ها</h4>
+                                <ul class="p-0 pr-3">
+                                    @foreach(\App\Models\Category::where(\App\Models\Category::PARENT_ID,0)->get() as $category)
+                                        <li><a href="">{{$category->title}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
