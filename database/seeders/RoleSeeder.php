@@ -14,16 +14,16 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $roles = json_encode(array_filter(explode("\n", file_get_contents("role"))));
+//        $roles = json_encode(array_filter(explode("\n", file_get_contents("role"))));
 
         DB::table('roles')->insert([
             [
                 "name" => "Developer",
-                "scope" => $roles
+                "scope" => []
             ],
             [
                 "name" => "Admin",
-                "scope" => $roles
+                "scope" => []
             ],
             [
                 "name" => "User",
