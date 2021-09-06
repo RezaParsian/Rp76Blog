@@ -25,6 +25,6 @@ Route::get("/post", function (Request $request) {
         $query->where("title", "like", "%{$request->q}%")->orWhere("content", "like", "%{$request->q}%");
     })->with(["user" => function ($query) {
         return $query->select("id", "name");
-    }])->orderby("id", "DESC")
+    }])->where(Article::TYPE,"blog")->orderby("id", "DESC")
         ->paginate();
 });

@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -40,5 +43,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        View::share("twits", Article::where(Article::TYPE, "twit")->orderBy("id", "DESC")->take(4)->get());
+        View::share("cats", Category::where(Category::PARENT_ID, 0)->get());
     }
 }

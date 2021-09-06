@@ -51,49 +51,23 @@
                         <div class="widget-item">
                             <h4 class="widget-title">بلاگ های پرطرفدار</h4>
                             <div class="trending-widget">
-                                <div class="tw-item">
-                                    <div class="tw-thumb">
-                                        <img src="{{asset("img/blog-widget/1.jpg")}}" alt="#">
-                                    </div>
-                                    <div class="tw-text">
-                                        <div class="tw-meta">11.11.18 / in <a href="">Games</a></div>
-                                        <h5>The best online game is out now!</h5>
-                                    </div>
-                                </div>
-                                <div class="tw-item">
-                                    <div class="tw-thumb">
-                                        <img src="{{asset("img/blog-widget/2.jpg")}}" alt="#">
-                                    </div>
-                                    <div class="tw-text">
-                                        <div class="tw-meta">11.11.18 / in <a href="">Games</a></div>
-                                        <h5>The best online game is out now!</h5>
-                                    </div>
-                                </div>
-                                <div class="tw-item">
-                                    <div class="tw-thumb">
-                                        <img src="{{asset("img/blog-widget/3.jpg")}}" alt="#">
-                                    </div>
-                                    <div class="tw-text">
-                                        <div class="tw-meta">11.11.18 / in <a href="">Games</a></div>
-                                        <h5>The best online game is out now!</h5>
-                                    </div>
-                                </div>
-                                <div class="tw-item">
-                                    <div class="tw-thumb">
-                                        <img src="{{asset("img/blog-widget/4.jpg")}}" alt="#">
-                                    </div>
-                                    <div class="tw-text">
-                                        <div class="tw-meta">11.11.18 / in <a href="">Games</a></div>
-                                        <h5>The best online game is out now!</h5>
-                                    </div>
-                                </div>
+                                <h5 class="text-muted text-center">بلاگی وجود ندارد.</h5>
+{{--                                <div class="tw-item">--}}
+{{--                                    <div class="tw-thumb">--}}
+{{--                                        <img src="{{asset("img/blog-widget/1.jpg")}}" alt="#">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="tw-text">--}}
+{{--                                        <div class="tw-meta">11.11.18 / in <a href="">Games</a></div>--}}
+{{--                                        <h5>The best online game is out now!</h5>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                         <div class="widget-item">
                             <div class="categories-widget rtl">
                                 <h4 class="widget-title text-center p-0">دسته بندی ها</h4>
                                 <ul class="p-0 pr-3">
-                                    @foreach(\App\Models\Category::where(\App\Models\Category::PARENT_ID,0)->get() as $category)
+                                    @foreach($cats as $category)
                                         <li><a href="">{{$category->title}}</a></li>
                                     @endforeach
                                 </ul>
@@ -102,29 +76,20 @@
                         <div class="widget-item rtl">
                             <h4 class="widget-title text-center p-0">توییت ها</h4>
                             <div class="latest-comments">
-                                <div class="lc-item ">
-                                    <div class="tw-text text-warning">
-                                        salam
+                                @forelse($twits as $twit)
+                                    <div class="lc-item ">
+                                        <div class="tw-text text-warning sma twit">
+                                            {!! $twit->markdown !!}
+                                        </div>
                                     </div>
-                                </div>
-                                <hr><div class="lc-item ">
-                                    <div class="tw-text text-warning">
-                                        salam
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="lc-item ">
-                                    <div class="tw-text text-warning">
-                                        salam
-                                    </div>
-                                </div>
-                                <hr>
+                                    <hr>
+                                @empty
+                                    <h5 class="text-muted text-center">توییتی وجود ندارد.</h5>
+                                @endforelse
                             </div>
                         </div>
-                        <div class="widget-item">
-                            <a href="#" class="add">
-                                <img src="{{asset("/img/add.jpg")}}" alt="">
-                            </a>
+                        <div class="widget-item" style="min-height: 5rem">
+
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Rubik','primary-font';
+$font-family-sans-serif: 'Rubik', 'primary-font';
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
@@ -17,4 +17,8 @@ $yellow: #ffc107;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
-$blog: #331854;
+
+:root {
+    --yasi: #d3bcff;
+    --blog: #331854;
+}

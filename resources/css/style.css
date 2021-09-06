@@ -1735,9 +1735,21 @@ ul, ol {
 }
 
 .text-blog{
-    color: #331854 !important;
+    color: var(--blog) !important;
 }
 
 .bg-blog{
-    background: #331854 !important;
+    background: var(--blog) !important;
+}
+
+.text-twit{
+    color: var(--yasi) !important;
+}
+
+.bg-twit{
+    background: var(--yasi) !important;
+}
+
+.twit * {
+    color: var(--yasi) !important;
 }
