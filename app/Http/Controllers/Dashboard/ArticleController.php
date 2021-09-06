@@ -145,8 +145,6 @@ class ArticleController extends Controller
         });
         $article->categorize()->detach();
         $article->categorize()->attach($categories);
-        dd($categories);
-
     }
 
     /**
