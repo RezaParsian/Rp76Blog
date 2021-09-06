@@ -143,8 +143,10 @@ class ArticleController extends Controller
         collect($request->input("category"))->map(function ($item) use ($article, &$categories) {
             $categories[] = [Categorize::CATEGORY_ID => $item];
         });
+        $article->categorize()->detach();
+        $article->categorize()->attach($categories);
+        dd($categories);
 
-        $article->categorize()->sync($categories);
     }
 
     /**
@@ -158,6 +160,7 @@ class ArticleController extends Controller
             $tags[] = [Tagorize::TAG_ID => $item,];
         });
 
-        $article->tagorize()->sync($tags);
+        $article->tagorize()->detach();
+        $article->tagorize()->attach($tags);
     }
 }

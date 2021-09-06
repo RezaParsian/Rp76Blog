@@ -45,7 +45,7 @@ class CategoryController extends Controller
             Category::TITLE => ["required"],
             Category::TYPE => ["nullable"],
             Category::PARENT_ID => ["required", "numeric"],
-            Category::SLUG => ["required"]
+            Category::SLUG => ["nullable"]
         ]);
 
         $valid[Category::SLUG] = is_null($request->input(Category::SLUG)) ? Slug::slugify($request->input(Category::TITLE)) : Slug::slugify($request->input(Category::SLUG));
@@ -89,7 +89,7 @@ class CategoryController extends Controller
             Category::TITLE => ["required"],
             Category::TYPE => ["nullable"],
             Category::PARENT_ID => ["required", "numeric"],
-            Category::SLUG => ["required"]
+            Category::SLUG => ["nullabel"]
         ]);
 
         $valid[Category::SLUG] = is_null($request->input(Category::SLUG)) ? Slug::slugify($request->input(Category::TITLE)) : Slug::slugify($request->input(Category::SLUG));

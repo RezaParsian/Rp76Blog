@@ -3,40 +3,6 @@
 @section("ex-title","مقاله جدید")
 
 @section("content")
-    <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
-                    <button type="button" class="close mx-0" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form id="formTag" action="#" method="get">
-                        <div class="form-group">
-                            <label for="{{\App\Models\Tag::TITLE}}">موضوع</label>
-                            <input type="text" name="{{\App\Models\Tag::TITLE}}" id="{{\App\Models\Tag::TITLE}}" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="{{\App\Models\Tag::SLUG}}">نامک</label>
-                            <input type="text" name="{{\App\Models\Tag::SLUG}}" id="{{\App\Models\Tag::SLUG}}" class="form-control">
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="makeTag()">ثبت</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
     <div class="card">
         <div class="card-body">
             <form action="{{route("article.store")}}" method="post" enctype="multipart/form-data">
@@ -90,7 +56,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="file" name="{{\App\Models\Article::IMAGE}}" id="{{\App\Models\Article::IMAGE}}" class="form-control" required>
+                    <input type="file" name="{{\App\Models\Article::IMAGE}}" id="{{\App\Models\Article::IMAGE}}" class="form-control">
                 </div>
 
                 <div class="form-group">
@@ -106,6 +72,41 @@
             </form>
         </div>
     </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close mx-0" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="formTag" action="#" method="get">
+                        <div class="form-group">
+                            <label for="{{\App\Models\Tag::TITLE}}">موضوع</label>
+                            <input type="text" name="{{\App\Models\Tag::TITLE}}" id="{{\App\Models\Tag::TITLE}}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="{{\App\Models\Tag::SLUG}}">نامک</label>
+                            <input type="text" name="{{\App\Models\Tag::SLUG}}" id="{{\App\Models\Tag::SLUG}}" class="form-control">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="makeTag()">ثبت</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section("ex-js")
@@ -115,6 +116,7 @@
         $("#{{\App\Models\Article::SLUG}}").val("{!! old(\App\Models\Article::SLUG) !!}");
         $("#{{\App\Models\Article::CONTENT}}").val(`{!! old(str_replace("`","\`",\App\Models\Article::CONTENT)) !!}`);
         $("#category").val({!! json_encode(old("category")) !!}).trigger("change");
+        $("#tag").val({!! json_encode(old("tag")) !!}).trigger("change");
 
         $("#make").click(function () {
             $(".modal-title").text("تگ جدید");
