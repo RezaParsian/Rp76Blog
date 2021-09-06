@@ -23,8 +23,8 @@
                     <tr>
                         <td>{{$article->id}}</td>
                         <td>{{$article->title}}</td>
-                        <td>{{$article->created_at_diff}}</td>
-                        <td>{{$article->updated_at_diff}}</td>
+                        <td title="{{$article->created_at_p}}" data-toggle="tooltip">{{$article->created_at_diff}}</td>
+                        <td title="{{$article->updated_at_p}}" data-toggle="tooltip">{{$article->updated_at_diff}}</td>
                         <td>
                             <form action="{{route("article.destroy",$article->id)}}" method="post">
                                 <a href="{{route("article.edit",$article->id)}}" class="btn btn-warning rounded-circle">

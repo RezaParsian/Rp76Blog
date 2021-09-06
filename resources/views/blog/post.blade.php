@@ -6,9 +6,9 @@
     <article id="post_section" class="position-relative">
         <div class="card bg-blog shadow">
             <div class="card-body">
-                <div class="big-blog-item mb-0">
+                <div class="big-blog-item mb-0 card-body">
                     <img src="{{asset($slug->image)}}" loading="lazy" alt="{{ $slug->title }}" class="blog-thumbnail rounded"/>
-                    <div v-pre class="blog-content text-box text-white rtl">
+                    <div v-pre class="blog-content text-box text-white rtl text-justify">
                         <div class="top-meta ltr text-right"><label class="rtl small"><i class="fa fa-clock-o"></i> {{$slug->read_time}}</label> | <a href="">{{ $slug->user->name }}</a> | {{ $slug->custom_date }}</div>
                         <h1>{{ $slug->title }}</h1>
                         {!! $slug->markdown !!}

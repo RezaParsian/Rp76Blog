@@ -999,7 +999,7 @@ class Parsedown
             'element' => array(
                 'name' => 'p',
                 'text' => $Line['text'],
-                "attributes" => ["class" => $class." m-0" ?? "m-0"],
+                "attributes" => ["class" => $class ?? ""],
                 'handler' => 'line',
             ),
         );

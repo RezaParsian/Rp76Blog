@@ -8,12 +8,12 @@
         </div>
         <div class="card bg-blog shadow" v-for="index in posts" :key="index['id']">
             <div class="card-body">
-                <div class="big-blog-item mb-0">
+                <div class="big-blog-item mb-0 text-center">
                     <img :src="index.image" loading="lazy" alt="image" class="blog-thumbnail rounded"/>
                     <div class="blog-content text-box text-white rtl">
                         <div class="top-meta ltr text-right"><label class="rtl small"><i class="fa fa-clock-o"></i> {{index.read_time}}</label> | <a href="">{{ index.user.name }}</a> | {{ index.custom_date }}</div>
                         <h3 class="m-0">{{ index.title }}</h3>
-                        <summary v-html="index.summary"></summary>
+                        <summary v-html="index.summary" class="text-justify"></summary>
                         <p class="mt-3"><a :href="index.link" data-toggle="tooltip" title="بیشتر" :data-post="index.id" class="read-more">بیشتر</a></p>
                     </div>
                 </div>

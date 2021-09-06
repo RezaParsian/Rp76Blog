@@ -60,7 +60,9 @@
                 </div>
 
                 <div class="form-group">
-                    <markdown vname="{{\App\Models\Article::CONTENT}}"></markdown>
+                    <markdown vname="{{\App\Models\Article::CONTENT}}">
+                        {{old(str_replace("`","\`",\App\Models\Article::CONTENT),str_replace("`","\`",$article->content))}}
+                    </markdown>
                 </div>
 
                 <div class="form-group">
@@ -113,7 +115,6 @@
         $("#{{\App\Models\Article::TITLE}}").val("{{old(\App\Models\Article::TITLE,$article->title)}}");
         $("#{{\App\Models\Article::TYPE}}").val("{{old(\App\Models\Article::TYPE,$article->type)}}");
         $("#{{\App\Models\Article::SLUG}}").val("{{old(\App\Models\Article::SLUG,$article->slug)}}");
-        $("#{{\App\Models\Article::CONTENT}}").val(`{!! old(str_replace("`","\`",\App\Models\Article::CONTENT),str_replace("`","\`",$article->content)) !!}`);
         $("#category").val({!! json_encode(old("category",$article->categorize->pluck("id"))) !!}).trigger("change");
         $("#tag").val({!! json_encode(old("category",$article->tagorize->pluck("id"))) !!}).trigger("change");
 

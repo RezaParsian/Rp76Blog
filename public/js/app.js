@@ -1893,6 +1893,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     vname: {
@@ -17311,8 +17313,36 @@ $(document).ready(function () {
   }, 200);
 });
 $(function () {
+  jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+    "kh-persian-numbers-pre": function khPersianNumbersPre(a) {
+      function toEnglishNumber(strNum) {
+        var pn = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+        var en = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        var cache = strNum;
+
+        for (var i = 0; i < 10; i++) {
+          var regex_fa = new RegExp(pn[i], 'g');
+          cache = cache.replace(regex_fa, en[i]);
+        }
+
+        return cache;
+      }
+
+      return parseFloat(toEnglishNumber(a));
+    },
+    "kh-persian-numbers-asc": function khPersianNumbersAsc(a, b) {
+      return a < b ? -1 : a > b ? 1 : 0;
+    },
+    "kh-persian-numbers-desc": function khPersianNumbersDesc(a, b) {
+      return a < b ? 1 : a > b ? -1 : 0;
+    }
+  });
   table1 = $('.dtTable').DataTable({
     responsive: true,
+    columnDefs: [{
+      type: 'kh-persian-numbers',
+      targets: 0
+    }],
     language: {
       "sEmptyTable": "هیچ داده ای در جدول وجود ندارد",
       "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
@@ -68432,6 +68462,7 @@ var render = function() {
         placeholder: "متن مورد نظر خود را وارد کنید ...",
         rows: "12"
       },
+      domProps: { value: this.$slots.default[0].text.trim() },
       on: { keydown: _vm.CountWords }
     })
   ])
@@ -68638,7 +68669,7 @@ var render = function() {
           { key: index["id"], staticClass: "card bg-blog shadow" },
           [
             _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "big-blog-item mb-0" }, [
+              _c("div", { staticClass: "big-blog-item mb-0 text-center" }, [
                 _c("img", {
                   staticClass: "blog-thumbnail rounded",
                   attrs: { src: index.image, loading: "lazy", alt: "image" }
@@ -68665,6 +68696,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("summary", {
+                      staticClass: "text-justify",
                       domProps: { innerHTML: _vm._s(index.summary) }
                     }),
                     _vm._v(" "),

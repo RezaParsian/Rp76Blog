@@ -51,7 +51,7 @@
                         <td>{{$category->id}}</td>
                         <td>{{$category->title}}</td>
                         <td>{{$category->slug}}</td>
-                        <td>{{$category->created_at_diff}}</td>
+                        <td title="{{$category->created_at_diff}}" data-toggle="tooltip">{{$category->created_at_diff}}</td>
                         <td>
                             <form action="{{route("category.destroy",$category->id)}}" method="post">
                                 <button class="btn btn-warning rounded-circle btnEdit" type="button" data-update="{{route("category.update",$category->id)}}" data-view="{{route("category.show",$category->id)}}">

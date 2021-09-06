@@ -1023,7 +1023,7 @@ ul, ol {
 }
 
 .widget-item .widget-title {
-    color: var(--pink);
+    color: #fff;
     text-transform: uppercase;
     font-weight: 700;
     font-style: italic;
@@ -18159,7 +18159,7 @@ a.text-muted:hover {
 .daterangepicker.openscenter:before {
   position: absolute;
   top: -7px;
-  left: 0;
+  left: 0;  
   right: 0;
   width: 0;
   margin-left: auto;
@@ -18175,8 +18175,8 @@ a.text-muted:hover {
 .daterangepicker.openscenter:after {
   position: absolute;
   top: -6px;
-  left: 0;
-  right: 0;
+  left: 0;  
+  right: 0;  
   width: 0;
   margin-left: auto;
   margin-right: auto;
@@ -18307,7 +18307,7 @@ a.text-muted:hover {
 }
 
 .daterangepicker_end_input {
-  float: left;
+  float: left; 
   padding-left: 11px
 }
 

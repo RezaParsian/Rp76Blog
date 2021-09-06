@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{env("APP_NAME")}} - @yield("ex-title")</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{asset("css/app.css")}}">
+    <link rel="stylesheet" href="{{asset("css/app.css")}}?id={{filemtime('css/app.css')}}">
 </head>
 <body class="hold-transition sidebar-mini rtl">
 <div class="wrapper rpwarper" id="app">
@@ -42,7 +42,7 @@
 
 </div>
 
-<script src="{{asset("js/app.js")}}"></script>
+<script src="{{asset("js/app.js")}}?id={{filemtime('js/app.js')}}"></script>
 <script>
     @if(env("APP_DEBUG"))
     console.log({!! json_encode(DB::getQueryLog()) !!});

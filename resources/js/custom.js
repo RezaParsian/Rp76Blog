@@ -8,8 +8,36 @@ $(document).ready(function () {
 });
 
 $(function () {
+    jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+        "kh-persian-numbers-pre": function (a) {
+            function toEnglishNumber(strNum) {
+                var pn = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+                var en = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+                var cache = strNum;
+
+                for (var i = 0; i < 10; i++) {
+                    var regex_fa = new RegExp(pn[i], 'g');
+                    cache = cache.replace(regex_fa, en[i]);
+                }
+
+                return cache;
+            }
+
+            return parseFloat(toEnglishNumber(a))
+        },
+        "kh-persian-numbers-asc": function (a, b) {
+            return ((a < b) ? -1 : ((a > b) ? 1 : 0))
+        },
+        "kh-persian-numbers-desc": function (a, b) {
+            return ((a < b) ? 1 : ((a > b) ? -1 : 0))
+        }
+    });
+
     table1 = $('.dtTable').DataTable({
         responsive: true,
+        columnDefs: [
+            { type: 'kh-persian-numbers', targets: 0 }
+        ],
         language: {
             "sEmptyTable": "هیچ داده ای در جدول وجود ندارد",
             "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
@@ -66,3 +94,4 @@ window.verify=function (element) {
         return false;
     })
 }
+;

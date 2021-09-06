@@ -22,6 +22,7 @@ require("../../public/dist/js/demo.js")
 require("../../public/plugins/datatables/jquery.dataTables.js")
 
 
+
 window.Vue = require('vue').default;
 window.Swal = require('sweetalert2')
 /**

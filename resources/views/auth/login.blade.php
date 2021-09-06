@@ -35,8 +35,10 @@
 
     <hr class="bg-gray-light mx-5">
    <div class="row justify-content-center">
+       @if (Route::has('register'))
        <a href="{{route("register")}}">ثبت نام</a>
-       <label class="mx-2">|</label>
+           <label class="mx-2">|</label>
+       @endif
        <a href="{{route("password.request")}}">فراموشی رمز عبور</a>
    </div>
 

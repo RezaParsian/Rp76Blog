@@ -52,7 +52,9 @@
     <hr class="bg-gray-light mx-5">
     <div class="row justify-content-center">
         <a href="{{route("login")}}">ورود</a>
-        <label class="mx-2">|</label>
-        <a href="{{route("register")}}">ثبت نام</a>
+        @if (Route::has('register'))
+            <label class="mx-2">|</label>
+            <a href="{{route("register")}}">ثبت نام</a>
+        @endif
     </div>
 @endsection

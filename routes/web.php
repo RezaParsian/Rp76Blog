@@ -14,18 +14,17 @@ use Illuminate\Support\{Facades\Artisan, Facades\Auth, Facades\Route};
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get("onlymigrate", function () {
-    Artisan::call("migrate");
-    $roles = json_encode(array_filter(explode("\n", file_get_contents(__DIR__ . "/../role"))));
-    $role = Role::find(1);
-    $role->update([Role::SCOPE => $roles]);
-    return $role;
-});
+//Route::get("onlymigrate", function () {
+//    Artisan::call("migrate");
+//    $roles = json_encode(array_filter(explode("\n", file_get_contents(__DIR__ . "/../role"))));
+//    $role = Role::find(1);
+//    $role->update([Role::SCOPE => $roles]);
+//    return $role;
+//});
 
 Route::view("/", "welcome")->name("blog");
 
-Auth::routes();
+Auth::routes(['register' => false]);
 //['verify' => true]
 
 Route::group(["prefix" => "blog"], function () {

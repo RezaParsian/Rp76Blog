@@ -11,7 +11,11 @@
                     <a href="{{route("login")}}">Dashboard</a>
                 @endauth
                 @guest
-                    <a href="{{route("login")}}">Login</a> / <a href="{{route("register")}}">Register</a>
+                    <a href="{{route("login")}}">Login</a>
+                    @if (Route::has('register'))
+                        / <a href="{{route("register")}}">Register
+                            @endif
+                        </a>
                 @endguest
             </div>
             <div class="user-panel w-25 d-block d-md-none">

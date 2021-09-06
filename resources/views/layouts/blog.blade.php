@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }}@hasSection ('ex-title') - @yield('ex-title') @endif</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?id={{filemtime('css/app.css')}}">
     @yield('ex-css')
 </head>
 
 <body class="ltr">
 <div class="container-fluid p-0" id="app">
     <!-- Page Preloader -->
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
+{{--    <div id="preloader">--}}
+{{--        <div class="loader"></div>--}}
+{{--    </div>--}}
 
     <!-- Header section -->
 @include("layouts.navbar")
@@ -135,7 +135,7 @@
     </footer>
     <!-- Footer section end -->
 </div>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}?id={{filemtime('js/app.js')}}"></script>
 @yield('ex-js')
 
 </html>
