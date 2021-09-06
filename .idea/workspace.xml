@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8589f1c2-7fc0-493e-95b0-3cfab5257f3d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/RoleSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/RoleSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +244,7 @@
       <workItem from="1630560959234" duration="8920000" />
       <workItem from="1630756556283" duration="2129000" />
       <workItem from="1630821592108" duration="1130000" />
-      <workItem from="1630910924545" duration="11415000" />
+      <workItem from="1630910924545" duration="12189000" />
     </task>
     <servers />
   </component>

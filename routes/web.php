@@ -17,10 +17,10 @@ use Illuminate\Support\{Facades\Artisan, Facades\Auth, Facades\Route};
 
 Route::get("onlymigrate", function () {
     Artisan::call("migrate");
-//    $roles = json_encode(array_filter(explode("\n", file_get_contents(__DIR__ . "/../role"))));
-//    $role = Role::find(1);
-//    $role->update([Role::SCOPE => $roles]);
-//    return $role;
+    $roles = json_encode(array_filter(explode("\n", file_get_contents(__DIR__ . "/../role"))));
+    $role = Role::find(1);
+    $role->update([Role::SCOPE => $roles]);
+    return $role;
 });
 
 Route::view("/", "welcome")->name("blog");
