@@ -22,7 +22,7 @@ use Illuminate\Support\{Facades\Artisan, Facades\Auth, Facades\Route};
 //    return $role;
 //});
 
-Route::view("/", "welcome")->name("blog");
+Route::any("/", [BlogController::class,"index"])->name("blog");
 
 Auth::routes(['register' => false]);
 //['verify' => true]
