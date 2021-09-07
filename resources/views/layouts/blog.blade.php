@@ -80,6 +80,7 @@
                                     <div class="lc-item ">
                                         <div class="tw-text text-warning sma twit">
                                             {!! $twit->markdown !!}
+                                            <small dir="ltr" class="float-left text-warning">{{$twit->created_at_p}}</small>
                                         </div>
                                     </div>
                                     <hr>

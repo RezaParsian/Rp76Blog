@@ -1909,7 +1909,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      WordCount: 0
+      WordCount: 0,
+      text: ""
     };
   },
   methods: {
@@ -1928,7 +1929,9 @@ __webpack_require__.r(__webpack_exports__);
       return sel;
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    this.text = this.$slots["default"] ? this.$slots["default"][0].text.trim() : '';
+  }
 });
 
 /***/ }),
@@ -68453,18 +68456,21 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("textarea", {
-      class: "form-control " + _vm.vclass,
-      attrs: {
-        dir: _vm.vdir,
-        id: _vm.vname,
-        name: _vm.vname,
-        placeholder: "متن مورد نظر خود را وارد کنید ...",
-        rows: "12"
+    _c(
+      "textarea",
+      {
+        class: "form-control " + _vm.vclass,
+        attrs: {
+          dir: _vm.vdir,
+          id: _vm.vname,
+          name: _vm.vname,
+          placeholder: "متن مورد نظر خود را وارد کنید ...",
+          rows: "12"
+        },
+        on: { keydown: _vm.CountWords }
       },
-      domProps: { value: this.$slots.default[0].text.trim() },
-      on: { keydown: _vm.CountWords }
-    })
+      [_vm._v("        " + _vm._s(this.text) + "\n    ")]
+    )
   ])
 }
 var staticRenderFns = [

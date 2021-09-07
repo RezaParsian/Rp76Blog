@@ -42,8 +42,8 @@
                 <li class="nav-item"><span>کلمه : {{WordCount}}</span></li>
             </ul>
         </div>
-        <textarea :dir="vdir" :id="vname" :name="vname" :class="'form-control ' + vclass" placeholder="متن مورد نظر خود را وارد کنید ..." rows="12" v-on:keydown="CountWords" :value="this.$slots.default[0].text.trim()">
-
+        <textarea :dir="vdir" :id="vname" :name="vname" :class="'form-control ' + vclass" placeholder="متن مورد نظر خود را وارد کنید ..." rows="12" v-on:keydown="CountWords">
+            {{this.text}}
         </textarea>
     </div>
 </template>
@@ -63,7 +63,8 @@ export default {
     },
     data() {
         return {
-            WordCount: 0
+            WordCount: 0,
+            text: ""
         };
     },
     methods: {
@@ -83,6 +84,7 @@ export default {
         },
     },
     mounted() {
+        this.text = this.$slots.default ? this.$slots.default[0].text.trim() : '';
     },
 };
 </script>
