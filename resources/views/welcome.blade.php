@@ -32,9 +32,7 @@
         @endforeach
 
         <div class="site-pagination">
-{{--            <a href="#post_section" data-toggle="tooltip" :title="'صفحه '+index" @click="GetPosts(index)" v-for="index in paginate" :class="current==index ? 'active disable' : ''"--}}
-{{--               :key="index">{{ AddLeadingZero(index) }}.</a>--}}
-            {{$articles->links("layouts.endgame")}}
+            {{$articles->appends(Request()->all())->links("layouts.endgame")}}
 
         </div>
     </article>

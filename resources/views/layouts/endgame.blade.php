@@ -41,8 +41,8 @@
                     <a style="transform: rotate(-180deg);" class="read-more" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')"></a>
                 </li>
             @else
-                <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span style="transform: rotate(-180deg);" class="read-more" aria-hidden="true"></span>
+                <li class="page-item disabled align-self-center" aria-disabled="true" aria-label="@lang('pagination.next')">
+                    <a style="transform: rotate(-180deg);" class="read-more" aria-hidden="true"></a>
                 </li>
             @endif
         </ul>
