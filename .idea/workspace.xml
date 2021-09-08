@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8589f1c2-7fc0-493e-95b0-3cfab5257f3d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Blog/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Blog/BlogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/endgame.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/endgame.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/endgame.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/endgame.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,8 +187,8 @@
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="npm run watch" />
       <command value="php artisan serve" />
+      <command value="npm run watch" />
     </option>
   </component>
   <component name="RunManager" selected="Composer Script.post-package-install">
@@ -250,6 +247,7 @@
       <workItem from="1630756556283" duration="2129000" />
       <workItem from="1630821592108" duration="1130000" />
       <workItem from="1630910924545" duration="15847000" />
+      <workItem from="1631117662508" duration="997000" />
     </task>
     <servers />
   </component>
