@@ -21,6 +21,8 @@ require("../../public/dist/js/adminlte.js")
 require("../../public/dist/js/demo.js")
 require("../../public/plugins/datatables/jquery.dataTables.js")
 
+require("clockpicker/dist/bootstrap-clockpicker")
+
 
 
 window.Vue = require('vue').default;

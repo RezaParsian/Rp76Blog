@@ -57,8 +57,9 @@ class Menu
     {
         $arrow = count($menu) >= 2 ? "<i class='right fa fa-angle-left'>" : "";
 
+        $active = Request()->is($menu[0]->active) ? " active" : "";
         $result = '<li class="nav-item has-treeview">';
-        $result .= "<a href='{$menu[0]->link}' id='{$menu[0]->slug}' class='nav-link'>";
+        $result .= "<a href='{$menu[0]->link}' id='{$menu[0]->slug}' class='nav-link {$active}'>";
         $result .= "<i class='nav-icon {$menu[0]->icon}'></i>";
         $result .= "<p class='text-white'>{$menu[0]->title}{$arrow}</i></p></a>";
 

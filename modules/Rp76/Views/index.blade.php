@@ -1,1 +1,0 @@
-<h1>This is Rp76 template</h1>

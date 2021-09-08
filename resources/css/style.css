@@ -1753,3 +1753,7 @@ ul, ol {
 .twit * {
     color: var(--yasi) !important;
 }
+
+.popover-title{
+    direction: ltr;
+}

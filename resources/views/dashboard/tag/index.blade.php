@@ -90,6 +90,7 @@
                 $("#{{\App\Models\Category::TITLE}}").val(data.title);
                 $("#{{\App\Models\Category::SLUG}}").val(data.slug);
             });
+
             $(".modal-title").text("ویرایش تگ")
             $("#myModal").modal("show");
         });

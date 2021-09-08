@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Modules\\TimeSheet\\Controllers\\": "Controllers",
+            "Modules\\TimeSheet\\Models\\": "Models"
+        }
+    }
+}
