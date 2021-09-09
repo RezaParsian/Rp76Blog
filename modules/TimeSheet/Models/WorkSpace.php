@@ -4,10 +4,12 @@ namespace Modules\TimeSheet\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static create(array $valid)
+ * @method static find(mixed $WORK_SPACE_ID)
  */
 class WorkSpace extends Model
 {
@@ -22,4 +24,12 @@ class WorkSpace extends Model
         self::TITLE,
         self::PRICE,
     ];
+
+    /**
+     * @return HasMany
+     */
+    public function timeSheet(): HasMany
+    {
+        return $this->hasMany(TimeSheet::class);
+    }
 }

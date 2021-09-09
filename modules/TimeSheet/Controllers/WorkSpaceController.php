@@ -61,11 +61,12 @@ class WorkSpaceController extends Controller
     }
 
     /**
-     * @param $id
+     * @param WorkSpace $workSpace
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(WorkSpace $workSpace)
     {
-        abort(404);
+        return view("TimeSheet::work_space.time",compact("workSpace"));
     }
 
     /**

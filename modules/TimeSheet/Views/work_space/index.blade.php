@@ -48,15 +48,18 @@
                     <tr>
                         <td>{{$workSpace->id}}</td>
                         <td>{{$workSpace->title}}</td>
-                        <td>{{$workSpace->price}}</td>
+                        <td>{{number_format($workSpace->price)}} ﷼</td>
                         <td>
                             <form action="{{route("work_space.destroy",$workSpace->id)}}" method="post">
-                                <button class="btn btn-warning rounded-circle btnEdit" type="button" data-update="{{route("work_space.update",$workSpace->id)}}" data-view="{{route("work_space.show",$workSpace->id)}}">
+                                <a href="{{route("work_space.edit",$workSpace->id)}}" class="btn btn-success rounded-circle" title="اضافه کردن ساعت" data-toggle="tooltip">
+                                    <i class="fa fa-clock-o"></i>
+                                </a>
+                                <button title="ویرایش فضای کاری" data-toggle="tooltip" class="btn btn-warning rounded-circle btnEdit" type="button" data-update="{{route("work_space.update",$workSpace->id)}}" data-view="{{route("work_space.show", $workSpace->id) }}">
                                     <i class="fa fa-eye"></i>
                                 </button>
                                 @csrf
                                 @method("delete")
-                                <button class="btn btn-danger rounded-circle" type="button" onclick="verify(this)">
+                                <button class="btn btn-danger rounded-circle" type="button" onclick="verify(this)" title="حذف فضای کاری" data-toggle="tooltip">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </form>
@@ -67,29 +70,9 @@
             </table>
         </div>
     </div>
-
-    <div class="input-group clockpicker">
-        <input type="text" class="form-control" name="clock">
-        <span class="input-group-addon">
-        <span class="glyphicon glyphicon-time"></span>
-    </span>
-    </div>
-
-@endsection
+    @endsection
 
 @section("ex-js")
-    <script type="text/javascript">
-        $('.clockpicker').clockpicker({
-            donetext: 'Done',
-            placement:"top"
-        });
-
-        function convertHourstoMinute(str) {
-            let [hours, minutes] = str.split(':');
-            return (+hours * 60) + (+minutes);
-        }
-    </script>
-
     <script>
         $("#make").click(function () {
             $(".modal-title").text("فضای کاری جدید")
