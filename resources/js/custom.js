@@ -62,6 +62,7 @@ $(function () {
             }
         }
     });
+
     $('select[aria-controls=\'DataTables_Table_0\']').addClass("form-control mx-2");
     $("select[aria-controls='DataTables_Table_0']").parent().addClass("form-inline");
     $('input[aria-controls=\'DataTables_Table_0\']').addClass("form-control mx-2");

@@ -19,7 +19,8 @@ require("code-prettify")
 
 require("../../public/dist/js/adminlte.js")
 require("../../public/dist/js/demo.js")
-require("../../public/plugins/datatables/jquery.dataTables.js")
+// require("../../public/plugins/datatables/jquery.dataTables.js")
+require("datatables/media/js/jquery.dataTables.min")
 
 require("clockpicker/dist/bootstrap-clockpicker")
 

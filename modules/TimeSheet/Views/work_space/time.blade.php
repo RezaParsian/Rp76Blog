@@ -46,6 +46,7 @@
     <div class="card">
         <div class="card-header">
             <button class="btn btn-outline-success" id="make"><i class="fa fa-plus-circle align-self-center mx-1"></i>ساعت کاری جدید</button>
+            <button class="btn btn-outline-secondary float-left" id="export" title="خرجی از اول تا آخر این ماه" data-toggle="tooltip"><i class="fa fa-download mx-1"></i>خروجی</button>
         </div>
         <div class="card-body">
             <table class="text-center dtTable table table-bordered table-striped table-responsive-md">
@@ -54,6 +55,7 @@
                     <th>ردیف</th>
                     <th>زمان</th>
                     <th>قیمت بر ساعت</th>
+                    <th>تاریخ ثبت</th>
                     <th>مدیریت</th>
                 </tr>
                 </thead>
@@ -63,6 +65,7 @@
                         <td>{{$key+1}}</td>
                         <td>{{number_format($timeSheet->work_time)}} دقیقه</td>
                         <td>{{number_format($timeSheet->price)}} ﷼</td>
+                        <td data-toggle="tooltip" title="{{$timeSheet->created_at_p}}">{{$timeSheet->created_at_diff}}</td>
                         <td>
                             <form action="{{route("time_sheet.destroy",$timeSheet->id)}}" method="post">
                                 @csrf
@@ -86,10 +89,14 @@
             $("#myModal").modal("show");
         });
 
+        $("#export").click(function () {
+            window.location.href="{{route("time_sheet.export",$workSpace->id)}}";
+        });
+
         $(function () {
             $('.clockpicker').clockpicker({
                 donetext: 'انتخاب',
-                placement: "top"
+                placement: "left"
             });
         })
 

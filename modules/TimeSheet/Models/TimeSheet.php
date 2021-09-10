@@ -2,6 +2,7 @@
 
 namespace Modules\TimeSheet\Models;
 
+use App\Http\Helper\CustomModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class TimeSheet extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes,CustomModel;
 
     const USER_ID = "user_id",
         WORK_SPACE_ID = "work_space_id",
