@@ -28,7 +28,7 @@ class TimeSheetController extends Controller
 
         list($workPerMin, $hourToMinute) = $this->getWorkSpacePrice($valid);
 
-        $valid[TimeSheet::WORK_TIME] = $workPerMin;
+        $valid[TimeSheet::WORK_TIME] = $hourToMinute;
         $valid[TimeSheet::USER_ID] = Auth::id();
         $valid[TimeSheet::PRICE] = $workPerMin * $hourToMinute;
 
@@ -70,8 +70,8 @@ class TimeSheetController extends Controller
         $exportData = 'ID, Time, Price, Date' . PHP_EOL;
 
         $timeSheets = $workSpace->timeSheet()
-            ->whereDate("created_at", ">=", Carbon::make(Carbon::now()->year . "-" . Carbon::now()->month . "-1"))
-            ->whereDate("created_at", "<=", Carbon::make(Carbon::now()->year . "-" . Carbon::now()->month . "-31"))->get();
+            ->whereDate("created_at", ">=", Carbon::make(Carbon::now()->year . "-" . (Carbon::now()->month-1) . "-1"))
+            ->whereDate("created_at", "<=", Carbon::make(Carbon::now()->year . "-" . (Carbon::now()->month-1) . "-31"))->get();
 
         $timeSheets->map(function (TimeSheet $timeSheet, $key) use (&$exportData) {
             $exportData .= ($key + 1) . ",{$timeSheet->work_time},{$timeSheet->price},{$timeSheet->created_at_p}" . PHP_EOL;
