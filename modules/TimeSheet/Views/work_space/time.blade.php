@@ -46,7 +46,8 @@
     <div class="card">
         <div class="card-header">
             <button class="btn btn-outline-success" id="make"><i class="fa fa-plus-circle align-self-center mx-1"></i>ساعت کاری جدید</button>
-            <button class="btn btn-outline-secondary float-left" id="export" title="خرجی از اول تا آخر این ماه" data-toggle="tooltip"><i class="fa fa-download mx-1"></i>خروجی</button>
+            <button class="btn btn-outline-secondary float-left" id="export" title="خرجی از اول تا آخر ماه" data-toggle="tooltip"><i class="fa fa-download mx-1"></i>خروجی</button>
+            <input type="number" id="month" class="form-control float-left col-1 mx-2" value="1">
         </div>
         <div class="card-body">
             <table class="text-center dtTable table table-bordered table-striped table-responsive-md">
@@ -90,7 +91,7 @@
         });
 
         $("#export").click(function () {
-            window.location.href="{{route("time_sheet.export",$workSpace->id)}}";
+            window.location.href="{{route("time_sheet.export",$workSpace->id)}}?month="+$("#month").val();
         });
 
         $(function () {
