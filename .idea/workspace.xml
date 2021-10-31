@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8589f1c2-7fc0-493e-95b0-3cfab5257f3d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/TimeSheet/Controllers/TimeSheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/TimeSheet/Controllers/TimeSheetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/TimeSheet/Controllers/WorkSpaceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/TimeSheet/Controllers/WorkSpaceController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/TimeSheet/Views/work_space/time.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/TimeSheet/Views/work_space/time.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -258,6 +259,7 @@
       <workItem from="1631117662508" duration="12048000" />
       <workItem from="1631639462888" duration="814000" />
       <workItem from="1631644288535" duration="181000" />
+      <workItem from="1635690357160" duration="2698000" />
     </task>
     <servers />
   </component>
