@@ -7,6 +7,8 @@
     <list default="true" id="8589f1c2-7fc0-493e-95b0-3cfab5257f3d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/TimeSheet/Controllers/TimeSheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/TimeSheet/Controllers/TimeSheetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/TimeSheet/Controllers/WorkSpaceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/TimeSheet/Controllers/WorkSpaceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/TimeSheet/Models/TimeSheet.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/TimeSheet/Models/TimeSheet.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/TimeSheet/Views/work_space/time.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/TimeSheet/Views/work_space/time.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,6 +152,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
       <path value="$PROJECT_DIR$/vendor/league/config" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/laravel/serializable-closure" />
     </include_path>
   </component>
   <component name="ProjectId" id="1wniA4w4GbupbrO8DFq6IizZ39G" />

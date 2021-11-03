@@ -66,17 +66,17 @@ class WorkSpaceController extends Controller
      * @param WorkSpace $workSpace
      * @return Application|Factory|View
      */
-    public function edit(Request $request,WorkSpace $workSpace)
+    public function edit(Request $request, WorkSpace $workSpace)
     {
-        $nowDate=$request->input('month');
-        $nextDate=$nowDate ==0 ? "1" : $request->input('month')-1;
+        $fromDate = $request->input("from") ?? Carbon::now()->setDay(0)->subMonth();
+        $toDate = $request->input("to") ?? Carbon::make($fromDate)->addMonth();
 
-        $timeSheets=$workSpace->timeSheet()
-            ->whereDate("created_at",">=",Carbon::now()->setDay(0)->subMonth($nowDate))
-            ->whereDate("created_at","<=",Carbon::now()->setDay(0)->subMonth($nextDate))
+        $timeSheets = $workSpace->timeSheet()
+            ->whereDate("created_at", "<=", $toDate)
+            ->whereDate("created_at", ">=", $fromDate)
             ->get();
 
-        return view("TimeSheet::work_space.time",compact("timeSheets","workSpace"));
+        return view("TimeSheet::work_space.time", compact("timeSheets", "workSpace","fromDate","toDate"));
     }
 
     /**
@@ -90,7 +90,7 @@ class WorkSpaceController extends Controller
 
         $workSpace->update($valid);
 
-        return back()->with("msg","فضای کاری موردنظر با موفقیت ویرایش شد.");
+        return back()->with("msg", "فضای کاری موردنظر با موفقیت ویرایش شد.");
     }
 
     /**
@@ -100,7 +100,7 @@ class WorkSpaceController extends Controller
     public function destroy(WorkSpace $workSpace): RedirectResponse
     {
         $workSpace->delete();
-        return back()->with("msg","فضای کاری موردنظر با موفقیت حذف شد.");
+        return back()->with("msg", "فضای کاری موردنظر با موفقیت حذف شد.");
     }
 
     /**

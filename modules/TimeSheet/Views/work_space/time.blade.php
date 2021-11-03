@@ -46,8 +46,26 @@
     <div class="card">
         <div class="card-header">
             <button class="btn btn-outline-success" id="make"><i class="fa fa-plus-circle align-self-center mx-1"></i>ساعت کاری جدید</button>
-            <button class="btn btn-outline-secondary float-left" id="export" title="خرجی از اول تا آخر ماه" data-toggle="tooltip"><i class="fa fa-download mx-1"></i>خروجی</button>
-            <input type="number" id="month" class="form-control float-left col-1 mx-2" value="1">
+
+            <hr>
+
+            <form method="get">
+                <div class="form-group row">
+                    <div class="col-md">
+                        <label for="from">از تاریخ</label>
+                        <input type="date" name="from" class="form-control" value="{{explode(" ",$fromDate)[0]}}">
+                    </div>
+                    <div class="col-md">
+                        <label for="from">تا تاریخ</label>
+                        <input type="date" name="to" class="form-control" value="{{explode(" ",$toDate)[0]}}">
+                    </div>
+                </div>
+                <button class="btn btn-warning my-auto">
+                    دریافت اطلاعات
+                </button>
+
+                <button type="button" class="btn btn-outline-secondary float-left" id="export" title="خرجی از اول تا آخر تاریخ انتخاب شده" data-toggle="tooltip"><i class="fa fa-download mx-1"></i>خروجی</button>
+            </form>
         </div>
         <div class="card-body">
             <table class="text-center dtTable table table-bordered table-striped table-responsive-md">
@@ -66,7 +84,7 @@
                         <td>{{$key+1}}</td>
                         <td>{{number_format($timeSheet->work_time)}} دقیقه</td>
                         <td>{{number_format($timeSheet->price)}} ﷼</td>
-                        <td data-toggle="tooltip" title="{{$timeSheet->created_at_p}}">{{$timeSheet->created_at_diff}}</td>
+                        <td data-toggle="tooltip" dir="ltr" title="{{$timeSheet->created_at_diff}}">{{$timeSheet->created_at_p}}</td>
                         <td>
                             <form action="{{route("time_sheet.destroy",$timeSheet->id)}}" method="post">
                                 @csrf
@@ -91,13 +109,17 @@
         });
 
         $("#export").click(function () {
-            window.location.href="{{route("time_sheet.export",$workSpace->id)}}?month="+$("#month").val();
+            const query=new URLSearchParams({
+                from:$("[name='from']").val(),
+                to:$("[name='to']").val()
+            });
+            window.location.href = "{{route("time_sheet.export",$workSpace->id)}}?" + query.toString();
         });
 
         $(function () {
             $('.clockpicker').clockpicker({
                 donetext: 'انتخاب',
-                placement: "left"
+                placement: "top",
             });
         })
 

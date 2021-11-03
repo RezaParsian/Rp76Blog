@@ -67,18 +67,22 @@ class TimeSheetController extends Controller
      */
     public function exportAsCsv(Request $request, WorkSpace $workSpace): StreamedResponse
     {
-        $exportData = 'ID, Time, Price, Date' . PHP_EOL;
+        $exportData = 'ردیف, زمان (دقیقه    ), مبلغ (ریال), تاریخ ثبت' . PHP_EOL;
+
+        $fromDate = $request->input("from") ?? Carbon::now()->setDay(0)->subMonth();
+        $toDate = $request->input("to") ?? Carbon::make($fromDate)->addMonth();
 
         $timeSheets = $workSpace->timeSheet()
-            ->whereDate("created_at", ">=", Carbon::make(Carbon::now()->year . "-" . (Carbon::now()->month-((int)$request->input("month"))) . "-1"))
-            ->whereDate("created_at", "<=", Carbon::make(Carbon::now()->year . "-" . (Carbon::now()->month-((int)$request->input("month"))) . "-31"))->get();
+            ->whereDate("created_at", "<=", $toDate)
+            ->whereDate("created_at", ">=", $fromDate)
+            ->get();
 
         $timeSheets->map(function (TimeSheet $timeSheet, $key) use (&$exportData) {
             $exportData .= ($key + 1) . ",{$timeSheet->work_time},{$timeSheet->price},{$timeSheet->created_at_p}" . PHP_EOL;
         });
 
-        $exportData .= str_repeat(PHP_EOL, 5) . "Total Time : ".str_replace(",","،",number_format($timeSheets->sum("work_time")))." دقیقه";
-        $exportData .= str_repeat(PHP_EOL, 2) . "Total Price : ".str_replace(",","،",number_format($timeSheets->sum("price")))." ﷼";
+        $exportData .= str_repeat(PHP_EOL, 5) . "زمان کلی : ".str_replace(",","،",number_format($timeSheets->sum("work_time")))." دقیقه";
+        $exportData .= str_repeat(PHP_EOL, 2) . "مبلغ کلی : ".str_replace(",","،",number_format($timeSheets->sum("price")))." ﷼";
 
         return Response::streamDownload(fn()=>print ($exportData),verta()->formatDatetime().".csv");
     }

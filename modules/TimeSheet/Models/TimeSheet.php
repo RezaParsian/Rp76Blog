@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static create(array $valid)
+ * @property mixed $work_time
+ * @property mixed $created_at_p
+ * @property mixed $price
  */
 class TimeSheet extends Model
 {
