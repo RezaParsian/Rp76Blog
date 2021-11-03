@@ -3,6 +3,7 @@
 namespace Modules\TimeSheet\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -61,12 +62,21 @@ class WorkSpaceController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param WorkSpace $workSpace
      * @return Application|Factory|View
      */
-    public function edit(WorkSpace $workSpace)
+    public function edit(Request $request,WorkSpace $workSpace)
     {
-        return view("TimeSheet::work_space.time",compact("workSpace"));
+        $nowDate=$request->input('month');
+        $nextDate=$nowDate ==0 ? "1" : $request->input('month')-1;
+
+        $timeSheets=$workSpace->timeSheet()
+            ->whereDate("created_at",">=",Carbon::now()->setDay(0)->subMonth($nowDate))
+            ->whereDate("created_at","<=",Carbon::now()->setDay(0)->subMonth($nextDate))
+            ->get();
+
+        return view("TimeSheet::work_space.time",compact("timeSheets","workSpace"));
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends("layouts.dashboard.index")
 
-@section("ex-title","فضا های کاری")
+@section("ex-title","ساعت های کاری")
 
 @section("content")
     <!-- The Modal -->
@@ -61,7 +61,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($workSpace->timeSheet as $key=>$timeSheet)
+                @foreach($timeSheets as $key=>$timeSheet)
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{number_format($timeSheet->work_time)}} دقیقه</td>
