@@ -19,11 +19,11 @@ class RoleSeeder extends Seeder
         DB::table('roles')->insert([
             [
                 "name" => "Developer",
-                "scope" => []
+                "scope" => '[]'
             ],
             [
                 "name" => "Admin",
-                "scope" => []
+                "scope" => '[]'
             ],
             [
                 "name" => "User",
