@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        if (Schema::hasTable("twits")){
+        if (Schema::hasTable("articles")){
             View::share("twits", Article::where(Article::TYPE, "twit")->orderBy("id", "DESC")->take(4)->get());
             View::share("cats", Category::where(Category::PARENT_ID, 0)->get());
         }
