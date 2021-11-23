@@ -44,6 +44,9 @@ class TimeSheetController extends Controller
      */
     public function destroy(TimeSheet $timeSheet): RedirectResponse
     {
+        if ($timeSheet->user_id != Auth::id())
+            abort(404);
+
         $timeSheet->delete();
         return back()->with("msg", "ساعت کاری موردنظر با موفقیت حذف شد.");
     }
@@ -81,9 +84,9 @@ class TimeSheetController extends Controller
             $exportData .= ($key + 1) . ",{$timeSheet->work_time},{$timeSheet->price},{$timeSheet->created_at_p}" . PHP_EOL;
         });
 
-        $exportData .= str_repeat(PHP_EOL, 5) . "زمان کلی : ".str_replace(",","،",number_format($timeSheets->sum("work_time")))." دقیقه";
-        $exportData .= str_repeat(PHP_EOL, 2) . "مبلغ کلی : ".str_replace(",","،",number_format($timeSheets->sum("price")))." ﷼";
+        $exportData .= str_repeat(PHP_EOL, 5) . "زمان کلی : " . str_replace(",", "،", number_format($timeSheets->sum("work_time"))) . " دقیقه";
+        $exportData .= str_repeat(PHP_EOL, 2) . "مبلغ کلی : " . str_replace(",", "،", number_format($timeSheets->sum("price"))) . " ﷼";
 
-        return Response::streamDownload(fn()=>print ($exportData),verta()->formatDatetime().".csv");
+        return Response::streamDownload(fn() => print ($exportData), verta()->formatDatetime() . ".csv");
     }
 }

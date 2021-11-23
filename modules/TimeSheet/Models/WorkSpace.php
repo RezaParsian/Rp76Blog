@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static create(array $valid)
  * @method static find(mixed $WORK_SPACE_ID)
+ * @method static where(...$data)
+ * @property integer user_id
  */
 class WorkSpace extends Model
 {

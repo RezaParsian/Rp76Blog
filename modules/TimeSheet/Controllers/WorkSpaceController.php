@@ -23,7 +23,7 @@ class WorkSpaceController extends Controller
      */
     public function index()
     {
-        $workSpaces = WorkSpace::all();
+        $workSpaces = WorkSpace::where(WorkSpace::USER_ID, Auth::id())->get();
         return view("TimeSheet::work_space.index", compact("workSpaces"));
     }
 
@@ -68,6 +68,8 @@ class WorkSpaceController extends Controller
      */
     public function edit(Request $request, WorkSpace $workSpace)
     {
+        $this->validUser($workSpace);
+
         $fromDate = $request->input("from") ?? Carbon::now()->setDay(0)->subMonth();
         $toDate = $request->input("to") ?? Carbon::make($fromDate)->addMonth();
 
@@ -76,7 +78,7 @@ class WorkSpaceController extends Controller
             ->whereDate("created_at", ">=", $fromDate)
             ->get();
 
-        return view("TimeSheet::work_space.time", compact("timeSheets", "workSpace","fromDate","toDate"));
+        return view("TimeSheet::work_space.time", compact("timeSheets", "workSpace", "fromDate", "toDate"));
     }
 
     /**
@@ -86,6 +88,8 @@ class WorkSpaceController extends Controller
      */
     public function update(Request $request, WorkSpace $workSpace): RedirectResponse
     {
+        $this->validUser($workSpace);
+
         $valid = $this->checkValid($request);
 
         $workSpace->update($valid);
@@ -99,6 +103,8 @@ class WorkSpaceController extends Controller
      */
     public function destroy(WorkSpace $workSpace): RedirectResponse
     {
+        $this->validUser($workSpace);
+
         $workSpace->delete();
         return back()->with("msg", "فضای کاری موردنظر با موفقیت حذف شد.");
     }
@@ -116,5 +122,14 @@ class WorkSpaceController extends Controller
 
         $valid[WorkSpace::USER_ID] = Auth::id();
         return $valid;
+    }
+
+    /**
+     * @param WorkSpace $workSpace
+     */
+    private function validUser(WorkSpace $workSpace): void
+    {
+        if ($workSpace->user_id != Auth::id())
+            abort(404);
     }
 }
