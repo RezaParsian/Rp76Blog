@@ -12,6 +12,11 @@ class CategoryController extends Controller
 {
     private $path="dashboard.category.";
 
+    public function __construct()
+    {
+        $this->middleware("role:posts");
+    }
+
     /**
      * Display a listing of the resource.
      *

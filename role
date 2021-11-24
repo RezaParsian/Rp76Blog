@@ -1,2 +1,4 @@
-admin
-post.index
+posts
+post.edit
+post.create
+post.delete

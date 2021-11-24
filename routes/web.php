@@ -14,6 +14,7 @@ use Illuminate\Support\{Facades\Artisan, Facades\Auth, Facades\Route};
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //Route::get("onlymigrate", function () {
 //    Artisan::call("migrate");
 //    $roles = json_encode(array_filter(explode("\n", file_get_contents(__DIR__ . "/../role"))));
@@ -22,17 +23,10 @@ use Illuminate\Support\{Facades\Artisan, Facades\Auth, Facades\Route};
 //    return $role;
 //});
 
-Route::any("/", [BlogController::class,"index"])->name("blog");
+Route::any("/", [BlogController::class, "index"])->name("blog");
 
-Auth::routes(['register' => false]);
-//['verify' => true]
+Auth::routes(['register' => true, "verify" => false]);
 
 Route::group(["prefix" => "blog"], function () {
     Route::get("post/{slug:slug}", [BlogController::class, "post"])->name("post.single");
-});
-
-
-Route::get("rp",function (){
-    $post=\App\Models\Article::where("id",1)->with('categorize')->get();
-    return $post;
 });

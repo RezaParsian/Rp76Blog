@@ -22,9 +22,9 @@ class Menu
     {
         $this->add("داشبورد", "dashboard", "", "fa fa-dashboard", route("dashboard"), "dashboard");
         $this->add("CMS", "cms", "", "fa fa-thumb-tack");
-        $this->add("مقالات", "cms.article", "cms", "fa fa-thumb-tack", route("article.index"), "dashboard/article*");
-        $this->add("دسته بندی ها", "cms.category", "cms", "fa fa-sitemap", route("category.index"), "dashboard/category*");
-        $this->add("تگ ها", "cms.tag", "cms", "fa fa-tags", route("tag.index"), "dashboard/tag*");
+        $this->add("مقالات", "cms.article", "cms", "fa fa-thumb-tack", route("article.index"), "dashboard/article*","posts");
+        $this->add("دسته بندی ها", "cms.category", "cms", "fa fa-sitemap", route("category.index"), "dashboard/category*","posts");
+        $this->add("تگ ها", "cms.tag", "cms", "fa fa-tags", route("tag.index"), "dashboard/tag*","posts");
 //        $this->add("تنظیمات", "setting", "", "fa fa-cogs");
 //        $this->add("پروفایل", "setting.profile", "setting", "fa fa-user");
     }

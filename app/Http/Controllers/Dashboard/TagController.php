@@ -17,6 +17,10 @@ class TagController extends Controller
 {
     private $path = "dashboard.tag.";
 
+    public function __construct()
+    {
+        $this->middleware("role:posts");
+    }
     /**
      * Display a listing of the resource.
      *

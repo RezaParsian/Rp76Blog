@@ -13,6 +13,14 @@ class ArticleController extends Controller
 {
     private $path = "dashboard.article.";
 
+    public function __construct()
+    {
+        $this->middleware("role:posts")->only("index");
+        $this->middleware("role:post.create")->only(["create","store"]);
+        $this->middleware("role:post.edit")->only(["edit","show"]);
+        $this->middleware("role:post.delete")->only(["destroy"]);
+    }
+
     /**
      * Display a listing of the resource.
      *
