@@ -21,7 +21,7 @@
                     <div class="big-blog-item mb-0 text-center">
                         <img src="{{$article->image}}" loading="lazy" alt="{{$article->title}}" class="blog-thumbnail rounded"/>
                         <div class="blog-content text-box text-white rtl">
-                            <div class="top-meta ltr text-right"><label class="rtl small"><i class="fa fa-clock-o"></i> {{$article->read_time}}</label> | <a href="">{{ $article->user->name }}</a> | {{ $article->custom_date }}</div>
+                            <div class="top-meta ltr text-right"><label class="rtl small"><i class="fa fa-clock-o"></i> {{$article->read_time}}</label> | <a href="{{route('profile',$article->user->name)}}">{{ $article->user->name }}</a> | {{ $article->custom_date }}</div>
                             <h3 class="m-0">{{ $article->title }}</h3>
                             <summary class="text-justify">{!! $article->summary !!}</summary>
                             <p class="mt-3"><a href="{{$article->link}}" data-toggle="tooltip" title="بیشتر" data-post="{{$article->id}}" class="read-more">بیشتر</a></p>

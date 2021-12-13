@@ -33,7 +33,7 @@
                     {{--<li><a class="text-center" href="games.html">بازی</a><ul class="sub-menu"><li><a class="text-center" href="game-single.html">بازی ۱</a></li></ul></li>--}}
                     <li><a class="text-center" href="review.html">نظرات</a></li>
                     <li><a class="text-center" href="blog.html">اخبار</a></li>
-                    <li><a class="text-center" href="contact.html">تماس با ما</a></li>
+                    <li><a class="text-center" href="{{route('profile',"Reza Atom")}}">تماس با ما</a></li>
                 </ul>
             </nav>
         </div>

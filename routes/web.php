@@ -24,6 +24,8 @@ use Illuminate\Support\{Facades\Artisan, Facades\Auth, Facades\Route};
 //});
 
 Route::any("/", [BlogController::class, "index"])->name("blog");
+Route::get("profile/{user:name}",[BlogController::class,"profile"])->name('profile');
+Route::post("profile/{user:name}",[BlogController::class,"profileSave"])->name('profile.save');
 
 Auth::routes(['register' => true, "verify" => false]);
 

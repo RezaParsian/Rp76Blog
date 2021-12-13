@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Helper\CustomModel;
+use App\Http\Helper\MetaAble;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,11 +18,12 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable /*implements MustVerifyEmail*/
 {
-    use HasFactory, Notifiable, SoftDeletes, CustomModel;
+    use HasFactory, Notifiable, SoftDeletes, CustomModel, MetaAble;
 
     const ROLE_ID = "role_id",
         NAME = "name",
         EMAIL = "email",
+        IMAGE = 'image',
         EMAIL_VERIFIED_AT = "email_verified_at",
         PASSWORD = "password";
 
@@ -35,6 +37,7 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
         self::NAME,
         self::EMAIL,
         self::PASSWORD,
+        self::IMAGE,
     ];
 
     /**
@@ -83,7 +86,7 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
      */
     public function image(): string
     {
-        return $this->image ? asset("upload/profile/".$this->image) : asset("favicon.ico");
+        return $this->image ? asset("upload/profile/" . $this->image) : asset("favicon.ico");
     }
 
     /**

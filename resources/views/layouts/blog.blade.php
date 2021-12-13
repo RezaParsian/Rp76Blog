@@ -8,14 +8,21 @@
     <title>{{ env('APP_NAME') }}@hasSection ('ex-title') - @yield('ex-title') @endif</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?id={{filemtime('css/app.css')}}">
     @yield('ex-css')
+
+
+    <meta property="og:title" content="{{ env('APP_NAME') }}@hasSection ('ex-title') - @yield('ex-title') @endif" />
+    <meta property="og:url" content="{{url()->current()}}" />
+    <meta property="og:image" content="@yield('image')" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="{{ env('APP_NAME') }}@hasSection ('ex-title') - @yield('ex-title') @endif" />
 </head>
 
 <body class="ltr">
 <div class="container-fluid p-0" id="app">
     <!-- Page Preloader -->
-{{--    <div id="preloader">--}}
-{{--        <div class="loader"></div>--}}
-{{--    </div>--}}
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
 
     <!-- Header section -->
 @include("layouts.navbar")
