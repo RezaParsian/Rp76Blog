@@ -12,7 +12,7 @@
     <meta property="og:url" content="{{url()->current()}}" />
     <meta property="og:image" content="{{asset('upload/profile/'.$user->image)}}" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="{{$user->getMeta("profile_about")->value}}" />
+    <meta property="og:image:alt" content="{{@$user->getMeta("profile_about")->value}}" />
 
 </head>
 
