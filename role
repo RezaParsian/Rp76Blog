@@ -1,4 +1,9 @@
+admin
 posts
 post.edit
 post.create
 post.delete
+crm
+crm.create
+crm.edit
+crm.delete

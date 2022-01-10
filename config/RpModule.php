@@ -1,5 +1,3 @@
 <?php
-
-return [
-  "TimeSheet"
-];
+return ["CRM",
+    "TimeSheet"];

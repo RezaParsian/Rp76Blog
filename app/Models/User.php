@@ -14,7 +14,9 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User
+ * @property mixed id
  * @package App\Models
+ * @method static orderBy(...$data )
  */
 class User extends Authenticatable /*implements MustVerifyEmail*/
 {

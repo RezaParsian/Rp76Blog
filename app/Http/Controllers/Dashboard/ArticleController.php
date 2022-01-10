@@ -11,13 +11,13 @@ use Exception;
 
 class ArticleController extends Controller
 {
-    private $path = "dashboard.article.";
+    private string $path = "dashboard.article.";
 
     public function __construct()
     {
         $this->middleware("role:posts")->only("index");
-        $this->middleware("role:post.create")->only(["create","store"]);
-        $this->middleware("role:post.edit")->only(["edit","show"]);
+        $this->middleware("role:post.create")->only(["create", "store"]);
+        $this->middleware("role:post.edit")->only(["edit", "show"]);
         $this->middleware("role:post.delete")->only(["destroy"]);
     }
 
@@ -28,7 +28,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::limit(200)->get();
+        $articles = Article::orderBy("id", "DESC")->limit(200)->get();
         return view($this->path . "index", compact("articles"));
     }
 

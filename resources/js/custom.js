@@ -36,7 +36,7 @@ $(function () {
     table1 = $('.dtTable').DataTable({
         responsive: true,
         columnDefs: [
-            { type: 'kh-persian-numbers', targets: 0 }
+            {type: 'kh-persian-numbers', targets: 0}
         ],
         language: {
             "sEmptyTable": "هیچ داده ای در جدول وجود ندارد",
@@ -71,7 +71,7 @@ $(function () {
 });
 
 
-window.verify=function (element) {
+window.verify = function (element) {
     Swal.fire({
         title: 'آیا از حذف این ایتم مطمئن هستید؟',
         showCancelButton: true,

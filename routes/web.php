@@ -17,15 +17,15 @@ use Illuminate\Support\{Facades\Artisan, Facades\Auth, Facades\Route};
 
 //Route::get("onlymigrate", function () {
 //    Artisan::call("migrate");
-//    $roles = json_encode(array_filter(explode("\n", file_get_contents(__DIR__ . "/../role"))));
+//$roles = json_encode(array_filter(explode("\n", str_replace("\r", "", file_get_contents(base_path("role"))))));
 //    $role = Role::find(1);
 //    $role->update([Role::SCOPE => $roles]);
 //    return $role;
 //});
 
 Route::any("/", [BlogController::class, "index"])->name("blog");
-Route::get("profile/{user:name}",[BlogController::class,"profile"])->name('profile');
-Route::post("profile/{user:name}",[BlogController::class,"profileSave"])->name('profile.save');
+Route::get("profile/{user:name}", [BlogController::class, "profile"])->name('profile');
+Route::post("profile/{user:name}", [BlogController::class, "profileSave"])->name('profile.save');
 
 Auth::routes(['register' => true, "verify" => false]);
 
