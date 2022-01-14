@@ -122,7 +122,7 @@ class Parsedown
         '`' => array('FencedCode'),
         '|' => array('Table'),
         '~' => array('FencedCode'),
-        '^' => array('Summery'),
+        '^^' => array('Summery'),
     );
 
     # ~
@@ -192,7 +192,7 @@ class Parsedown
 
             # ~
 
-            $marker = $text[0];
+            $marker = $text[0].$text[1] == "^^" ? "^^" : $text[0];
 
             # ~
 
@@ -667,7 +667,7 @@ class Parsedown
                     'name' => 'blockquote',
                     'handler' => 'lines',
                     "attributes" => [
-                        "class" => ($class." my-2" ?? "my-2")
+                        "class" => ($class . " my-2" ?? "my-2")
                     ],
                     'text' => (array)$matches[1],
                 ),

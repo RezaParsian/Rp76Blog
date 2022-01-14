@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static limit(int $int)
  * @method static create(array $valid)
+ * @method static orderBy(string $string, string $string1)
  * @property mixed content
  * @property mixed id
  */

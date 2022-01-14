@@ -238,6 +238,14 @@ hr {
     text-transform: uppercase;
 }
 
-.select2-container .select2-selection{
+.select2-container .select2-selection {
     height: calc(1.5em + .75rem + 2px) !important;
+}
+
+blockquote ol {
+    padding: 0 1.2rem;
+}
+
+blockquote ol li {
+    color: #dc143c !important;
 }

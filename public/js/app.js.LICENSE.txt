@@ -5,6 +5,20 @@
   */
 
 /*!
+ * AdminLTE v3.0.0-alpha.2 (https://adminlte.io)
+ * Copyright 2014-2018 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
+ * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
+ */
+
+/*!
+ * Select2 4.1.0-rc.0
+ * https://select2.github.io
+ *
+ * Released under the MIT license
+ * https://github.com/select2/select2/blob/master/LICENSE.md
+ */
+
+/*!
  * Sizzle CSS Selector Engine v2.3.5
  * https://sizzlejs.com/
  *
@@ -13,6 +27,12 @@
  * https://js.foundation/
  *
  * Date: 2020-03-14
+ */
+
+/*!
+ * SlickNav Responsive Mobile Menu v1.0.10
+ * (c) 2016 Josh Cope
+ * licensed under MIT
  */
 
 /*!
@@ -35,6 +55,20 @@
  * Date: 2020-05-04T22:49Z
  */
 
+/*!
+ * jQuery UI Widget 1.12.1
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ */
+
+/*!
+ DataTables 1.10.18
+ ©2008-2018 SpryMedia Ltd - datatables.net/license
+*/
+
 /**
  * @license
  * Lodash <https://lodash.com/>
@@ -43,6 +77,14 @@
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
+
+/**
+ * sticky-sidebar - A JavaScript plugin for making smart and high performance.
+ * @version v3.3.1
+ * @link https://github.com/abouolia/sticky-sidebar
+ * @author Ahmed Bouhuolia
+ * @license The MIT License (MIT)
+**/
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.

@@ -112,6 +112,10 @@
 
 @section("ex-js")
     <script>
+        $("form").submit(function () {
+            $("#{{\App\Models\Article::CONTENT}}").val($("#{{\App\Models\Article::CONTENT}}").val().replaceAll("\`","`"))
+        })
+
         $("#{{\App\Models\Article::TITLE}}").val("{{old(\App\Models\Article::TITLE,$article->title)}}");
         $("#{{\App\Models\Article::TYPE}}").val("{{old(\App\Models\Article::TYPE,$article->type)}}");
         $("#{{\App\Models\Article::SLUG}}").val("{{old(\App\Models\Article::SLUG,$article->slug)}}");
