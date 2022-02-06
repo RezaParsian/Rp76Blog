@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }} | {{$user->name}} | {{@$user->getMeta("profile_name")->value}}</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}?id={{filemtime('css/app.css')}}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <meta property="og:title" content="{{ env('APP_NAME') }} | {{$user->name}} | {{@$user->getMeta("profile_name")->value}}" />
     <meta property="og:url" content="{{url()->current()}}" />
@@ -113,7 +113,7 @@
     </footer>
     <!-- Footer section end -->
 </div>
-<script src="{{ asset('js/app.js') }}?id={{filemtime('js/app.js')}}"></script>
+<script src="{{ mix('js/app.js') }}}}"></script>
 <script>
     $("#submit").click(function () {
         $("[name='name']").val($("#name").text());

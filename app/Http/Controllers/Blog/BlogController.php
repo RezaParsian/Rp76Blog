@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Http\Helper\UploadFile;
-use App\Models\Article;
-use App\Models\User;
+use App\Http\{Controllers\Controller, Helper\UploadFile};
+use App\Models\{Article, User};
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 
 class BlogController extends Controller
@@ -33,24 +32,24 @@ class BlogController extends Controller
         return view('profile', compact('user'));
     }
 
-    public function profileSave(Request $request,User $user)
+    public function profileSave(Request $request, User $user): RedirectResponse
     {
         $request->validate([
-            "image" => ["image", "max:2048","nullable"],
+            "image" => ["image", "max:2048", "nullable"],
         ]);
 
-        if ($request->has('image')){
-            @unlink('upload/profile/'.$user->image);
+        if ($request->has('image')) {
+            @unlink('upload/profile/' . $user->image);
         }
 
         $user->update([
-           'image'=>(new UploadFile($request->file(Article::IMAGE), "upload/profile/"))->fileName
+            'image' => (new UploadFile($request->file(Article::IMAGE), "upload/profile/"))->fileName
         ]);
 
-        $user->setMeta('profile_name',$request->input('name'));
-        $user->setMeta('profile_about',$request->input('about'));
-        $user->setMeta('profile_phone',$request->input('phone'));
-        $user->setMeta('profile_mail',$request->input('mail'));
+        $user->setMeta('profile_name', $request->input('name'));
+        $user->setMeta('profile_about', $request->input('about'));
+        $user->setMeta('profile_phone', $request->input('phone'));
+        $user->setMeta('profile_mail', $request->input('mail'));
 
         return back();
     }

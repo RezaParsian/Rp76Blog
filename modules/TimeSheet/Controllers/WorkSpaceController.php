@@ -70,8 +70,8 @@ class WorkSpaceController extends Controller
     {
         $this->validUser($workSpace);
 
-        $fromDate = $request->input("from") ?? Carbon::now()->setDay(0)->subMonth();
-        $toDate = $request->input("to") ?? Carbon::make($fromDate)->addMonth();
+        $fromDate = $request->input("from") ?? Carbon::now();
+        $toDate = $request->input("to") ?? Carbon::now();
 
         $timeSheets = $workSpace->timeSheet()
             ->whereDate("created_at", "<=", $toDate)

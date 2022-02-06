@@ -2,21 +2,18 @@
 
 namespace App\Models;
 
-use App\Http\Helper\CustomModel;
-use App\Http\Helper\MetaAble;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Http\Helper\{CustomModel, MetaAble};
+use Illuminate\Database\{Eloquent\Factories\HasFactory, Eloquent\Relations\BelongsTo, Eloquent\SoftDeletes};
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User
  * @property mixed id
+ * @property string $image
+ * @property Role $role
  * @package App\Models
- * @method static orderBy(...$data )
+ * @method static orderBy(...$data)
  */
 class User extends Authenticatable /*implements MustVerifyEmail*/
 {
@@ -89,13 +86,5 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
     public function image(): string
     {
         return $this->image ? asset("upload/profile/" . $this->image) : asset("favicon.ico");
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function userInfo(): HasMany
-    {
-        return $this->hasMany(UserInfo::class);
     }
 }

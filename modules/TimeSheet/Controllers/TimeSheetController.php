@@ -24,6 +24,7 @@ class TimeSheetController extends Controller
         $valid = $request->validate([
             TimeSheet::WORK_SPACE_ID => ['required', 'numeric'],
             TimeSheet::WORK_TIME => ['required'],
+            TimeSheet::DESCRIPTION=>['nullable']
         ]);
 
         list($workPerMin, $hourToMinute) = $this->getWorkSpacePrice($valid);
@@ -70,7 +71,7 @@ class TimeSheetController extends Controller
      */
     public function exportAsCsv(Request $request, WorkSpace $workSpace): StreamedResponse
     {
-        $exportData = 'ردیف, زمان (دقیقه    ), مبلغ (ریال), تاریخ ثبت' . PHP_EOL;
+        $exportData = 'ردیف, زمان (دقیقه    ), توضیحات ,مبلغ (ریال), تاریخ ثبت' . PHP_EOL;
 
         $fromDate = $request->input("from") ?? Carbon::now()->setDay(0)->subMonth();
         $toDate = $request->input("to") ?? Carbon::make($fromDate)->addMonth();
@@ -81,7 +82,7 @@ class TimeSheetController extends Controller
             ->get();
 
         $timeSheets->map(function (TimeSheet $timeSheet, $key) use (&$exportData) {
-            $exportData .= ($key + 1) . ",{$timeSheet->work_time},{$timeSheet->price},{$timeSheet->created_at_p}" . PHP_EOL;
+            $exportData .= ($key + 1) . ",{$timeSheet->work_time},{$timeSheet->description},{$timeSheet->price},{$timeSheet->created_at_p}" . PHP_EOL;
         });
 
         $exportData .= str_repeat(PHP_EOL, 5) . "زمان کلی : " . str_replace(",", "،", number_format($timeSheets->sum("work_time"))) . " دقیقه";

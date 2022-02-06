@@ -30,6 +30,16 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="{{\Modules\TimeSheet\Models\TimeSheet::DESCRIPTION}}">
+                                توضیحات
+                                <small class="text-muted">(اختیاری)</small>
+                            </label>
+                            <div class="input-group">
+                                <textarea class="form-control" name="{{\Modules\TimeSheet\Models\TimeSheet::DESCRIPTION}}"></textarea>
+                            </div>
+                        </div>
+
                         <input type="submit" id="submit" class="d-none"></form>
                 </div>
 
@@ -109,9 +119,9 @@
         });
 
         $("#export").click(function () {
-            const query=new URLSearchParams({
-                from:$("[name='from']").val(),
-                to:$("[name='to']").val()
+            const query = new URLSearchParams({
+                from: $("[name='from']").val(),
+                to: $("[name='to']").val()
             });
             window.location.href = "{{route("time_sheet.export",$workSpace->id)}}?" + query.toString();
         });
