@@ -17,12 +17,14 @@ class ArticleObserver
     {
         $bot = new BotController();
 
-        $bot->sendPost((object)[
-            "title" => $article->title,
+        $data=[
+            "title" => $article->type=="twit" ? "Rp76" : $article->title,
             "message" => strip_tags($article->summary == "" ? $article->content : $article->summary),
             "link" => $article->link,
-            "image" => $article->image
-        ]);
+            "image" => $article->type!="twit" ? $article->image : "https://source.unsplash.com/300x300/?minimal,social,game,animal,wood&random=" . uniqid()
+        ];
+
+        $bot->sendPost((object)$data);
     }
 
     /**

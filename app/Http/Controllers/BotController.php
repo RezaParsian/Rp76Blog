@@ -19,7 +19,7 @@ class BotController extends Controller
         $this->bot->sendPhoto([
             "chat_id" => $this->bot->chatId(),
             "parse_mode" => "Markdown",
-            "photo" => "https://picsum.photos/1600/900?" . uniqid(),
+            "photo" => "https://source.unsplash.com/1600x900/?{$this->bot->text()}?random=".uniqid(),
             "caption" => "[Hello World!](https://rp76.ir)"
         ]);
     }

@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $summary
  * @property string $slug
  * @property string $image
+ * @property string $link
+ * @property string $type
  */
 class Article extends Model
 {
