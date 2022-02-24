@@ -16,12 +16,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static create(array $valid)
  * @method static orderBy(string $string, string $string1)
  * @method static where(...$data)
- * @property mixed content
- * @property mixed id
+ * @property string content
+ * @property int id
+ * @property string $title
+ * @property string $summary
+ * @property string $slug
+ * @property string $image
  */
 class Article extends Model
 {
-    use HasFactory, SoftDeletes, CustomModel,CategorizeAble,TagorizeAble;
+    use HasFactory, SoftDeletes, CustomModel, CategorizeAble, TagorizeAble;
 
     const
         USER_ID = "user_id",
@@ -31,9 +35,9 @@ class Article extends Model
         IMAGE = "image",
         TYPE = "type";
 
-    const POST_TYPE=[
-        "blog"=>"پست بلند",
-        "twit"=>"پست کوتاه"
+    const POST_TYPE = [
+        "blog" => "پست بلند",
+        "twit" => "پست کوتاه"
     ];
 
     protected $fillable = [
@@ -93,12 +97,12 @@ class Article extends Model
 
     public function getLinkAttribute(): string
     {
-       return route("post.single",$this->attributes["slug"]);
+        return route("post.single", $this->attributes["slug"]);
     }
 
     public function getImageAttribute(): string
     {
-       return asset("upload/article/".$this->attributes["image"]);
+        return asset("upload/article/" . $this->attributes["image"]);
     }
 
     public function getImageNameAttribute()
@@ -108,7 +112,7 @@ class Article extends Model
 
     public function getReadTimeAttribute()
     {
-        $len=str_word_count($this->attributes[self::CONTENT]);
-        return ((int)($len/130)>0 ? (int)($len/130) : 1) . " دقیقه";
+        $len = str_word_count($this->attributes[self::CONTENT]);
+        return ((int)($len / 130) > 0 ? (int)($len / 130) : 1) . " دقیقه";
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BotController;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -28,3 +29,5 @@ Route::get("/post", function (Request $request) {
     }])->where(Article::TYPE,"blog")->orderby("id", "DESC")
         ->paginate();
 });
+
+Route::any("bot",[BotController::class,"index"]);

@@ -11,7 +11,7 @@ it's an open source project so every one can use this blog, improve and customis
 - Css
 - JavaScript - Vue - Jquery
 - Php - Laravel
-
+- 
 ### Options
 
 1. **User** manager

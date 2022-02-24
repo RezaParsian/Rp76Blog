@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                     <markdown vname="{{\App\Models\Article::CONTENT}}">
-                        {{old(str_replace("`","\`",\App\Models\Article::CONTENT),str_replace("`","\`",$article->content))}}
+                        {{old((\App\Models\Article::CONTENT),($article->content))}}
                     </markdown>
                 </div>
 
