@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: nginx
+    restart: always
+    working_dir: /var/www/html
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./.docker/nginx:/etc/nginx/conf.d
+
+  web:
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    restart: always
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+
+  db:
+    image: mysql
+    restart: always
+    volumes:
+      - .db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: db
