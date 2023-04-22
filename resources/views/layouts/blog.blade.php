@@ -1,149 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 
 <head>
     <meta charset="UTF-8">
+    <title>{{ config('app.name') }}@hasSection ('ex-title') - @yield('ex-title') @endif</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ env('APP_NAME') }}@hasSection ('ex-title') - @yield('ex-title') @endif</title>
+
+    <meta property="og:title" content="{{ config('app.name') }}@hasSection ('ex-title') - @yield('ex-title') @endif"/>
+    <meta property="og:url" content="{{url()->current()}}"/>
+    <meta property="og:image" content="@yield('image')"/>
+    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image:alt" content="{{ config('app.name') }}@hasSection ('ex-title') - @yield('ex-title') @endif"/>
+
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    @yield('ex-css')
-
-
-    <meta property="og:title" content="{{ env('APP_NAME') }}@hasSection ('ex-title') - @yield('ex-title') @endif" />
-    <meta property="og:url" content="{{url()->current()}}" />
-    <meta property="og:image" content="@yield('image')" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="{{ env('APP_NAME') }}@hasSection ('ex-title') - @yield('ex-title') @endif" />
+    @yield('style')
 </head>
 
-<body class="ltr">
-<div class="container-fluid p-0" id="app">
-    <!-- Page Preloader -->
-    <div id="preloader">
-        <div class="loader"></div>
+<body class="p-0 m-0 bg-slate-100" dir="rtl">
+@include('layouts.header')
+
+<div class="container mx-auto mt-4 grid grid-cols-7 gap-6">
+    <div class="col-span-2">
+        <div class="side-card pb-14">
+            <div class="flex mt-12">
+                <img src="{{asset('upload/profile/'.\App\Models\User::find(1)->image)}}" alt="{{\App\Models\User::find(1)->name}}" class="rounded-full w-24 mx-auto">
+            </div>
+
+            <h3 class="text-center my-2">
+                سلام، رضا پارسیان هستم!
+            </h3>
+
+            <p class="text-justify break-words px-8 mt-4">
+                در این سایت، نه تنها به نمونه‌کارهای من در زمینه برنامه‌نویسی نگاهی بیندازید، بلکه با مطالعه مقالات و آموزش‌های جذاب و جدید، نگرانی‌های خود را در این زمینه کاهش دهید.
+            </p>
+        </div>
+
+        <div class="side-card my-6 p-4">
+            <h3 class="header">مطالب تصادفی</h3>
+
+            @foreach(\App\Models\Article::where('type','blog')->limit(5)->inRandomOrder()->get() as $article)
+                <div class="grid grid-cols-3 my-4 gap-2">
+                    <div class="col-span-2 flex flex-col pt-4">
+                        <a href="{{$article->link}}" title="مطالعه مقاله">
+                            <h2 class="text-sm">{{$article->title}}</h2>
+                        </a>
+
+                        <p class="mt-auto text-xs flex">
+                            <span class="my-auto">{{ $article->custom_date }}</span>
+
+                            <x-svg.clock class="fill-slate-400 hover:fill-slate-500"></x-svg.clock>
+                        </p>
+                    </div>
+
+                    <a href="{{$article->link}}" title="مطالعه مقاله" class="my-auto">
+                        <img src="{{$article->image}}" loading="lazy" alt="{{$article->title}}" class="rounded-lg bord w-24 h-24 object-cover border-2 border-slate-400" title="{{$article->title}}"/>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="side-card my-6 p-4">
+            <h3 class="header">توییت ها</h3>
+
+            @foreach(\App\Models\Article::where('type','twit')->limit(5)->orderBy('id','DESC')->get() as $article)
+                <div class="my-4 gap-2">
+                    <div class="col-span-2 flex flex-col">
+                        <p class="whitespace-pre-line">{{$article->content}}</p>
+
+                        <p class="mt-2 text-xs flex mr-auto">
+                            <span dir="ltr" class="my-auto mx-1">{{ enToFn($article->created_at_p) }}</span>
+
+                            <x-svg.clock class="fill-slate-400 hover:fill-slate-500"></x-svg.clock>
+                        </p>
+                    </div>
+
+                </div>
+            @endforeach
+        </div>
+
+        <div class="side-card my-6 p-4">
+            <h3 class="header">دسته‌بندی ها</h3>
+
+            <div class="px-12">
+                @foreach(\App\Models\Category::all() as $category)
+                    <div class="bg-slate-100 rounded-lg p-4 my-1 justify-between flex">
+                        <p>0 پست</p>
+
+                        <a href="#">
+                            <p class="bg-rose-400/90 text-white rounded-full text-sm mr-auto w-fit px-3 py-[2px] hover:bg-slate-500 duration-700 line-clamp-1">{{$category->title}}</p>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <div class="side-card my-6 p-4">
+            <h3 class="header">تگ ها</h3>
+
+            <div class="flex flex-wrap gap-2">
+                @foreach(\App\Models\Tag::all() as $tag)
+                    <span class="bg-slate-100 rounded-full px-4 py-1 hover:bg-rose-400 hover:text-white">{{$tag->title}}</span>
+                @endforeach
+            </div>
+        </div>
+
     </div>
 
-    <!-- Header section -->
-@include("layouts.navbar")
-<!-- Header section end -->
-
-
-    <!-- Page top section -->
-    <section class="page-top-section" id="topHeader">
-        <div class="page-info rtl">
-            <h2>مطالب اخیر</h2>
-            <div class="site-breadcrumb">
-                <span>وبلاگ</span>
-            </div>
-        </div>
-    </section>
-    <!-- Page top end-->
-
-    <!-- Blog page -->
-    <section class="blog-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-9 col-lg-8 col-md-7">
-                    @yield('body')
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-5 sidebar">
-                    <div id="stickySidebar">
-                        <div class="widget-item">
-                            <form class="search-widget">
-                                <input type="text" name="q">
-                                <button type="submit">جستجو</button>
-                            </form>
-                        </div>
-                        <div class="widget-item">
-                            <h4 class="widget-title">بلاگ های پرطرفدار</h4>
-                            <div class="trending-widget">
-                                <h5 class="text-muted text-center">بلاگی وجود ندارد.</h5>
-{{--                                <div class="tw-item">--}}
-{{--                                    <div class="tw-thumb">--}}
-{{--                                        <img src="{{asset("img/blog-widget/1.jpg")}}" alt="#">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="tw-text">--}}
-{{--                                        <div class="tw-meta">11.11.18 / in <a href="">Games</a></div>--}}
-{{--                                        <h5>The best online game is out now!</h5>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-                            </div>
-                        </div>
-                        <div class="widget-item">
-                            <div class="categories-widget rtl">
-                                <h4 class="widget-title text-center p-0">دسته بندی ها</h4>
-                                <ul class="p-0 pr-3">
-                                    @foreach($cats as $category)
-                                        <li><a href="">{{$category->title}}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="widget-item rtl">
-                            <h4 class="widget-title text-center p-0">توییت ها</h4>
-                            <div class="latest-comments">
-                                @forelse($twits as $twit)
-                                    <div class="lc-item ">
-                                        <div class="tw-text text-warning sma twit">
-                                            {!! $twit->markdown !!}
-                                            <small dir="ltr" class="float-left text-warning">{{$twit->created_at_p}}</small>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                @empty
-                                    <h5 class="text-muted text-center">توییتی وجود ندارد.</h5>
-                                @endforelse
-                            </div>
-                        </div>
-                        <div class="widget-item" style="min-height: 5rem">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Blog page end-->
-    <!-- Newsletter section -->
-    <section class="newsletter-section position-relative">
-        <scrolltotop></scrolltotop>
-        <div class="container">
-            <h2 class="rtl text-center">مشترک خبرنامه ما شوید.</h2>
-            <form class="newsletter-form">
-                <input type="text" placeholder="ایمیل شما">
-                <button class="site-btn">اشتراک <img src="{{asset("img/icons/double-arrow.png")}}" alt="arrow"/></button>
-            </form>
-        </div>
-    </section>
-    <!-- Newsletter section end -->
-
-
-    <!-- Footer section -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="footer-left-pic"></div>
-            <a href="https://api.whatsapp.com/send/?phone=%2B989174811484&text&app_absent=0" target="_blank" title="whatsapp" class="footer-logo">
-                <img src="{{ asset('favicon.ico') }}" alt="Whatsapp">
-            </a>
-            {{-- <ul class="main-menu footer-meslicknav_btn slicknav_collapsedu">
-                <li><a href="">Home</a></li>
-                <li><a href="">Games</a></li>
-                <li><a href="">Reviews</a></li>
-                <li><a href="">News</a></li>
-                <li><a href="">Contact</a></li>
-            </ul> --}}
-            <div class="footer-social d-flex justify-content-center">
-                <social></social>
-            </div>
-            <div class="copyright" data-toggle="tooltip" title="Rp76 2021 @ All rights reserved">
-                <a href="" class="text-info">Rp76</a> 2021 @ All rights reserved
-            </div>
-        </div>
-    </footer>
-    <!-- Footer section end -->
+    <div class="col-span-5">
+        @yield('content')
+    </div>
 </div>
-<script src="{{ mix('js/app.js') }}"></script>
-@yield('ex-js')
 
+<script src="{{ mix('js/app.js') }}"></script>
+
+@yield('script')
+</body>
 </html>

@@ -75,12 +75,6 @@ blockquote::after {
     float: left;
 }
 
-summary {
-    display: block !important;
-    color: white;
-}
-
-
 .str {
     color: #EC7600 !important;
 }

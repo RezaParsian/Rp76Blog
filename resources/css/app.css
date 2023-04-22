@@ -1,50 +1,63 @@
-@font-face {
-    font-family: "primary-font";
-    src: url("/../fonts/shabnam-300.eot");
-    src: url("/../fonts/shabnam-300.eot?#iefix") format("embedded-opentype"), url("/../fonts/shabnam-300.woff2") format("woff2"), url("/../fonts/shabnam-300.woff") format("woff"), url("/../fonts/shabnam-300.ttf") format("truetype");
-    font-weight: 300;
-}
-
-@font-face {
-    font-family: "primary-font";
-    src: url("/../fonts/shabnam-400.eot");
-    src: url("/../fonts/shabnam-400.eot?#iefix") format("embedded-opentype"), url("/../fonts/shabnam-400.woff2") format("woff2"), url("/../fonts/shabnam-400.woff") format("woff"), url("/../fonts/shabnam-400.ttf") format("truetype");
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: "primary-font";
-    src: url("/../fonts/shabnam-500.eot");
-    src: url("/../fonts/shabnam-500.eot?#iefix") format("embedded-opentype"), url("/../fonts/shabnam-500.woff2") format("woff2"), url("/../fonts/shabnam-500.woff") format("woff"), url("/../fonts/shabnam-500.ttf") format("truetype");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: "primary-font";
-    src: url("/../fonts/shabnam-700.eot");
-    src: url("/../fonts/shabnam-700.eot?#iefix") format("embedded-opentype"), url("/../fonts/shabnam-700.woff2") format("woff2"), url("/../fonts/shabnam-700.woff") format("woff"), url("/../fonts/shabnam-700.ttf") format("truetype");
-    font-weight: 700;
-}
-
-@import "prettifier.css";
-
 @import "custom.css";
-
 @import "style.css";
+@import "~vazirmatn/Vazirmatn-font-face.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import "slicknav.min.css";
+h1, h2, h3, h4, h5, h6 {
+    font-family: Sahel, sans-serif;
+    @apply m-0 font-semibold
+}
 
-@import "animate.css";
+svg {
+    @apply w-5 h-5 fill-rose-400 hover:fill-rose-500;
+}
 
-@import "https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
-@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700";
+h1 {
+    @apply text-[30px];
+}
 
+h2 {
+    @apply text-[24px];
+}
 
-@import "/../public/dist/css/adminlte.min.css";
-@import "/../public/plugins/iCheck/flat/blue.css";
-@import "/../public/plugins/morris/morris.css";
-@import "/../public/plugins/daterangepicker/daterangepicker-bs3.css";
-@import "/../public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css";
-@import "/../public/dist/css/custom-style.css";
-@import "/../public/plugins/jvectormap/jquery-jvectormap-1.2.2.css";
-@import "/../public/dist/css/bootstrap-rtl.min.css";
+h3 {
+    @apply text-[18px];
+}
+
+h4 {
+    @apply text-[12px];
+}
+
+h5 {
+    @apply text-[10px];
+}
+
+h6 {
+    @apply text-[8px];
+}
+
+.c_underline {
+    @apply hover:underline hover:decoration-rose-400 underline-offset-1;
+}
+
+.c_underline .active{
+    @apply underline decoration-rose-400 underline-offset-1 decoration-2;
+}
+
+.dot {
+    @apply after:bg-rose-400 after:border after:rounded-full after:w-[5px] after:h-[5px] after:block after:border-rose-400 after:my-auto flex ml-4 mr-1;
+}
+
+.side-card{
+    @apply bg-white rounded-3xl grid;
+}
+
+.side-card .header{
+    @apply after:block after:w-10 after:h-[2px] after:rounded after:bg-rose-400 after:absolute after:-bottom-1 after:right-0 relative;
+}
+
+.container{
+    @apply md:max-w-[1200px]
+}

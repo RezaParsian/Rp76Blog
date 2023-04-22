@@ -1,45 +1,55 @@
-html, body {
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
+@font-face {
+    font-family: Sahel;
+    src: url('/fonts/vendor/sahel/Sahel.eot');
+    src: url('/fonts/vendor/sahel/Sahel.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/vendor/sahel/Sahel.woff2') format('woff2'),
+    url('/fonts/vendor/sahel/Sahel.woff') format('woff'),
+    url('/fonts/vendor/sahel/Sahel.ttf') format('truetype');
+    font-weight: normal;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    color: #111111;
-    font-weight: 500;
+@font-face {
+    font-family: Sahel;
+    src: url('/fonts/vendor/sahel/Sahel-Bold.eot');
+    src: url('/fonts/vendor/sahel/Sahel-Bold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/vendor/sahel/Sahel-Bold.woff2') format('woff2'),
+    url('/fonts/vendor/sahel/Sahel-Bold.woff') format('woff'),
+    url('/fonts/vendor/sahel/Sahel-Bold.ttf') format('truetype');
+    font-weight: bold;
 }
 
-h1 {
-    font-size: 70px;
+@font-face {
+    font-family: Sahel;
+    src: url('/fonts/vendor/sahel/Sahel-Light.eot');
+    src: url('/fonts/vendor/sahel/Sahel-Light.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/vendor/sahel/Sahel-Light.woff2') format('woff2'),
+    url('/fonts/vendor/sahel/Sahel-Light.woff') format('woff'),
+    url('/fonts/vendor/sahel/Sahel-Light.ttf') format('truetype');
+    font-weight: 300;
 }
 
-h2 {
-    font-size: 36px;
+@font-face {
+    font-family: Sahel;
+    src: url('/fonts/vendor/sahel/Sahel-SemiBold.eot');
+    src: url('/fonts/vendor/sahel/Sahel-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/vendor/sahel/Sahel-SemiBold.woff2') format('woff2'),
+    url('/fonts/vendor/sahel/Sahel-SemiBold.woff') format('woff'),
+    url('/fonts/vendor/sahel/Sahel-SemiBold.ttf') format('truetype');
+    font-weight: 600;
 }
 
-h3 {
-    font-size: 30px;
+@font-face {
+    font-family: Sahel;
+    src: url('/fonts/vendor/sahel/Sahel-Black.eot');
+    src: url('/fonts/vendor/sahel/Sahel-Black.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/vendor/sahel/Sahel-Black.woff2') format('woff2'),
+    url('/fonts/vendor/sahel/Sahel-Black.woff') format('woff'),
+    url('/fonts/vendor/sahel/Sahel-Black.ttf') format('truetype');
+    font-weight: 900;
 }
 
-h4 {
-    font-size: 24px;
-}
-
-h5 {
-    font-size: 18px;
-}
-
-h6 {
-    font-size: 16px;
-}
-
-p {
-    font-size: 15px;
-    color: #585858;
-    line-height: 1.6;
-    font-weight: 500;
+body {
+    font-family: Vazirmatn, sans-serif;
 }
 
 img {

@@ -1,40 +1,61 @@
 @extends('layouts.blog')
 
-@section('body')
-    <ul class="blog-filter">
-        <li><a href="#">Racing</a></li>
-        <li><a href="#">Shooters</a></li>
-        <li><a href="#">Strategy</a></li>
-        <li><a href="#">Online</a></li>
-    </ul>
-    <article id="post_section" class="position-relative">
-        <div class="position-absolute p-0 m-0 w-100 h-100 d-flex justify-content-center">
-            <div class="spinner-grow text-warning"></div>
-        </div>
-        {{--        <div class="rtl" v-if="posts.length==0">--}}
-        {{--            <h1 class="text-center text-white">نتیجه ای یافت نشد.</h1>--}}
-        {{--        </div>--}}
+@section('content')
+    @foreach($articles as $article)
+        <div class="bg-white rounded-3xl grid grid-cols-3 py-6 group gap-3 mb-8 hover:shadow-xl duration-700">
+            <div class="col-span-2 flex flex-col">
+                <div class="pr-6">
+                    <div class="m-0 grid grid-cols-5 mb-auto -mt-2">
+                        <a href="{{$article->link}}" title="مطالعه مقاله" class="col-span-4">
+                            <h2>{{ $article->title }}</h2>
+                        </a>
 
-        @foreach($articles as $article)
-            <div class="card bg-blog shadow">
-                <div class="card-body">
-                    <div class="big-blog-item mb-0 text-center">
-                        <img src="{{$article->image}}" loading="lazy" alt="{{$article->title}}" class="blog-thumbnail rounded"/>
-                        <div class="blog-content text-box text-white rtl">
-                            <div class="top-meta ltr text-right"><label class="rtl small"><i class="fa fa-clock-o"></i> {{$article->read_time}}</label> | <a href="{{route('profile',$article->user->name)}}">{{ $article->user->name }}</a>
-                                | {{ $article->custom_date }}</div>
-                            <h3 class="m-0">{{ $article->title }}</h3>
-                            <summary class="text-justify">{!! $article->summary !!}</summary>
-                            <p class="mt-3"><a href="{{$article->link}}" data-toggle="tooltip" title="بیشتر" data-post="{{$article->id}}" class="read-more">بیشتر</a></p>
+                        <div class="bg-rose-400/90 my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1">
+                            نکات برنامه نویسی
                         </div>
                     </div>
+
+                    <div class="text-justify text-stone-700 my-6">
+                        {!! $article->summary !!}
+                    </div>
                 </div>
+
+                <div class="flex pr-6 mt-auto">
+                    <div class="ml-2 mr-auto flex text-xs">
+                        <p class="my-auto after:content-['مطالعه']">
+                            {{$article->read_time}}
+                        </p>
+
+                        <i class="dot"></i>
+
+                        <p class="my-auto">
+                            {{ $article->custom_date }}
+                        </p>
+
+                        <i class="dot"></i>
+
+
+                        <a href="{{route('profile',$article->user->name)}}" class="my-auto c_underline">
+                            <p>{{$article->user->name}}</p>
+                        </a>
+
+                        <i class="dot"></i>
+
+                        <img src="{{asset('upload/profile/'.$article->user->image)}}" alt="{{$article->user->name}}" class="w-8 h-8 rounded-full border-2 border-rose-400">
+                    </div>
+                </div>
+
             </div>
-        @endforeach
 
-        <div class="site-pagination">
-            {{$articles->appends(Request()->all())->links("layouts.endgame")}}
-
+            <a href="{{$article->link}}" title="مطالعه مقاله" class="my-auto drop-shadow-lg">
+                <div class="overflow-hidden rounded-lg -ml-10 bg-white w-[19rem] h-[11rem]">
+                    <img src="{{$article->image}}" loading="lazy" alt="{{$article->title}}" class="w-[19rem] h-[11rem] group-hover:scale-150 duration-[2000ms]" title="{{$article->title}}"/>
+                </div>
+            </a>
         </div>
-    </article>
+    @endforeach
+
+    <div dir="ltr">
+        {{$articles->links('layouts.paginate')}}
+    </div>
 @endsection

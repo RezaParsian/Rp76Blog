@@ -15,6 +15,10 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'social_github'=>env('SOCIAL_GITHUB',''),
+    'social_twitter'=>env('SOCIAL_TWITTER',''),
+    'social_youtube'=>env('SOCIAL_YOUTUBE',''),
+    'social_linkedin'=>env('SOCIAL_LINKEDIN',''),
 
     /*
     |--------------------------------------------------------------------------
@@ -174,8 +178,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \Rp76\Module\ModuleServiceProvider::class,
-        \App\Providers\ModulesProvider::class
     ],
 
     /*
@@ -227,8 +229,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Verta' => Hekmatinasser\Verta\Verta::class,
-
     ],
 
 ];
