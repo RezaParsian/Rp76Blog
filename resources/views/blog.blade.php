@@ -1,8 +1,8 @@
-@extends('layouts.blog')
+@extends('layouts.master')
 
 @section('content')
     @foreach($articles as $article)
-        <div class="bg-white rounded-3xl grid grid-cols-3 py-6 group gap-3 mb-8 hover:shadow-xl duration-700">
+        <article class="bg-white rounded-3xl grid grid-cols-3 py-6 group gap-3 mb-8 hover:shadow-xl duration-700">
             <div class="col-span-2 flex flex-col">
                 <div class="pr-6">
                     <div class="m-0 grid grid-cols-5 mb-auto -mt-2">
@@ -10,14 +10,14 @@
                             <h2>{{ $article->title }}</h2>
                         </a>
 
-                        <div class="bg-rose-400/90 my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1">
+                        <div class="bg-rp-400/90 my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1">
                             نکات برنامه نویسی
                         </div>
                     </div>
 
-                    <div class="text-justify text-stone-700 my-6">
+                    <summary class="text-justify text-stone-700 my-6 line-clamp-3">
                         {!! $article->summary !!}
-                    </div>
+                    </summary>
                 </div>
 
                 <div class="flex pr-6 mt-auto">
@@ -41,7 +41,7 @@
 
                         <i class="dot"></i>
 
-                        <img src="{{asset('upload/profile/'.$article->user->image)}}" alt="{{$article->user->name}}" class="w-8 h-8 rounded-full border-2 border-rose-400">
+                        <img src="{{asset('upload/profile/'.$article->user->image)}}" alt="{{$article->user->name}}" class="w-8 h-8 rounded-full border-2 border-rp-400">
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                     <img src="{{$article->image}}" loading="lazy" alt="{{$article->title}}" class="w-[19rem] h-[11rem] group-hover:scale-150 duration-[2000ms]" title="{{$article->title}}"/>
                 </div>
             </a>
-        </div>
+        </article>
     @endforeach
 
     <div dir="ltr">

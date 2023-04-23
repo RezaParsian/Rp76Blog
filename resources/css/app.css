@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 svg {
-    @apply w-5 h-5 fill-rose-400 hover:fill-rose-500;
+    @apply w-5 h-5 fill-rp-400 hover:fill-rp-500;
 }
 
 h1 {
@@ -39,15 +39,15 @@ h6 {
 }
 
 .c_underline {
-    @apply hover:underline hover:decoration-rose-400 underline-offset-1;
+    @apply hover:underline hover:decoration-rp-400 underline-offset-1;
 }
 
-.c_underline .active{
-    @apply underline decoration-rose-400 underline-offset-1 decoration-2;
-}
+/*.active{*/
+/*    @apply ;*/
+/*}*/
 
 .dot {
-    @apply after:bg-rose-400 after:border after:rounded-full after:w-[5px] after:h-[5px] after:block after:border-rose-400 after:my-auto flex ml-4 mr-1;
+    @apply after:bg-rp-400 after:border after:rounded-full after:w-[5px] after:h-[5px] after:block after:border-rp-400 after:my-auto flex ml-4 mr-1;
 }
 
 .side-card{
@@ -55,9 +55,13 @@ h6 {
 }
 
 .side-card .header{
-    @apply after:block after:w-10 after:h-[2px] after:rounded after:bg-rose-400 after:absolute after:-bottom-1 after:right-0 relative;
+    @apply after:block after:w-10 after:h-[2px] after:rounded after:bg-rp-400 after:absolute after:-bottom-1 after:right-0 relative mb-4;
 }
 
 .container{
     @apply md:max-w-[1200px]
+}
+
+summary{
+    @apply block
 }

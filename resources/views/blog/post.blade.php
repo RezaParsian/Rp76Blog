@@ -1,4 +1,4 @@
-@extends('layouts.blog')
+@extends('layouts.master')
 
 @section("ex-title",$slug->title)
 

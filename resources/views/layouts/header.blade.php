@@ -1,4 +1,4 @@
-<div class="bg-white shadow py-4">
+<header class="bg-white shadow py-4 sticky top-0 z-50">
     <div class="container mx-auto">
         <div class="grid grid-cols-7">
             <div class="col-span-2">
@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-            <div class="col-span-5 pr-4">
+            <nav class="col-span-5 pr-4">
                 <div class="grid grid-cols-5">
                     <div class="col-span-3 flex my-auto gap-3">
                         <div class="c_underline">
@@ -73,8 +73,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
 
         </div>
     </div>
-</div>
+</header>

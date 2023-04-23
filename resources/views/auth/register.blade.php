@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section("ex-title")
     فرم زیر را تکمیل کنید و <strong class="text-blog">ثبت</strong> بزنید

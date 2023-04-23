@@ -17,7 +17,7 @@ class BlogController extends Controller
             $query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
         })->with('user:id,name,image')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
 
-        return view("welcome", compact("articles"));
+        return view("blog", compact("articles"));
     }
 
     public function post(Article $slug)
