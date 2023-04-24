@@ -663,6 +663,9 @@ class Parsedown
                 'element' => array(
                     'name' => 'blockquote',
                     'handler' => 'lines',
+                    "attributes" => [
+                        "class" => ($class . " my-2" ?? "my-2")
+                    ],
                     'text' => (array)$matches[1],
                 ),
             );

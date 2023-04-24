@@ -24,25 +24,29 @@ window.verify = function (element) {
 $(() => {
     let theme = localStorage.getItem('theme');
 
-    $("#night").click(function () {
+    $('.night').click(function () {
         localStorage.setItem('theme','night');
 
-        $("html").addClass('dark');
+        $('html').addClass('dark');
 
-        $("#day").show();
+        $('.day').show();
         $(this).hide();
     });
 
-    $("#day").click(function () {
-        localStorage.setItem('theme','day');
+    $('.day').click(function () {
+        localStorage.setItem('theme', 'day');
 
-        $("html").removeClass('dark');
+        $('html').removeClass('dark');
 
-        $("#night").show();
+        $('.night').show();
         $(this).hide();
+    });
+
+    $('#phone_menu_button').click(function () {
+        $("#phone_menu").toggle();
     });
 
     if (theme) {
-        $(`#${theme}`).click();
+        $(`.${theme}`).click();
     }
 });

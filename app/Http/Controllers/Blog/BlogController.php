@@ -43,26 +43,4 @@ class BlogController extends Controller
     {
         return view('profile', compact('user'));
     }
-
-    public function profileSave(Request $request, User $user): RedirectResponse
-    {
-        $request->validate([
-            "image" => ["image", "max:2048", "nullable"],
-        ]);
-
-        if ($request->has('image')) {
-            @unlink('upload/profile/' . $user->image);
-        }
-
-        $user->update([
-            'image' => (new UploadFile($request->file(Article::IMAGE), "upload/profile/"))->fileName
-        ]);
-
-        $user->setMeta('profile_name', $request->input('name'));
-        $user->setMeta('profile_about', $request->input('about'));
-        $user->setMeta('profile_phone', $request->input('phone'));
-        $user->setMeta('profile_mail', $request->input('mail'));
-
-        return back();
-    }
 }

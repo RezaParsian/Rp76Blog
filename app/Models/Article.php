@@ -68,7 +68,7 @@ class Article extends Model
      */
     public function getCustomDateAttribute(): string
     {
-        return verta($this->attributes["created_at"])->format("l %d %B ماه %Y");
+        return verta($this->attributes["created_at"])->format("%Y/%m/%d");
     }
 
     /**

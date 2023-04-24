@@ -5,13 +5,13 @@
 @section('image',asset($article->image))
 
 @section('content')
-    <article class="relative bg-white dark:bg-stone-900 dark:text-white p-6 rounded-3xl mt-10">
-        <img src="{{asset($article->image)}}" loading="lazy" alt="{{ $article->title }}" class="rounded-3xl shadow dark:shadow-rp-100 bg-white -mt-16"/>
+    <article class="bg-white dark:bg-stone-900 dark:text-white p-6 rounded-3xl mt-10">
+        <img src="{{asset($article->image)}}" loading="lazy" alt="{{ $article->title }}" class="rounded-3xl mx-auto shadow dark:shadow-rp-100 bg-white -mt-16"/>
 
-        <div class="grid grid-cols-5 my-4">
-            <h1 class="col-span-4">{{ $article->title }}</h1>
+        <div class="grid md:grid-cols-5 my-4 gap-3 md:gap-0">
+            <h1 class="col-span-4 text-base md:text-4xl order-2 md:order-1">{{ $article->title }}</h1>
 
-            <div class="bg-rp-400/90 my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1">
+            <div class="bg-rp-400/90 my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1 order-1 md:order-2">
                 نکات برنامه نویسی
             </div>
         </div>
@@ -41,7 +41,9 @@
                     <img src="{{asset('upload/profile/'.$article->user->image)}}" alt="{{$article->user->name}}" class="w-8 h-8 rounded-full border-2 border-rp-400">
                 </div>
             </div>
+        </div>
 
+        <div id="moreDetail" class="leading-7">
             {!! $article->markdown !!}
         </div>
 
@@ -54,7 +56,7 @@
         </div>
     </article>
 
-    <section class="grid grid-cols-2 gap-6 mt-6">
+    <section class="grid md:grid-cols-2 md:gap-6 mt-6">
         @if($nextPost)
             <a href="{{$nextPost->link}}" title="مقاله بعدی">
                 <div class="grid grid-cols-3 my-4 gap-2 bg-white dark:bg-stone-900 dark:text-white rounded-3xl p-4">

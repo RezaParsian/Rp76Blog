@@ -18,12 +18,16 @@
 </head>
 
 <body class="p-0 m-0 bg-slate-100 dark:bg-zinc-800" dir="rtl">
-@include('layouts.header')
+<header class="bg-white dark:bg-zinc-800 shadow dark:shadow-rp-900 py-4 sticky top-0 z-50">
+    @include('layouts.header')
+</header>
 
-<section class="container mx-auto mt-4 grid grid-cols-7 gap-6">
-    @include('layouts.aside')
+<section class="container mx-auto mt-4 grid md:grid-cols-7 gap-6">
+    <aside class="md:col-span-2 order-2 md:order-1 px-3 md:px-0">
+        @include('layouts.aside')
+    </aside>
 
-    <div class="col-span-5">
+    <div class="md:col-span-5 order-1 md:order-2 mt-4 md:mt-0 px-3 md:px-0">
         @yield('content')
     </div>
 </section>
