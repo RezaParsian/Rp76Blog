@@ -30,5 +30,5 @@ Route::post("profile/{user:name}", [BlogController::class, "profileSave"])->name
 Auth::routes(['register' => true, "verify" => false]);
 
 Route::group(["prefix" => "blog"], function () {
-    Route::get("post/{slug:slug}", [BlogController::class, "post"])->name("post.single");
+    Route::get("post/{article:slug}", [BlogController::class, "post"])->name("post.single");
 });

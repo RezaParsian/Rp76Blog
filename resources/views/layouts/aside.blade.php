@@ -77,7 +77,7 @@
 
         <div class="flex flex-wrap gap-2">
             @foreach(\App\Models\Tag::all() as $tag)
-                <span class="bg-slate-100 dark:bg-stone-900 rounded-full px-4 py-1 dark:hover:bg-rp-400 hover:bg-rp-400 hover:text-white">{{$tag->title}}</span>
+                <span class="tag">{{$tag->title}}</span>
             @endforeach
         </div>
     </div>

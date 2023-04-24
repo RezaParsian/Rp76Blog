@@ -1,65 +1,98 @@
 @extends('layouts.master')
 
-@section("ex-title",$slug->title)
+@section("ex-title",$article->title)
 
-@section('image',asset($slug->image))
+@section('image',asset($article->image))
 
-@section('body')
-    <article id="post_section" class="position-relative">
-        <div class="card bg-blog shadow">
-            <div class="card-body">
-                <div class="big-blog-item mb-0 card-body">
-                    <img src="{{asset($slug->image)}}" loading="lazy" alt="{{ $slug->title }}" class="blog-thumbnail rounded"/>
-                    <div v-pre class="blog-content text-box text-white rtl text-justify">
-                        <div class="top-meta ltr text-right"><label class="rtl small"><i class="fa fa-clock-o"></i> {{$slug->read_time}}</label> | <a href="{{route('profile',$slug->user->name)}}">{{ $slug->user->name }}</a> | {{ $slug->custom_date }}
-                        </div>
-                        <h1>{{ $slug->title }}</h1>
-                        {!! $slug->markdown !!}
-                    </div>
-                    <hr>
-                    <div class="blog-content text-box text-white rtl post-tag">
-                        دسته بندی :
-                        @php
-                            /**
-                            * @var \App\Models\Article $slug
-                            */
-                            $categories=[];
-                            foreach ($slug->categorize as $category){
-                                $categories[]="<label>{$category->title}</label>";
-                            }
-                        @endphp
-                        {!! implode("،",$categories) !!}
-                    </div>
-                    <hr>
-                    <div class="blog-content text-box text-white rtl post-tag">
-                        @foreach($slug->tagorize as $tag)
-                            <a href="#">{{$tag->title}}</a>
-                        @endforeach
-                    </div>
+@section('content')
+    <article class="relative bg-white dark:bg-stone-900 dark:text-white p-6 rounded-3xl mt-10">
+        <img src="{{asset($article->image)}}" loading="lazy" alt="{{ $article->title }}" class="rounded-3xl shadow dark:shadow-rp-100 bg-white -mt-16"/>
+
+        <div class="grid grid-cols-5 my-4">
+            <h1 class="col-span-4">{{ $article->title }}</h1>
+
+            <div class="bg-rp-400/90 my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1">
+                نکات برنامه نویسی
+            </div>
+        </div>
+
+        <div>
+            <div class="flex pr-6 mt-auto border-b pb-3 mb-3">
+                <div class="ml-2 mr-auto flex text-xs">
+                    <p class="my-auto after:content-['مطالعه']">
+                        {{$article->read_time}}
+                    </p>
+
+                    <i class="dot"></i>
+
+                    <p class="my-auto">
+                        {{ $article->custom_date }}
+                    </p>
+
+                    <i class="dot"></i>
+
+
+                    <a href="{{route('profile',$article->user->name)}}" class="my-auto c_underline">
+                        <p>{{$article->user->name}}</p>
+                    </a>
+
+                    <i class="dot"></i>
+
+                    <img src="{{asset('upload/profile/'.$article->user->image)}}" alt="{{$article->user->name}}" class="w-8 h-8 rounded-full border-2 border-rp-400">
                 </div>
             </div>
+
+            {!! $article->markdown !!}
+        </div>
+
+        <div class="border-t flex flex-wrap gap-2 pt-4 mt-4">
+            @foreach($article->tagorize as $tag)
+                <a href="#">
+                    <p class="tag dark:bg-stone-800">{{$tag->title}}</p>
+                </a>
+            @endforeach
         </div>
     </article>
 
-    {{--    <div class="card bg-blog shadow text-white rtl">--}}
-    {{--        <div class="card-header">--}}
-    {{--            <h6>ارسال نظر :</h6>--}}
-    {{--        </div>--}}
-    {{--        <div class="card-body">--}}
-    {{--            <form action="" method="post">--}}
-    {{--                @csrf--}}
-    {{--                <div class="form-group">--}}
-    {{--                    <input type="email" name="email" id="email" required class="form-control" placeholder="ایمیل">--}}
-    {{--                </div>--}}
+    <section class="grid grid-cols-2 gap-6 mt-6">
+        @if($nextPost)
+            <a href="{{$nextPost->link}}" title="مقاله بعدی">
+                <div class="grid grid-cols-3 my-4 gap-2 bg-white dark:bg-stone-900 dark:text-white rounded-3xl p-4">
+                    <div class="col-span-2 flex flex-col pt-4">
+                        <h2 class="text-sm">{{$nextPost->title}}</h2>
 
-    {{--                <div class="form-group">--}}
-    {{--                    <markdown vname="comment"></markdown>--}}
-    {{--                </div>--}}
+                        <span class="flex mt-auto text-sm gap-2">
+                        <x-svg.forward-arrow></x-svg.forward-arrow>
 
-    {{--                <button class="btn btn-success px-4">--}}
-    {{--                    ثبت نظر--}}
-    {{--                </button>--}}
-    {{--            </form>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
+                        <span>مقاله بعدی</span>
+                   </span>
+                    </div>
+
+                    <img src="{{$nextPost->image}}" loading="lazy" alt="{{$nextPost->title}}" class="rounded-lg bord w-24 h-24 object-cover border-2 border-slate-400" title="{{$nextPost->title}}"/>
+                </div>
+            </a>
+        @else
+            <div></div>
+        @endif
+
+        @if($prevPost)
+            <a href="{{$prevPost->link}}" title="مقاله قبلی">
+                <div class="grid grid-cols-3 my-4 gap-2 bg-white dark:bg-stone-900 dark:text-white rounded-3xl p-4">
+                    <img src="{{$prevPost->image}}" loading="lazy" alt="{{$prevPost->title}}" class="rounded-lg bord w-24 h-24 object-cover border-2 border-slate-400" title="{{$prevPost->title}}"/>
+
+                    <div class="col-span-2 flex flex-col pt-4 text-left">
+                        <h2 class="text-sm">{{$prevPost->title}}</h2>
+
+                        <span class="flex text-sm mt-auto gap-2 mr-auto">
+                        <span>مقاله قبلی</span>
+
+                        <x-svg.backward-arrow></x-svg.backward-arrow>
+                    </span>
+                    </div>
+                </div>
+            </a>
+        @else
+            <div></div>
+        @endif
+    </section>
 @endsection

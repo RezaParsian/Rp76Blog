@@ -65,3 +65,20 @@ h6 {
 summary{
     @apply block
 }
+
+pre{
+    direction: ltr;
+    @apply text-left bg-slate-100 rounded-lg p-4 dark:bg-stone-800 my-4;
+}
+
+code {
+    @apply leading-relaxed;
+}
+
+blockquote {
+    @apply bg-slate-200 border-r-4 border-rp-400 dark:bg-stone-700/40 rounded my-4;
+}
+
+.tag{
+    @apply bg-slate-100 dark:bg-stone-900 rounded-full px-4 py-1 dark:hover:bg-rp-400 hover:bg-rp-400 hover:text-white text-xs;
+}

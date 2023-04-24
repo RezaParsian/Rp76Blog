@@ -17,12 +17,26 @@ class BlogController extends Controller
             $query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
         })->with('user:id,name,image')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
 
-        return view("blog", compact("articles"));
+        return view("blog.index", compact("articles"));
     }
 
-    public function post(Article $slug)
+    public function post($slug)
     {
-        return view("blog.post", compact("slug"));
+        $article = Article::where(Article::SLUG, $slug)->firstOrFail();
+
+        $nextPost = Article::where([
+            ['created_at', '>', $article->created_at],
+            [Article::TYPE,'blog']
+        ])->orderBy('created_at', 'asc')
+            ->first();
+
+        $prevPost = Article::where([
+            ['created_at', '<', $article->created_at],
+            [Article::TYPE,'blog']
+        ])->orderBy('created_at', 'desc')
+            ->first();
+
+        return view("blog.post", compact("article",'nextPost','prevPost'));
     }
 
     public function profile(User $user)
