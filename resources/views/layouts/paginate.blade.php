@@ -28,12 +28,12 @@
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <a href="#" data-toggle="tooltip" title="صفحه {{$page}}" class="my-auto text-white bg-rp-400 rounded-full border border-rp-400 p-1">
-                                {{ sprintf("%02d", $page) }}.
+                            <a href="#" data-toggle="tooltip" title="صفحه {{$page}}" class="my-auto text-white bg-rp-400 rounded-full shadow shadow-rp-300 p-1">
+                                {{ $page }}.
                             </a>
                         @else
-                            <a href="{{ $url }}" data-toggle="tooltip" class="bg-white border border-rp-400 text-rp-400 rounded-full my-auto p-1 hover:text-white hover:bg-rp-400 duration-700" title="صفحه {{$page}}">
-                                {{ sprintf("%02d", $page) }}.
+                            <a href="{{ $url }}" data-toggle="tooltip" class="bg-white text-rp-400 rounded-full shadow shadow-rp-300 my-auto p-1 hover:text-white hover:bg-rp-400 duration-700" title="صفحه {{$page}}">
+                                {{ $page }}.
                             </a>
                         @endif
                     @endforeach

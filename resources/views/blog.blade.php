@@ -2,7 +2,7 @@
 
 @section('content')
     @foreach($articles as $article)
-        <article class="bg-white rounded-3xl grid grid-cols-3 py-6 group gap-3 mb-8 hover:shadow-xl duration-700">
+        <article class="bg-white dark:bg-stone-900 dark:text-white rounded-3xl grid grid-cols-3 py-6 group gap-3 mb-8 hover:shadow-xl duration-700">
             <div class="col-span-2 flex flex-col">
                 <div class="pr-6">
                     <div class="m-0 grid grid-cols-5 mb-auto -mt-2">
@@ -15,7 +15,7 @@
                         </div>
                     </div>
 
-                    <summary class="text-justify text-stone-700 my-6 line-clamp-3">
+                    <summary class="text-justify text-stone-700 dark:text-stone-400 my-6 line-clamp-3">
                         {!! $article->summary !!}
                     </summary>
                 </div>

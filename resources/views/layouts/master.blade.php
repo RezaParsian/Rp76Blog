@@ -17,7 +17,7 @@
     @yield('style')
 </head>
 
-<body class="p-0 m-0 bg-slate-100" dir="rtl">
+<body class="p-0 m-0 bg-slate-100 dark:bg-zinc-800" dir="rtl">
 @include('layouts.header')
 
 <section class="container mx-auto mt-4 grid grid-cols-7 gap-6">
@@ -28,13 +28,7 @@
     </div>
 </section>
 
-<footer class="mt-6 shadow shadow-rp-500/50">
-    <div class="container mx-auto">
-        <p class="text-left italic pt-4 text-slate-500" dir="ltr">
-            © Copyright 2023 Rp76, All rights reserved.
-        </p>
-    </div>
-</footer>
+@include('layouts.footer')
 
 <script src="{{ mix('js/app.js') }}"></script>
 

@@ -61,7 +61,7 @@
 
         <div class="px-4">
             @foreach(\App\Models\Category::all() as $category)
-                <div class="bg-slate-100 rounded-lg p-4 my-1 justify-between flex">
+                <div class="bg-slate-100 dark:bg-stone-900 rounded-lg p-4 my-1 justify-between flex">
                     <p>0 پست</p>
 
                     <a href="#">
@@ -77,7 +77,7 @@
 
         <div class="flex flex-wrap gap-2">
             @foreach(\App\Models\Tag::all() as $tag)
-                <span class="bg-slate-100 rounded-full px-4 py-1 hover:bg-rp-400 hover:text-white">{{$tag->title}}</span>
+                <span class="bg-slate-100 dark:bg-stone-900 rounded-full px-4 py-1 dark:hover:bg-rp-400 hover:bg-rp-400 hover:text-white">{{$tag->title}}</span>
             @endforeach
         </div>
     </div>

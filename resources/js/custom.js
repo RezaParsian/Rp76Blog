@@ -22,15 +22,27 @@ window.verify = function (element) {
 };
 
 $(() => {
+    let theme = localStorage.getItem('theme');
+
     $("#night").click(function () {
-        $("body").addClass('dark');
+        localStorage.setItem('theme','night');
+
+        $("html").addClass('dark');
+
         $("#day").show();
         $(this).hide();
     });
 
     $("#day").click(function () {
-        $("body").removeClass('dark');
+        localStorage.setItem('theme','day');
+
+        $("html").removeClass('dark');
+
         $("#night").show();
         $(this).hide();
     });
+
+    if (theme) {
+        $(`#${theme}`).click();
+    }
 });
