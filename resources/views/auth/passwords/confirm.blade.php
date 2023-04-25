@@ -1,41 +1,25 @@
-@extends('layouts.master')
+@extends('auth.master')
 
-@section("ex-title")
-    فرم زیر را تکمیل کنید و <strong>تایید رمزعبور</strong> بزنید
-@endsection
+@section('title','تایید رمزعبور')
 
-@section('content')
-    <form method="POST" action="{{ route('password.confirm') }}">
+@section('body')
+    <form method="POST" action="{{ route('password.confirm') }}" class="grid gap-3">
         @csrf
 
         <div class="form-group row">
             <div class="input-group mb-3">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="رمزعبور">
-                <div class="input-group-append">
-                    <span class="fa fa-envelope input-group-text"></span>
-                </div>
+                <input id="password" type="password" class="@error('password') text-red-500 text-xs @enderror" name="password" required autocomplete="current-password" placeholder="رمزعبور">
+
                 @error('password')
-                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                <span class="text-red-500 text-xs">
+                        <strong>{{ __($message) }}</strong>
+                </span>
                 @enderror
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-4">
-                <button type="submit" class="btn rounded btn-primary">تایید رمزعبور</button>
-            </div>
-        </div>
+        <button type="submit" class="bg-rp-500 hover:bg-rp-700 w-full rounded-xl text-white font-bold py-2 px-10 rounded">
+            تایید رمزعبور
+        </button>
     </form>
-
-    <hr class="bg-gray-light mx-5">
-
-    <div class="row justify-content-center">
-        <a href="{{route("login")}}">ورود</a>
-        @if (Route::has('register'))
-            <label class="mx-2">|</label>
-            <a href="{{route("register")}}">ثبت نام</a>
-        @endif
-    </div>
 @endsection

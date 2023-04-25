@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('auth.master')
 
-@section("ex-title","تایید ادرس ایمیل")
+@section("title","تایید ادرس ایمیل")
 
 @section('content')
     @if (session('resent'))

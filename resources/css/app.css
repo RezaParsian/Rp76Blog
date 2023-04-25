@@ -92,3 +92,7 @@ blockquote {
 #moreDetail img{
     @apply mx-auto rounded;
 }
+
+input{
+    @apply w-full px-4 py-2 text-rp-700 bg-white border border-rp-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rp-500 focus:border-rp-500
+}
