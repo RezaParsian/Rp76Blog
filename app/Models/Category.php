@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\{Factories\HasFactory, Model, Relations\MorphOn
 
 /**
  * @method static create(array $valid)
+ * @method static where(string $PARENT_ID, int $int)
  */
 class Category extends Model
 {
@@ -14,13 +15,11 @@ class Category extends Model
 
     const PARENT_ID = "parent_id",
         TITLE = "title",
-        SLUG = "slug",
-        TYPE = "type";
+        SLUG = "slug";
 
     protected $fillable = [
         self::PARENT_ID,
         self::TITLE,
-        self::SLUG,
-        self::TYPE,
+        self::SLUG
     ];
 }

@@ -23,11 +23,11 @@ use Illuminate\Support\{Facades\Auth, Facades\Route};
 //});
 
 Route::any("/", [BlogController::class, "index"])->name("blog");
-Route::get("profile/{user:name}", [BlogController::class, "profile"])->name('profile')->middleware(['auth','password.confirm']);
+Route::get("profile/{user:name}", [BlogController::class, "profile"])->name('profile');
 Route::post("profile/{user:name}", [BlogController::class, "profileSave"])->name('profile.save');
 
 Auth::routes(['register' => true, "verify" => true]);
 
-Route::group(["prefix" => "blog", 'middleware' => ['password.confirm','auth', 'verified']], function () {
+Route::group(["prefix" => "blog", 'middleware' => ['auth']], function () {
     Route::get("post/{article:slug}", [BlogController::class, "post"])->name("post.single");
 });

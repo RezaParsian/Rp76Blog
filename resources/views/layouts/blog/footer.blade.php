@@ -5,3 +5,9 @@
         </p>
     </div>
 </footer>
+
+@if(config('app.debug'))
+    <script>
+        console.log(@json(\Illuminate\Support\Facades\DB::getQueryLog()));
+    </script>
+@endif

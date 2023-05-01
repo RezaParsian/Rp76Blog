@@ -6,7 +6,7 @@ use App\Http\Helper\Slug;
 use App\Http\Helper\UploadFile;
 use App\Models\{Article, Categorize, Category, Tag, Tagorize};
 use App\Http\Controllers\Controller;
-use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Routing\Redirector, Support\Facades\Auth};
+use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Routing\Redirector, Support\Arr, Support\Facades\Auth};
 use Exception;
 
 class ArticleController extends Controller
@@ -28,7 +28,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy("id", "DESC")->limit(200)->get();
+        $articles = Article::orderBy("id", "DESC")->paginate();
+
         return view($this->path . "index", compact("articles"));
     }
 
@@ -41,6 +42,7 @@ class ArticleController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
+
         return view($this->path . "create", compact("categories", "tags"));
     }
 
@@ -125,7 +127,7 @@ class ArticleController extends Controller
             Article::TYPE => ["required"],
             Article::IMAGE => ["nullable", "max:2024", "image"],
             Article::CONTENT => ["required"],
-            "category" => ["required"],
+            "category_id" => ["required"],
             "tag" => ["nullable"]
         ]);
 

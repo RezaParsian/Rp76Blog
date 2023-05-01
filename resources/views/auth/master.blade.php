@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.blog.master')
 
 @section('content')
     <div class="flex">

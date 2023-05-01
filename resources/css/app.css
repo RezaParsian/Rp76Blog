@@ -93,6 +93,36 @@ blockquote {
     @apply mx-auto rounded;
 }
 
-input{
-    @apply w-full px-4 py-2 text-rp-700 bg-white border border-rp-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rp-500 focus:border-rp-500
+input:not([type='file']), select, textarea{
+    @apply w-full px-4 py-2 text-rp-700 bg-white border border-rp-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rp-500 focus:border-rp-500;
+}
+
+[type='file']{
+    direction: ltr;
+    @apply file:mr-4 file:py-2 file:px-4
+    file:rounded-full file:border-0
+    file:text-sm file:font-semibold
+    file:bg-rp-50 file:text-rp-700
+    hover:file:bg-rp-100 focus:outline-none
+    w-full mt-2
+}
+
+table{
+    @apply min-w-full divide-y divide-gray-200 table-auto my-5;
+}
+
+th{
+    @apply px-6 py-3 bg-gray-50 text-xs text-right font-medium text-gray-500 uppercase tracking-wider;
+}
+
+td{
+    @apply px-6 py-4 whitespace-nowrap;
+}
+
+tbody{
+    @apply bg-white divide-y divide-gray-200;
+}
+
+tr{
+    @apply even:bg-gray-100;
 }

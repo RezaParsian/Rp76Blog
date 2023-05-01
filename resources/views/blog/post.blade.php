@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.blog.master')
 
 @section("ex-title",$article->title)
 
@@ -43,12 +43,12 @@
             </div>
         </div>
 
-        <div id="moreDetail" class="leading-7">
+        <div id="moreDetail" class="leading-7 !break-all hyphens-manual">
             {!! $article->markdown !!}
         </div>
 
         <div class="border-t flex flex-wrap gap-2 pt-4 mt-4">
-            @foreach($article->tagorize as $tag)
+            @foreach($article->tags as $tag)
                 <a href="#">
                     <p class="tag dark:bg-stone-800">{{$tag->title}}</p>
                 </a>

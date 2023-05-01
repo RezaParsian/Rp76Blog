@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Helper\{CustomModel, MetaAble};
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\{Eloquent\Factories\HasFactory, Eloquent\Relations\BelongsTo, Eloquent\SoftDeletes};
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,7 +16,7 @@ use Illuminate\Notifications\Notifiable;
  * @package App\Models
  * @method static orderBy(...$data)
  */
-class User extends Authenticatable /*implements MustVerifyEmail*/
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, SoftDeletes, CustomModel, MetaAble;
 
@@ -80,11 +81,16 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
         return false;
     }
 
+    public function hasImage(): bool
+    {
+        return (bool)$this->getAttribute(self::IMAGE);
+    }
+
     /**
      * @return string
      */
-    public function image(): string
+    public function getImageAttribute(): string
     {
-        return $this->image ? asset("upload/profile/" . $this->image) : asset("favicon.ico");
+        return $this->attributes[self::IMAGE] ? asset("upload/profile/" . $this->attributes[self::IMAGE]) : asset("favicon.ico");
     }
 }

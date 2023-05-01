@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.index')
+@extends('layouts.panel.master')
 
 @section("ex-title","داشبورد")
 

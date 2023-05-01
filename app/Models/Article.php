@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Http\Helper\CategorizeAble;
 use App\Http\Helper\CustomModel;
 use App\Http\Helper\Parsedown;
-use App\Http\Helper\TagorizeAble;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -27,40 +26,28 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Article extends Model
 {
-    use HasFactory, SoftDeletes, CustomModel, CategorizeAble, TagorizeAble;
+    use HasFactory, SoftDeletes, CustomModel;
 
     const
         USER_ID = "user_id",
+        CATEGORY_ID = 'category_id',
         TITLE = "title",
         SLUG = "slug",
         CONTENT = "content",
         IMAGE = "image",
         TYPE = "type";
 
-    const POST_TYPE = [
-        "blog" => "پست بلند",
-        "twit" => "پست کوتاه"
-    ];
+    const TYPE_BLOG = 'blog',
+        TYPE_TWIT = 'twit';
 
     protected $fillable = [
         self::USER_ID,
         self::TITLE,
         self::SLUG,
+        self::CATEGORY_ID,
         self::CONTENT,
         self::IMAGE,
         self::TYPE,
-    ];
-
-    protected $appends = [
-        "created_at_p",
-        "created_at_diff",
-        "updated_at_p",
-        "updated_at_diff",
-        "custom_date",
-        "summary",
-        "markdown",
-        "link",
-        "read_time",
     ];
 
     /**
@@ -87,7 +74,7 @@ class Article extends Model
         $parsedown = new Parsedown();
         $parsedown->setSafeMode(true);
         $parsedown->setMarkupEscaped(true);
-        return $parsedown->text($this->attributes["content"]);
+        return $parsedown->text($this->getAttribute(self::CONTENT));
     }
 
     public function getSummaryAttribute(): string
@@ -112,9 +99,14 @@ class Article extends Model
         return $this->attributes["image"];
     }
 
-    public function getReadTimeAttribute()
+    public function getReadTimeAttribute(): string
     {
         $len = str_word_count($this->attributes[self::CONTENT]);
         return ((int)($len / 130) > 0 ? (int)($len / 130) : 1) . " دقیقه";
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class, 'article_tags');
     }
 }

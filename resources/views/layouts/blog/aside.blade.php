@@ -1,10 +1,10 @@
 <div class="side-card pb-14">
     <div class="flex mt-12">
-        <img src="{{asset('upload/profile/'.\App\Models\User::find(1)->image)}}" alt="{{\App\Models\User::find(1)->name}}" class="rounded-full w-24 mx-auto">
+        <img src="{{$owner->image}}" alt="{{$owner->name}}" class="rounded-full w-24 mx-auto">
     </div>
 
     <h3 class="text-center my-2">
-        سلام، رضا پارسیان هستم!
+        سلام، {{$owner->name}} هستم!
     </h3>
 
     <p class="text-justify break-words px-8 mt-4">
@@ -39,7 +39,7 @@
 <div class="side-card my-6 p-4">
     <h3 class="header">توییت ها</h3>
 
-    @foreach(\App\Models\Article::where('type','twit')->limit(5)->orderBy('id','DESC')->get() as $article)
+    @foreach($twits as $article)
         <div class="my-4 gap-2">
             <div class="col-span-2 flex flex-col">
                 <p class="whitespace-pre-line">{{$article->content}}</p>
@@ -59,7 +59,7 @@
     <h3 class="header">دسته‌بندی ها</h3>
 
     <div class="px-4">
-        @foreach(\App\Models\Category::all() as $category)
+        @foreach($cats as $category)
             <div class="bg-slate-100 dark:bg-stone-900 rounded-lg p-4 my-1 justify-between flex">
                 <p>0 پست</p>
 
@@ -75,7 +75,7 @@
     <h3 class="header">تگ ها</h3>
 
     <div class="flex flex-wrap gap-2">
-        @foreach(\App\Models\Tag::all() as $tag)
+        @foreach($tags as $tag)
             <span class="tag">{{$tag->title}}</span>
         @endforeach
     </div>
