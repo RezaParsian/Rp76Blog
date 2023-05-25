@@ -38,12 +38,12 @@
 
                     <i class="dot"></i>
 
-                    <img src="{{asset('upload/profile/'.$article->user->image)}}" alt="{{$article->user->name}}" class="w-8 h-8 rounded-full border-2 border-rp-400">
+                    <img src="{{$article->user->image}}" alt="{{$article->user->name}}" class="w-8 h-8 rounded-full border-2 border-rp-400">
                 </div>
             </div>
         </div>
 
-        <div id="moreDetail" class="leading-7 !break-all hyphens-manual">
+        <div id="moreDetail" class="leading-7 hyphens-manual">
             {!! $article->markdown !!}
         </div>
 

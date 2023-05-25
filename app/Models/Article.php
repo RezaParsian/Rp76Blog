@@ -109,4 +109,12 @@ class Article extends Model
     {
         return $this->belongsToMany(Tag::class, 'article_tags');
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

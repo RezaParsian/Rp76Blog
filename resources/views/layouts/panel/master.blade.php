@@ -22,12 +22,12 @@
     @include('layouts.blog.header')
 </header>
 
-<section class="container mx-auto mt-4 grid md:grid-cols-7 gap-6">
+<section class="container mx-auto mt-4 grid grid-cols-1 md:grid-cols-7 gap-6">
     <aside class="md:col-span-2 order-2 md:order-1 px-3 md:px-0">
         @include('layouts.panel.aside')
     </aside>
 
-    <div class="md:col-span-5 order-1 md:order-2 mt-4 bg-white dark:bg-stone-800 rounded-3xl p-6 ">
+    <div class="md:col-span-5 order-1 md:order-2 mt-4 bg-white dark:bg-stone-800 rounded-3xl p-6">
         @yield('content')
     </div>
 </section>

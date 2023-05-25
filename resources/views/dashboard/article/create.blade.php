@@ -35,10 +35,10 @@
 
         <label>
             تگ‌ها
-            <select name="tags" multiple>
+            <select name="tags[]" multiple>
                 <option value="">یک دسته‌بندی انتخاب فرمایید.</option>
                 @foreach($tags as $tag)
-                    <option>{{$tag->title}}</option>
+                    <option value="{{$tag->id}}">{{$tag->title}}</option>
                 @endforeach
             </select>
         </label>
