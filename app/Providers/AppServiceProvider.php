@@ -53,7 +53,17 @@ class AppServiceProvider extends ServiceProvider
             });
 
             $cats = Cache::rememberForever('cats', function () {
-                return Category::where(Category::PARENT_ID, 0)->get();
+                $categories = Category::with('children')->where(Category::PARENT_ID, 0)->get();
+
+                $categories->transform(function (Category $category) {
+                    return [
+                        'title' => $category->title,
+                        'slug' => $category->slug,
+                        'count' => $category->children->sum('articles_count') + $category->articles_count
+                    ];
+                });
+
+                return $categories;
             });
 
             $tags = Cache::rememberForever('tags', function () {

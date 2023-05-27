@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{Blog\BlogController};
+use App\Models\Category;
 use Illuminate\Support\{Facades\Auth, Facades\Route};
 
 /*

@@ -61,10 +61,10 @@
     <div class="px-4">
         @foreach($cats as $category)
             <div class="bg-slate-100 dark:bg-stone-900 rounded-lg p-4 my-1 justify-between flex">
-                <p>0 پست</p>
+                <p>{{$category['count']}} پست</p>
 
                 <a href="#">
-                    <p class="bg-rp-400/90 text-white rounded-full text-sm mr-auto w-fit px-3 py-[2px] hover:bg-slate-500 duration-700 line-clamp-1">{{$category->title}}</p>
+                    <p class="bg-rp-400/90 text-white rounded-full text-sm mr-auto w-fit px-3 py-[2px] hover:bg-slate-500 duration-700 line-clamp-1">{{$category['title']}}</p>
                 </a>
             </div>
         @endforeach
