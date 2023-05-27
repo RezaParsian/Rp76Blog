@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\{Collection, Factories\HasFactory, Model, Relat
  * @property Collection $children
  * @property string $title
  * @property string $slug
+ * @property int $id
  */
 class Category extends Model
 {

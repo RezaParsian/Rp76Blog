@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Http\{Controllers\Controller, Helper\UploadFile};
-use App\Models\{Article, User};
-use Illuminate\Http\RedirectResponse;
+use App\Http\{Controllers\Controller};
+use App\Models\{Article, Category, User};
 use Illuminate\Http\Request;
 
 
@@ -36,11 +35,24 @@ class BlogController extends Controller
         ])->orderBy('created_at', 'desc')
             ->first();
 
-        return view("blog.post", compact("article",'nextPost','prevPost'));
+        return view("blog.post", compact("article", 'nextPost', 'prevPost'));
     }
 
     public function profile(User $user)
     {
         return view('profile', compact('user'));
+    }
+
+    public function categoryPosts(Request $request, Category $category)
+    {
+        $categoryIds = $category->children->pluck('id');
+        $categoryIds[]=$category->id;
+
+        $articles = Article::whereIn(Article::CATEGORY_ID, $categoryIds)
+            ->where(function ($query) use ($request) {
+                $query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
+            })->with('user:id,name,image', 'category:id,title')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
+
+        return view("blog.index", compact("articles"));
     }
 }
