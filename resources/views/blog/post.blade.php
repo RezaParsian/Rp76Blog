@@ -11,8 +11,8 @@
         <div class="grid md:grid-cols-5 my-4 gap-3 md:gap-0">
             <h1 class="col-span-4 text-base md:text-4xl order-2 md:order-1">{{ $article->title }}</h1>
 
-            <div class="bg-rp-400/90 my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1 order-1 md:order-2">
-                نکات برنامه نویسی
+            <div class="bg-rp-400/90 my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1 order-1 md:order-2" dir="ltr">
+                {{@$article->category->title}}
             </div>
         </div>
 

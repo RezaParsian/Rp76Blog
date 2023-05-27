@@ -2,7 +2,7 @@
 
 @section('content')
     @foreach($articles as $article)
-        <article class="bg-white dark:bg-stone-900 dark:text-white rounded-3xl flex flex-col md:grid md:grid-cols-3 py-6 group gap-3 mb-8 hover:shadow-xl duration-700">
+        <article class="bg-white dark:bg-stone-900 dark:text-white rounded-3xl flex flex-col md:grid md:grid-cols-3 py-6 group gap-3 hover:shadow-xl duration-700 mb-12">
             <div class="col-span-2 flex flex-col order-2 md:order-1">
                 <div class="md:pr-6 px-3">
                     <div class="m-0 grid md:grid-cols-5 mb-auto -mt-2">
@@ -10,8 +10,8 @@
                             <h2 class="mb-3 md:my-0">{{ $article->title }}</h2>
                         </a>
 
-                        <div class="bg-rp-400/90 my-2 md:my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1 order-1 md:order-2">
-                            نکات برنامه نویسی
+                        <div class="bg-rp-400/90 my-2 md:my-auto text-white rounded-lg text-sm mr-auto w-fit px-3 py-[2px] line-clamp-1 order-1 md:order-2" dir="ltr">
+                            {{@$article->category->title}}
                         </div>
                     </div>
 

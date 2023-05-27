@@ -15,7 +15,7 @@ class BlogController extends Controller
     {
         $articles = Article::where(function ($query) use ($request) {
             $query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
-        })->with('user:id,name,image')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
+        })->with('user:id,name,image','category:id,title')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
 
         return view("blog.index", compact("articles"));
     }

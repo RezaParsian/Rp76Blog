@@ -17,7 +17,7 @@
     @yield('style')
 </head>
 
-<body class="p-0 m-0 bg-slate-100 dark:bg-zinc-800" dir="rtl">
+<body class="p-0 m-0 bg-slate-200/80 dark:bg-zinc-800" dir="rtl">
 <header class="bg-white dark:bg-zinc-800 shadow dark:shadow-rp-900 py-4 sticky top-0 z-50">
     @include('layouts.blog.header')
 </header>
