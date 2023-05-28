@@ -36,7 +36,7 @@
 
 
                         <a href="{{route('profile',$article->user->name)}}" class="my-auto c_underline">
-                            <p>Atom {{$article->user->name}}</p>
+                            <p>{{$article->user->name}}</p>
                         </a>
 
                         <i class="dot"></i>

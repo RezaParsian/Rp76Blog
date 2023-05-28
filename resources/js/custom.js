@@ -49,4 +49,8 @@ $(() => {
     if (theme) {
         $(`.${theme}`).click();
     }
+
+    $('#searchBarButton').click(function () {
+        $('#searchBar').toggle(500);
+    });
 });

@@ -32,6 +32,7 @@
                     درباره من
                 </a>
             </div>
+
         </div>
 
         <div class="col-span-2 flex gap-1 mr-auto mt-3 border-y py-3 justify-between">
@@ -59,6 +60,16 @@
                 </a>
             </div>
         </div>
+
+        <form class="my-4 border-b pb-4">
+            <label class="flex border border-rp-300 rounded">
+                <input type="text" name="q" id="searchBox" class="!border-0 focus:!ring-0 !shadow-none !bg-slate-100" value="{{request()->input('q')}}" placeholder="جستجو...">
+
+                <button class="p-2 px-4">
+                    <x-svg.search></x-svg.search>
+                </button>
+            </label>
+        </form>
 
         <div class="flex my-auto mr-auto dark:text-white justify-center">
             <a href="{{route('login')}}" class="p-2 px-0 c_underline w-f">
@@ -98,7 +109,21 @@
                     </div>
                 </div>
 
-                <div class="col-span-2 flex gap-1 mr-auto">
+                <div class="col-span-2 flex gap-1 mr-auto relative">
+                    <button class="p-2 px-4" id="searchBarButton">
+                        <x-svg.search></x-svg.search>
+                    </button>
+
+                    <form class="absolute bg-slate-100 left-0 right-0 top-10" id="searchBar" style="display: none" action="{{request()->is('*post*') ? '/' : ''}}">
+                        <label class="flex border border-rp-300 rounded">
+                            <input type="text" name="q" id="searchBox" class="!border-0 focus:!ring-0 !shadow-none !bg-slate-100" value="{{request()->input('q')}}" placeholder="جستجو...">
+
+                            <button class="p-2 px-4">
+                                <x-svg.search></x-svg.search>
+                            </button>
+                        </label>
+                    </form>
+
                     <div class="my-auto p-1" type="گیت‌هاب">
                         <a href="{{config('app.social_github')}}" target="_blank">
                             <x-svg.github></x-svg.github>
