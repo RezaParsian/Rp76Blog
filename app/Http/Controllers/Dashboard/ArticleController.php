@@ -7,7 +7,7 @@ use App\Http\Helper\Slug;
 use App\Http\Helper\UploadFile;
 use App\Models\{Article, Category, Tag};
 use Exception;
-use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Routing\Redirector, Support\Facades\Auth};
+use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Routing\Redirector, Support\Facades\Auth, Support\Facades\Cache};
 
 class ArticleController extends Controller
 {
@@ -51,15 +51,17 @@ class ArticleController extends Controller
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
-    {
-        $valid = $this->checkValid($request);
+	{
+		$valid = $this->checkValid($request);
 
-        $article = Article::create($valid);
+		$article = Article::create($valid);
 
-        $article->tags()->sync($request->input('tags'));
+		$article->tags()->sync($request->input('tags'));
 
-        return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
-    }
+		Cache::forget('cats');
+
+		return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
+	}
 
     /**
      * Display the specified resource.

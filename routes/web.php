@@ -31,5 +31,6 @@ Auth::routes(['register' => true, "verify" => true]);
 
 Route::group(["prefix" => "blog"], function () {
     Route::get("post/category/{category:slug}", [BlogController::class, "categoryPosts"])->name("post.by.category");
+    Route::get("post/tag/{tag:slug}", [BlogController::class, "tagPosts"])->name("post.by.tag");
     Route::get("post/{article:slug}", [BlogController::class, "post"])->name("post.single");
 });

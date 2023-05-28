@@ -25,6 +25,8 @@ class Menu
         $this->add("مقالات", "article", '', "fa fa-thumb-tack", route("article.index"), "dashboard/article*","posts");
         $this->add("دسته بندی ها", "category", '', "fa fa-sitemap", route("category.index"), "dashboard/category*","posts");
         $this->add("تگ ها", "tag", '', "fa fa-tags", route("tag.index"), "dashboard/tag*","posts");
+		$this->add("کاربران","crm","","fa fa-users",route("crm.index"),"*crm*");
+
 //        $this->add("تنظیمات", "setting", "", "fa fa-cogs");
 //        $this->add("پروفایل", "setting.profile", "setting", "fa fa-user");
     }

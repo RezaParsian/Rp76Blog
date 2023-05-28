@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\{Controllers\Controller};
-use App\Models\{Article, Category, User};
+use App\Models\{Article, Category, Tag, User};
 use Illuminate\Http\Request;
 
 
@@ -45,14 +45,24 @@ class BlogController extends Controller
 
     public function categoryPosts(Request $request, Category $category)
     {
-        $categoryIds = $category->children->pluck('id');
-        $categoryIds[]=$category->id;
+		$categoryIds = $category->children->pluck('id');
+		$categoryIds[] = $category->id;
 
-        $articles = Article::whereIn(Article::CATEGORY_ID, $categoryIds)
-            ->where(function ($query) use ($request) {
-                $query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
-            })->with('user:id,name,image', 'category:id,title')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
+		$articles = Article::whereIn(Article::CATEGORY_ID, $categoryIds)
+			->where(function ($query) use ($request) {
+				$query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
+			})->with('user:id,name,image', 'category:id,title')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
 
-        return view("blog.index", compact("articles"));
-    }
+		return view("blog.index", compact("articles"));
+	}
+
+	public function tagPosts(Request $request, Tag $tag)
+	{
+		$articles = $tag->articles()
+			->where(function ($query) use ($request) {
+				$query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
+			})->with('user:id,name,image', 'category:id,title')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
+
+		return view("blog.index", compact("articles"));
+	}
 }

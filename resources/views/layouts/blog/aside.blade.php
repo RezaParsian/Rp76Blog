@@ -76,7 +76,9 @@
 
     <div class="flex flex-wrap gap-2">
         @foreach($tags as $tag)
-            <span class="tag">{{$tag->title}}</span>
+            <a href="{{route('post.by.tag',$tag->slug)}}">
+                <span class="tag">{{$tag->title}}</span>
+            </a>
         @endforeach
     </div>
 </div>

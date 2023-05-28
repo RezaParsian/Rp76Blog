@@ -114,7 +114,7 @@
                         <x-svg.search></x-svg.search>
                     </button>
 
-                    <form class="absolute bg-slate-100 left-0 right-0 top-10" id="searchBar" style="display: none" action="{{request()->is('*post*') ? '/' : ''}}">
+                    <form class="absolute bg-slate-100 left-0 right-0 top-10" id="searchBar" style="display: none" action="{{request()->route()->getName()==='post.single' ? '/' : ''}}">
                         <label class="flex border border-rp-300 rounded">
                             <input type="text" name="q" id="searchBox" class="!border-0 focus:!ring-0 !shadow-none !bg-slate-100" value="{{request()->input('q')}}" placeholder="جستجو...">
 

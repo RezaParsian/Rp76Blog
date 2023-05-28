@@ -49,7 +49,7 @@
 
         <div class="border-t flex flex-wrap gap-2 pt-4 mt-4">
             @foreach($article->tags as $tag)
-                <a href="#">
+                <a href="{{route('post.by.tag',$tag->slug)}}">
                     <p class="tag dark:bg-stone-800">{{$tag->title}}</p>
                 </a>
             @endforeach
