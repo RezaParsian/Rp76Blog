@@ -17,3 +17,5 @@ yarn-error.log
 packages
 *.zip
 ./logs
+/public/css/app.css
+/public/js/app.js
