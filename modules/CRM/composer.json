@@ -1,8 +1,0 @@
-{
-    "autoload": {
-        "psr-4": {
-            "Modules\\CRM\\Controllers\\": "Controllers",
-            "Modules\\CRM\\Models\\": "Models"
-        }
-    }
-}

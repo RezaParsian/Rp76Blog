@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Controllers\Controller;
 use App\Http\Helper\Slug;
 use App\Http\Helper\UploadFile;
-use App\Models\{Article, Categorize, Category, Tag, Tagorize};
-use App\Http\Controllers\Controller;
-use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Routing\Redirector, Support\Facades\Auth};
+use App\Models\{Article, Category, Tag};
 use Exception;
+use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Routing\Redirector, Support\Facades\Auth, Support\Facades\Cache};
 
 class ArticleController extends Controller
 {
@@ -28,7 +28,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy("id", "DESC")->limit(200)->get();
+        $articles = Article::with('category')->orderBy("id", "DESC")->paginate();
+
         return view($this->path . "index", compact("articles"));
     }
 
@@ -41,6 +42,7 @@ class ArticleController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
+
         return view($this->path . "create", compact("categories", "tags"));
     }
 
@@ -49,17 +51,17 @@ class ArticleController extends Controller
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
-    {
-        $valid = $this->checkValid($request);
+	{
+		$valid = $this->checkValid($request);
 
-        $article = Article::create($valid);
+		$article = Article::create($valid);
 
-        $this->saveCategory($request, $article);
+		$article->tags()->sync($request->input('tags'));
 
-        $this->saveTag($request, $article);
+		Cache::forget('cats');
 
-        return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
-    }
+		return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
+	}
 
     /**
      * Display the specified resource.
@@ -88,16 +90,14 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $valid = $this->checkValid($request);
-
-        if ($request->hasFile(Article::IMAGE))
-            @unlink(public_path("upload/article/" . $article->imageName));
+        $valid = $request->validate([
+            'title' => ['required'],
+            'slug' => ['required'],
+            'category_id' => ['required'],
+			'content' => ['required']
+        ]);
 
         $article->update($valid);
-
-        $this->saveCategory($request, $article);
-
-        $this->saveTag($request, $article);
 
         return redirect(route("article.edit", $article->id))->with("msg", "مقاله موردنظر با موفقت ثبت شد.");
     }
@@ -119,54 +119,40 @@ class ArticleController extends Controller
      */
     private function checkValid(Request $request): array
     {
-        $valid = $request->validate([
-            Article::TITLE => ["required"],
-            Article::SLUG => ["nullable"],
-            Article::TYPE => ["required"],
-            Article::IMAGE => ["nullable", "max:2024", "image"],
-            Article::CONTENT => ["required"],
-            "category" => ["required"],
-            "tag" => ["nullable"]
-        ]);
+		$valid = $request->validate([
+			Article::TITLE => ["required"],
+			Article::SLUG => ["nullable"],
+			Article::TYPE => ["required"],
+			Article::IMAGE => ["nullable", "max:2024", "image"],
+			Article::CONTENT => ["required"],
+			"category_id" => ["required"],
+			"tags" => ["required"]
+		]);
 
-        if ($request->has(Article::IMAGE))
-            $valid = array_merge($valid, [
-                Article::IMAGE => (new UploadFile($request->file(Article::IMAGE), "upload/article/"))->fileName,
-            ]);
+		if ($request->has(Article::IMAGE))
+			$valid = array_merge($valid, [
+				Article::IMAGE => (new UploadFile($request->file(Article::IMAGE), "upload/article/"))->fileName,
+			]);
 
-        $valid = array_merge($valid, [
-            Article::USER_ID => Auth::id(),
-            Article::SLUG => $request->input(Article::SLUG) != "" ? $request->input(Article::SLUG) : Slug::slugify($request->input(Article::TITLE)),
-        ]);
-        return $valid;
-    }
+		return array_merge($valid, [
+			Article::USER_ID => Auth::id(),
+			Article::SLUG => $request->input(Article::SLUG) != "" ? $request->input(Article::SLUG) : Slug::slugify($request->input(Article::TITLE)),
+		]);
+	}
 
-    /**
-     * @param Request $request
-     * @param $article
-     */
-    private function saveCategory(Request $request, $article): void
-    {
-        $categories = [];
-        collect($request->input("category"))->map(function ($item) use ($article, &$categories) {
-            $categories[] = [Categorize::CATEGORY_ID => $item];
-        });
-        $article->categorize()->detach();
-        $article->categorize()->attach($categories);
-    }
+	/**
+	 * @param Request $request
+	 * @param Article $article
+	 * @return array
+	 */
+	public function reaction(Request $request, Article $article): array
+	{
+		$reactions = json_decode(@$article->getMeta('reaction')->value ?? '[]', true);
 
-    /**
-     * @param Request $request
-     * @param $article
-     */
-    private function saveTag(Request $request, $article): void
-    {
-        $tags = [];
-        collect($request->input("tag"))->map(function ($item) use ($article, &$tags) {
-            $tags[] = [Tagorize::TAG_ID => $item,];
-        });
+		$reactions = array_merge($reactions, [$request->input('emoji') => @$reactions[$request->input('emoji')] + 1 ?? 1]);
 
-        $article->tagorize()->detach();
-        $article->tagorize()->attach($tags);
-    }
+		$article->setMeta('reaction', json_encode($reactions));
+
+		return $reactions;
+	}
 }

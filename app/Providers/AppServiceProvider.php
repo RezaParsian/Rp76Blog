@@ -4,8 +4,11 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -43,9 +46,38 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        if (Schema::hasTable("articles")){
-            View::share("twits", Article::where(Article::TYPE, "twit")->orderBy("id", "DESC")->take(4)->get());
-            View::share("cats", Category::where(Category::PARENT_ID, 0)->get());
+
+        if (Schema::hasTable("articles")) {
+            $twits = Cache::rememberForever('twits', function () {
+                return Article::where(Article::TYPE, "twit")->orderBy("id", "DESC")->take(4)->get();
+            });
+
+            $cats = Cache::rememberForever('cats', function () {
+                $categories = Category::with('children')->where(Category::PARENT_ID, 0)->get();
+
+                $categories->transform(function (Category $category) {
+                    return [
+                        'title' => $category->title,
+                        'slug' => $category->slug,
+                        'count' => $category->children->sum('articles_count') + $category->articles_count
+                    ];
+                });
+
+                return $categories;
+            });
+
+            $tags = Cache::rememberForever('tags', function () {
+                return Tag::all();
+            });
+
+            $owner = Cache::rememberForever('owner', function () {
+                return User::first();
+            });
+
+            View::share("twits", $twits);
+            View::share("cats", $cats);
+            View::share("tags", $tags);
+            View::share("owner", $owner);
         }
     }
 }

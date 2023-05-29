@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 
 class TagController extends Controller
 {
@@ -37,7 +37,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        abort(404);
+        return view($this->path . "create");
     }
 
     /**
@@ -48,10 +48,12 @@ class TagController extends Controller
     {
         $this->tagValidator($request);
 
-       $tag= Tag::create([
+        Tag::create([
             Tag::TITLE => $request->input(Tag::TITLE),
             Tag::SLUG => is_null($request->input(Tag::SLUG)) ? Slug::slugify($request->input(Tag::TITLE)) : Slug::slugify($request->input(Tag::SLUG)),
         ]);
+
+        Cache::forget('tags');
 
         return back()->with("msg", "تگ موردنظر با موفقیت ثبت شد.");
     }
@@ -87,6 +89,8 @@ class TagController extends Controller
             Tag::SLUG => is_null($request->input(Tag::SLUG)) ? Slug::slugify($request->input(Tag::TITLE)) : Slug::slugify($request->input(Tag::SLUG)),
         ]);
 
+        Cache::forget('tags');
+
         return back()->with("msg", "تگ موردنظر با موفقیت ویرایش شد.");
     }
 
@@ -98,6 +102,8 @@ class TagController extends Controller
     public function destroy(Tag $tag): RedirectResponse
     {
         $tag->delete();
+        Cache::forget('tags');
+
         return back()->with("msg", "تگ موردنظر حذف شد");
     }
 

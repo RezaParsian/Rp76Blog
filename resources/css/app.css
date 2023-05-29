@@ -1,50 +1,140 @@
-@font-face {
-    font-family: "primary-font";
-    src: url("/../fonts/shabnam-300.eot");
-    src: url("/../fonts/shabnam-300.eot?#iefix") format("embedded-opentype"), url("/../fonts/shabnam-300.woff2") format("woff2"), url("/../fonts/shabnam-300.woff") format("woff"), url("/../fonts/shabnam-300.ttf") format("truetype");
-    font-weight: 300;
-}
-
-@font-face {
-    font-family: "primary-font";
-    src: url("/../fonts/shabnam-400.eot");
-    src: url("/../fonts/shabnam-400.eot?#iefix") format("embedded-opentype"), url("/../fonts/shabnam-400.woff2") format("woff2"), url("/../fonts/shabnam-400.woff") format("woff"), url("/../fonts/shabnam-400.ttf") format("truetype");
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: "primary-font";
-    src: url("/../fonts/shabnam-500.eot");
-    src: url("/../fonts/shabnam-500.eot?#iefix") format("embedded-opentype"), url("/../fonts/shabnam-500.woff2") format("woff2"), url("/../fonts/shabnam-500.woff") format("woff"), url("/../fonts/shabnam-500.ttf") format("truetype");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: "primary-font";
-    src: url("/../fonts/shabnam-700.eot");
-    src: url("/../fonts/shabnam-700.eot?#iefix") format("embedded-opentype"), url("/../fonts/shabnam-700.woff2") format("woff2"), url("/../fonts/shabnam-700.woff") format("woff"), url("/../fonts/shabnam-700.ttf") format("truetype");
-    font-weight: 700;
-}
-
-@import "prettifier.css";
-
 @import "custom.css";
-
 @import "style.css";
+@import "~vazirmatn/Vazirmatn-font-face.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import "slicknav.min.css";
+h1, h2, h3, h4, h5, h6 {
+    font-family: Sahel, sans-serif;
+    @apply m-0 font-semibold
+}
 
-@import "animate.css";
+svg {
+    @apply w-5 h-5 fill-rp-400 hover:fill-rp-500;
+}
 
-@import "https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
-@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700";
+h1 {
+    @apply text-4xl;
+}
 
+h2 {
+    @apply text-3xl;
+}
 
-@import "/../public/dist/css/adminlte.min.css";
-@import "/../public/plugins/iCheck/flat/blue.css";
-@import "/../public/plugins/morris/morris.css";
-@import "/../public/plugins/daterangepicker/daterangepicker-bs3.css";
-@import "/../public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css";
-@import "/../public/dist/css/custom-style.css";
-@import "/../public/plugins/jvectormap/jquery-jvectormap-1.2.2.css";
-@import "/../public/dist/css/bootstrap-rtl.min.css";
+h3 {
+    @apply text-2xl;
+}
+
+h4 {
+    @apply text-xl;
+}
+
+h5 {
+    @apply text-lg;
+}
+
+h6 {
+    @apply text-base;
+}
+
+.c_underline {
+    @apply hover:underline hover:decoration-rp-400 underline-offset-1;
+}
+
+.c_underline .active{
+    @apply text-rp-100;
+}
+
+.dot {
+    @apply after:bg-rp-400 after:border after:rounded-full after:w-[5px] after:h-[5px] after:block after:border-rp-400 after:my-auto flex ml-4 mr-1;
+}
+
+.side-card{
+    @apply bg-white rounded-3xl grid dark:bg-stone-800 dark:shadow-sm dark:shadow-rp-800 dark:text-white;
+}
+
+.side-card .header{
+    @apply after:block after:w-10 after:h-[2px] after:rounded after:bg-rp-400 after:absolute after:-bottom-1 after:right-0 relative mb-4;
+}
+
+.container{
+    @apply md:max-w-[1200px]
+}
+
+summary{
+    @apply block
+}
+
+pre{
+    direction: ltr;
+    @apply text-left bg-slate-100 w-[82vw] md:w-auto whitespace-pre rounded-lg p-4 dark:bg-stone-800 my-4 overflow-scroll;
+}
+
+blockquote {
+    @apply bg-slate-200 border-r-4 border-rp-400 dark:bg-stone-700/40 rounded my-4;
+}
+
+.tag{
+    @apply bg-slate-100 dark:bg-stone-900 rounded-full px-4 py-1 dark:hover:bg-rp-400 hover:bg-rp-400 hover:text-white text-xs;
+}
+
+#moreDetail h1,
+#moreDetail h2,
+#moreDetail h3,
+#moreDetail h4,
+#moreDetail h5,
+#moreDetail h6,
+#moreDetail img{
+    @apply my-6
+}
+
+#moreDetail img{
+    @apply mx-auto rounded;
+}
+
+input:not([type='file']):not(.swal2-input), select, textarea{
+    @apply w-full px-4 py-2 text-rp-700 bg-white border border-rp-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rp-500 focus:border-rp-500;
+}
+
+[type='file']{
+    direction: ltr;
+    @apply file:mr-4 file:py-2 file:px-4
+    file:rounded-full file:border-0
+    file:text-sm file:font-semibold
+    file:bg-rp-50 file:text-rp-700
+    hover:file:bg-rp-100 focus:outline-none
+    w-full mt-2
+}
+
+table{
+    @apply min-w-full divide-y divide-gray-200 table-auto my-5;
+}
+
+th{
+    @apply px-6 py-3 bg-gray-50 text-xs text-right font-medium text-gray-500 uppercase tracking-wider;
+}
+
+td{
+    @apply px-6 py-4 whitespace-nowrap;
+}
+
+tbody{
+    @apply bg-white divide-y divide-gray-200;
+}
+
+tr{
+    @apply even:bg-gray-100;
+}
+
+.btn-success{
+    @apply rounded px-8 py-1 border bg-green-300 hover:bg-green-400 text-green-700 border-green-500;
+}
+
+.btn-danger{
+    @apply rounded px-8 py-1 border bg-red-300 hover:bg-red-400 text-red-700 border-red-500;
+}
+
+.btn-warning{
+    @apply rounded px-8 py-1 border bg-yellow-300 hover:bg-yellow-400 text-yellow-700 border-yellow-500 mx-2;
+}

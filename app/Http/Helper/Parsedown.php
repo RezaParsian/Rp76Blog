@@ -413,9 +413,6 @@ class Parsedown
                     'name' => 'pre',
                     'handler' => 'element',
                     'text' => $Element,
-                    "attributes" => [
-                        "class" => "prettyprint"
-                    ]
                 ),
             );
 

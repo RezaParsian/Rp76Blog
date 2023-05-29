@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Http\{Controllers\Controller, Helper\UploadFile};
-use App\Models\{Article, User};
-use Illuminate\Http\RedirectResponse;
+use App\Http\{Controllers\Controller};
+use App\Models\{Article, Category, Tag, User};
 use Illuminate\Http\Request;
 
 
@@ -15,16 +14,28 @@ class BlogController extends Controller
     {
         $articles = Article::where(function ($query) use ($request) {
             $query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
-        })->with(["user" => function ($query) {
-            return $query->select("id", "name");
-        }])->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
+        })->with('user:id,name,image','category:id,title')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
 
-        return view("welcome", compact("articles"));
+        return view("blog.index", compact("articles"));
     }
 
-    public function post(Article $slug)
+    public function post($slug)
     {
-        return view("blog.post", compact("slug"));
+        $article = Article::where(Article::SLUG, $slug)->with('meta')->firstOrFail();
+
+        $nextPost = Article::where([
+            ['created_at', '>', $article->created_at],
+            [Article::TYPE,'blog']
+        ])->orderBy('created_at', 'asc')
+            ->first();
+
+        $prevPost = Article::where([
+            ['created_at', '<', $article->created_at],
+            [Article::TYPE,'blog']
+        ])->orderBy('created_at', 'desc')
+            ->first();
+
+        return view("blog.post", compact("article", 'nextPost', 'prevPost'));
     }
 
     public function profile(User $user)
@@ -32,25 +43,26 @@ class BlogController extends Controller
         return view('profile', compact('user'));
     }
 
-    public function profileSave(Request $request, User $user): RedirectResponse
+    public function categoryPosts(Request $request, Category $category)
     {
-        $request->validate([
-            "image" => ["image", "max:2048", "nullable"],
-        ]);
+		$categoryIds = $category->children->pluck('id');
+		$categoryIds[] = $category->id;
 
-        if ($request->has('image')) {
-            @unlink('upload/profile/' . $user->image);
-        }
+		$articles = Article::whereIn(Article::CATEGORY_ID, $categoryIds)
+			->where(function ($query) use ($request) {
+				$query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
+			})->with('user:id,name,image', 'category:id,title')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
 
-        $user->update([
-            'image' => (new UploadFile($request->file(Article::IMAGE), "upload/profile/"))->fileName
-        ]);
+		return view("blog.index", compact("articles"));
+	}
 
-        $user->setMeta('profile_name', $request->input('name'));
-        $user->setMeta('profile_about', $request->input('about'));
-        $user->setMeta('profile_phone', $request->input('phone'));
-        $user->setMeta('profile_mail', $request->input('mail'));
+	public function tagPosts(Request $request, Tag $tag)
+	{
+		$articles = $tag->articles()
+			->where(function ($query) use ($request) {
+				$query->where("title", "like", "%{$request->input('q')}%")->orWhere("content", "like", "%{$request->input('q')}%");
+			})->with('user:id,name,image', 'category:id,title')->where(Article::TYPE, "blog")->orderby("id", "DESC")->paginate();
 
-        return back();
-    }
+		return view("blog.index", compact("articles"));
+	}
 }

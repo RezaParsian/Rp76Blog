@@ -2,6 +2,7 @@
 
 namespace App\Http\Helper;
 
+use App\View\Components\Svg\Backward;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\This;
 
@@ -21,10 +22,13 @@ class Menu
     public function __construct()
     {
         $this->add("داشبورد", "dashboard", "", "fa fa-dashboard", route("dashboard"), "dashboard");
-        $this->add("CMS", "cms", "", "fa fa-thumb-tack");
-        $this->add("مقالات", "cms.article", "cms", "fa fa-thumb-tack", route("article.index"), "dashboard/article*","posts");
-        $this->add("دسته بندی ها", "cms.category", "cms", "fa fa-sitemap", route("category.index"), "dashboard/category*","posts");
-        $this->add("تگ ها", "cms.tag", "cms", "fa fa-tags", route("tag.index"), "dashboard/tag*","posts");
+        $this->add("مقالات", "article", '', "fa fa-thumb-tack", route("article.index"), "dashboard/article*","posts");
+        $this->add("دسته بندی ها", "category", '', "fa fa-sitemap", route("category.index"), "dashboard/category*","posts");
+        $this->add("تگ ها", "tag", '', "fa fa-tags", route("tag.index"), "dashboard/tag*","posts");
+		$this->add("کاربران","crm","","fa fa-users",route("crm.index"),"*crm*");
+		$this->add("فضای کاری","workspace","","fa fa-briefcase",route("work_space.index"),"*work_space*");
+
+
 //        $this->add("تنظیمات", "setting", "", "fa fa-cogs");
 //        $this->add("پروفایل", "setting.profile", "setting", "fa fa-user");
     }
@@ -55,13 +59,13 @@ class Menu
 
     private function generateMenu($menu): string
     {
-        $arrow = count($menu) >= 2 ? "<i class='right fa fa-angle-left'>" : "";
+        $arrow = count($menu) >= 2 ? (new Backward())->render() : "";
 
         $active = Request()->is($menu[0]->active) ? " active" : "";
-        $result = '<li class="nav-item has-treeview">';
+        $result = '<li class="hover:bg-rp-400 rounded p-2">';
         $result .= "<a href='{$menu[0]->link}' id='{$menu[0]->slug}' class='nav-link {$active}'>";
         $result .= "<i class='nav-icon {$menu[0]->icon}'></i>";
-        $result .= "<p class='text-white'>{$menu[0]->title}{$arrow}</i></p></a>";
+        $result .= "<p>{$menu[0]->title}{$arrow}</i></p></a>";
 
         $menu = array_slice($menu, 1);
 

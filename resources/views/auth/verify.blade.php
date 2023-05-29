@@ -1,18 +1,25 @@
-@extends('layouts.app')
+@extends('auth.master')
 
-@section("ex-title","تایید ادرس ایمیل")
+@section("title","تایید آدرس ایمیل")
 
-@section('content')
-    @if (session('resent'))
-        <div class="alert alert-success" role="alert">
+@section('body')
+    <div class="grid gap-4">
+        {{--    @if (session('resent'))--}}
+        <div class="text-green-500 bg-green-100 p-3 rounded-lg">
             {{ __('A fresh verification link has been sent to your email address.') }}
         </div>
-    @endif
+        {{--    @endif--}}
 
-    {{ __('Before proceeding, please check your email for a verification link.') }}
-    {{ __('If you did not receive the email') }},
-    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-        @csrf
-        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-    </form>
+        {{ __('Before proceeding, please check your email for a verification link.') }}
+
+        <p class="mt-2">
+            {{ __('If you did not receive the email') }}
+        </p>
+        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+            @csrf
+            <button type="submit" class="bg-rp-500 hover:bg-rp-700 w-full rounded-xl text-white font-bold py-2 px-10 rounded">
+                {{ __('click here to request another') }}
+            </button>
+        </form>
+    </div>
 @endsection

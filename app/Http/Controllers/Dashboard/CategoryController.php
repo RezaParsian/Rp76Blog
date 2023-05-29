@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Slug;
 use App\Models\Category;
-use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Http\Response, Support\Str};
 use Exception;
+use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Support\Facades\Cache};
 
 class CategoryController extends Controller
 {
@@ -24,18 +24,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate();
         return view($this->path."index", compact("categories"));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return void
+     * @return Application|Factory|View
      */
     public function create()
     {
-        abort(404);
+        $categories = Category::all();
+        return view($this->path."create",compact('categories'));
     }
 
     /**
@@ -48,14 +47,15 @@ class CategoryController extends Controller
     {
         $valid = $request->validate([
             Category::TITLE => ["required"],
-            Category::TYPE => ["nullable"],
-            Category::PARENT_ID => ["required", "numeric"],
+            Category::PARENT_ID => ["nullable"],
             Category::SLUG => ["nullable"]
         ]);
 
         $valid[Category::SLUG] = is_null($request->input(Category::SLUG)) ? Slug::slugify($request->input(Category::TITLE)) : Slug::slugify($request->input(Category::SLUG));
 
-        Category::create($valid);
+        Category::create(array_filter($valid));
+
+        Cache::forget('cats');
 
         return back()->with("msg", "دسته موردنظر با موفقیت ایجاد شد.");
     }
@@ -92,7 +92,6 @@ class CategoryController extends Controller
     {
         $valid = $request->validate([
             Category::TITLE => ["required"],
-            Category::TYPE => ["nullable"],
             Category::PARENT_ID => ["required", "numeric"],
             Category::SLUG => ["nullabel"]
         ]);
@@ -100,6 +99,9 @@ class CategoryController extends Controller
         $valid[Category::SLUG] = is_null($request->input(Category::SLUG)) ? Slug::slugify($request->input(Category::TITLE)) : Slug::slugify($request->input(Category::SLUG));
 
         $category->update($valid);
+
+        Cache::forget('cats');
+
         return back()->with("msg", "دسته موردنظر با موفقیت ویرایش شد");
     }
 
@@ -113,6 +115,9 @@ class CategoryController extends Controller
     public function destroy(Category $category): RedirectResponse
     {
         $category->delete();
+
+        Cache::forget('cats');
+
         return back()->with("msg", "دسته موردنظر با موفقیت غیرفعال شد");
     }
 }
