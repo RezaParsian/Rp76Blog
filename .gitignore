@@ -3,8 +3,6 @@
 /node_modules
 /public/hot
 /public/storage
-/public/css/*
-/public/js/app.js.LICENSE.txt
 /storage/*.key
 /vendor
 .env
