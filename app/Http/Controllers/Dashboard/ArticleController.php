@@ -119,24 +119,40 @@ class ArticleController extends Controller
      */
     private function checkValid(Request $request): array
     {
-        $valid = $request->validate([
-            Article::TITLE => ["required"],
-            Article::SLUG => ["nullable"],
-            Article::TYPE => ["required"],
-            Article::IMAGE => ["nullable", "max:2024", "image"],
-            Article::CONTENT => ["required"],
-            "category_id" => ["required"],
-            "tags" => ["required"]
-        ]);
+		$valid = $request->validate([
+			Article::TITLE => ["required"],
+			Article::SLUG => ["nullable"],
+			Article::TYPE => ["required"],
+			Article::IMAGE => ["nullable", "max:2024", "image"],
+			Article::CONTENT => ["required"],
+			"category_id" => ["required"],
+			"tags" => ["required"]
+		]);
 
-        if ($request->has(Article::IMAGE))
-            $valid = array_merge($valid, [
-                Article::IMAGE => (new UploadFile($request->file(Article::IMAGE), "upload/article/"))->fileName,
-            ]);
+		if ($request->has(Article::IMAGE))
+			$valid = array_merge($valid, [
+				Article::IMAGE => (new UploadFile($request->file(Article::IMAGE), "upload/article/"))->fileName,
+			]);
 
-        return array_merge($valid, [
-            Article::USER_ID => Auth::id(),
-            Article::SLUG => $request->input(Article::SLUG) != "" ? $request->input(Article::SLUG) : Slug::slugify($request->input(Article::TITLE)),
-        ]);
-    }
+		return array_merge($valid, [
+			Article::USER_ID => Auth::id(),
+			Article::SLUG => $request->input(Article::SLUG) != "" ? $request->input(Article::SLUG) : Slug::slugify($request->input(Article::TITLE)),
+		]);
+	}
+
+	/**
+	 * @param Request $request
+	 * @param Article $article
+	 * @return array
+	 */
+	public function reaction(Request $request, Article $article): array
+	{
+		$reactions = json_decode(@$article->getMeta('reaction')->value ?? '[]', true);
+
+		$reactions = array_merge($reactions, [$request->input('emoji') => @$reactions[$request->input('emoji')] + 1 ?? 1]);
+
+		$article->setMeta('reaction', json_encode($reactions));
+
+		return $reactions;
+	}
 }

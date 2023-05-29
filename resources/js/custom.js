@@ -53,4 +53,22 @@ $(() => {
     $('#searchBarButton').click(function () {
         $('#searchBar').toggle(500);
     });
+
+    $('.reactionButton').click(function () {
+        const articleId = $(this).data('article');
+        const emoji = $(this).data('id');
+
+        $.ajax({
+            url: '/api/article/' + articleId,
+            method: 'put',
+            data: {
+                emoji
+            },
+            success: (res) => {
+                Object.entries(res).forEach(([key, value]) => {
+                    $(`.counter[data-id='${key}']`).text(value);
+                });
+            }
+        });
+    });
 });

@@ -21,7 +21,7 @@ class BlogController extends Controller
 
     public function post($slug)
     {
-        $article = Article::where(Article::SLUG, $slug)->firstOrFail();
+        $article = Article::where(Article::SLUG, $slug)->with('meta')->firstOrFail();
 
         $nextPost = Article::where([
             ['created_at', '>', $article->created_at],

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Helper\CustomModel;
+use App\Http\Helper\MetaAble;
 use App\Http\Helper\Parsedown;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Article extends Model
 {
-    use HasFactory, SoftDeletes, CustomModel;
+    use HasFactory, SoftDeletes, CustomModel,MetaAble;
 
     const
         USER_ID = "user_id",

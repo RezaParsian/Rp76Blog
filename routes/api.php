@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BotController;
+use App\Http\Controllers\Dashboard\ArticleController;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -31,3 +32,5 @@ Route::get("/post", function (Request $request) {
 });
 
 Route::any("bot",[BotController::class,"index"]);
+
+Route::put('article/{article}', [ArticleController::class,'reaction']);
