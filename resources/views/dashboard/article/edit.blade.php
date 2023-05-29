@@ -4,6 +4,7 @@
 
 @section('content')
     <form action="{{route('article.update',$article->id)}}" method="post" enctype="multipart/form-data" class="grid grid-cols-2 gap-2">
+        @method('put')
         @csrf
         <label>
             عنوان
@@ -29,7 +30,7 @@
             <textarea name="content" id="content" cols="30" rows="10">{{old('content',$article->content)}}</textarea>
         </label>
 
-        <button class="rounded px-8 py-1 border bg-green-300 hover:bg-green-400 text-green-700 border-green-500">
+        <button class="btn-success">
             ویرایش
         </button>
     </form>

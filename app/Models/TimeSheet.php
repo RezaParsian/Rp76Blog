@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\TimeSheet\Models;
+namespace App\Models;
 
 use App\Http\Helper\CustomModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

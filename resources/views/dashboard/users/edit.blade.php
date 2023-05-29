@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="form-group mt-4">
-                    <button type="submit" class="rounded px-8 py-1 border bg-green-300 hover:bg-green-400 text-green-700 border-green-500">
+                    <button type="submit" class="btn-success">
                         <i class="fa fa-floppy-o"></i>
                         ذخیره
                     </button>

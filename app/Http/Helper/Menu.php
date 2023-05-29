@@ -26,6 +26,8 @@ class Menu
         $this->add("دسته بندی ها", "category", '', "fa fa-sitemap", route("category.index"), "dashboard/category*","posts");
         $this->add("تگ ها", "tag", '', "fa fa-tags", route("tag.index"), "dashboard/tag*","posts");
 		$this->add("کاربران","crm","","fa fa-users",route("crm.index"),"*crm*");
+		$this->add("فضای کاری","workspace","","fa fa-briefcase",route("work_space.index"),"*work_space*");
+
 
 //        $this->add("تنظیمات", "setting", "", "fa fa-cogs");
 //        $this->add("پروفایل", "setting.profile", "setting", "fa fa-user");

@@ -52,7 +52,7 @@
             <textarea name="content" id="content" cols="30" rows="10">{{old('content')}}</textarea>
         </label>
 
-        <button class="rounded px-8 py-1 border bg-green-300 hover:bg-green-400 text-green-700 border-green-500">
+        <button class="btn-success">
             ثبت
         </button>
     </form>

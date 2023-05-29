@@ -5,7 +5,7 @@
                 <x-svg.image class="w-12 h-12"></x-svg.image>
             </div>
         @else
-            <img src="{{asset('upload/profile/'.auth()->user()->image)}}" alt="{{auth()->user()->name}}" class="rounded-full w-24 mx-auto">
+            <img src="{{auth()->user()->image}}" alt="{{auth()->user()->name}}" class="rounded-full w-24 mx-auto">
         @endif
     </div>
 
@@ -13,6 +13,8 @@
         {{auth()->user()->name}}
     </h3>
 </div>
+
+@stack('aside')
 
 <div class="side-card my-6 p-4">
     <h3 class="header">منو</h3>

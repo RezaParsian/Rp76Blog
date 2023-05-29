@@ -94,6 +94,7 @@ class ArticleController extends Controller
             'title' => ['required'],
             'slug' => ['required'],
             'category_id' => ['required'],
+			'content' => ['required']
         ]);
 
         $article->update($valid);
