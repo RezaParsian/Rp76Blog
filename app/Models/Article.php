@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static create(array $valid)
  * @method static orderBy(string $string, string $string1)
  * @method static where(...$data)
+ * @method static first()
  * @property string content
  * @property int id
  * @property string $title

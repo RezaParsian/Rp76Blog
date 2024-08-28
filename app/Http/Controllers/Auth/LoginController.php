@@ -22,13 +22,9 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
+     * @return string
      */
-//    protected $redirectTo = RouteServiceProvider::HOME;
-
-    public function redirectPath()
+    public function redirectPath(): string
     {
         return route("dashboard");
     }

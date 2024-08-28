@@ -26,7 +26,7 @@ class ArticleController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): Factory|View|Application
     {
         $articles = Article::with('category')->orderBy("id", "DESC")->paginate();
 

@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
  * @property Role $role
  * @package App\Models
  * @method static orderBy(...$data)
+ * @method static first()
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
