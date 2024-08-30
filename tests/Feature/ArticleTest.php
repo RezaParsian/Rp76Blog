@@ -59,7 +59,7 @@ class ArticleTest extends TestCase
         $response = $this->post(route('article.store'));
 
         $response->assertRedirect();
-        $response->assertSessionHasErrors();
+        $response->assertInvalid();
     }
 
     /**
@@ -77,7 +77,7 @@ class ArticleTest extends TestCase
         ]);
 
         $response->assertRedirect();
-        $response->assertSessionHasNoErrors();
+        $response->assertValid();
     }
 
     public function testArticleCanNotUpdateWithoutData(): void
@@ -86,12 +86,11 @@ class ArticleTest extends TestCase
         $response = $this->put(route('article.update',Article::first()->id));
 
         $response->assertRedirect();
-        $response->assertSessionHasErrors();
+        $response->assertInvalid();
     }
 
     /**
      * @return void
-     * @throws JsonException
      */
     public function testArticleCanBeDelete()
     {
@@ -99,6 +98,6 @@ class ArticleTest extends TestCase
         $response=$this->delete(route('article.destroy',Article::first()->id));
 
         $response->assertRedirect();
-        $response->assertSessionHasNoErrors();
+        $response->assertValid();
     }
 }

@@ -92,8 +92,8 @@ class CategoryController extends Controller
     {
         $valid = $request->validate([
             Category::TITLE => ["required"],
-            Category::PARENT_ID => ["required", "numeric"],
-            Category::SLUG => ["nullabel"]
+            Category::PARENT_ID => ["nullable", "numeric"],
+            Category::SLUG => ["nullable"]
         ]);
 
         $valid[Category::SLUG] = is_null($request->input(Category::SLUG)) ? Slug::slugify($request->input(Category::TITLE)) : Slug::slugify($request->input(Category::SLUG));
