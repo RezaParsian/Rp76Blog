@@ -26,7 +26,12 @@
             </select>
         </label>
 
-        <label class="col-span-2">
+        <label>
+            عکس مقاله
+            <input type="file" name="image">
+        </label>
+
+        <label class="col-span-2 mt-3">
             <textarea name="content" id="content" cols="30" rows="10">{{old('content',$article->content)}}</textarea>
         </label>
 

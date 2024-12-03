@@ -7,7 +7,16 @@ use App\Http\Helper\Slug;
 use App\Http\Helper\UploadFile;
 use App\Models\{Article, Category, Tag};
 use Exception;
-use Illuminate\{Contracts\Foundation\Application, Contracts\View\Factory, Contracts\View\View, Http\RedirectResponse, Http\Request, Routing\Redirector, Support\Facades\Auth, Support\Facades\Cache};
+use Illuminate\{Contracts\Foundation\Application,
+    Contracts\View\Factory,
+    Contracts\View\View,
+    Http\RedirectResponse,
+    Http\Request,
+    Routing\Redirector,
+    Support\Facades\Auth,
+    Support\Facades\Cache,
+    Support\Facades\File
+};
 
 class ArticleController extends Controller
 {
@@ -94,8 +103,17 @@ class ArticleController extends Controller
             'title' => ['required'],
             'slug' => ['required'],
             'category_id' => ['required'],
-			'content' => ['required']
+            'content' => ['required'],
+            Article::IMAGE => ["nullable", "max:2024", "image"],
         ]);
+
+        if ($request->hasFile("image")) {
+            $valid = array_merge($valid, [
+                Article::IMAGE => (new UploadFile($request->file(Article::IMAGE), "upload/article/"))->fileName,
+            ]);
+
+            File::delete(public_path('upload/article/' . $article->getAttributes()['image']));
+        }
 
         $article->update($valid);
 

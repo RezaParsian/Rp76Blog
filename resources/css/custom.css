@@ -55,18 +55,25 @@ blockquote {
 }
 
 blockquote::before {
-    content: "\f10e";
-    font: normal normal normal 14px/1 FontAwesome;
+    content: "";
+    display: block;
+    background: url("/images/quote-right.svg");
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
     font-size: x-large;
     margin: 0 0 0 1rem;
-    color: #1fa67a;
 }
 
 blockquote::after {
-    content: "\f10d";
-    font: normal normal normal 14px/1 FontAwesome;
+    content: "";
+    display: block;
+    background: url("/images/quote-right.svg");
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
     font-size: x-large;
     margin: 0 0 0 1rem;
-    color: #1fa67a;
     float: left;
+    transform: translate(0,-10px) rotate(180deg);
 }
